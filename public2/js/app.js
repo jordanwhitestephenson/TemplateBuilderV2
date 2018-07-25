@@ -129,8 +129,8 @@ $(document).ready(function() {
     }
   }
 
-  function dropDownChangeEvent(accordianID) {
-    var selectedValue = this.value
+  function dropDownChangeEvent(e) {
+    var selectedValue = e.target.value
     var $moduleChooser
     switch (selectedValue) {
       case "module1":
