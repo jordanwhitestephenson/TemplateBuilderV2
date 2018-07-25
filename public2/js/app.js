@@ -2,7 +2,7 @@ function getModule1() {
   return `<div class="module1">
   <h2 class = "text-center module_headline"> MODULE 1 </h2>
     <form action="" class="module_1_form" method="post">
-    <div class="form-group">
+    <div class="form-group col-xs-6 col-sm-3">
     <label for="exampleFormControlSelect1">Position On Page</label>
     <select class="form-control template">
     <option>Select Position</option>
@@ -12,25 +12,50 @@ function getModule1() {
     <option>4th</option>
     </select>
     </div>
+    <div class = "col-xs-12 header_form_container">
       <label for="headerText">Header Text</label>
       <input type="text" name="headerText" value=""><br>
       <label id="HeaderSize" for="headersize">Header Size</label>
       <input type="number" name="headersize" value="42px"><br>
-      <label id="img" for="img">Upload Image</label>
-      <input type="text" name="img" value=""><br>
+      <label id="HeaderColor" for="headercolor">Header Color</label>
+      <input type="color" name="headercolor" value="4"><br>
+      </div>
+<div class = "col-xs-12 image_form_container">
+<div>
+      <label id="img" for="img_SRC">Image SRC</label>
+      <input type="text" name="img_SRC" value=""><br>
+      </div>
+      <div>
       <input type="file" name="img" id="img" value=""><br>
+      </div>
+      <div>
+      <label id="img" for="img_alt">Img Alt Tag</label>
+      <input type="text" name="img_alt" value=""><br>
+      </div>
+      <div>
+      <label id="img" for="img_title">Image Title</label>
+      <input type="text" name="img_title" value=""><br>
+      </div>
+</div>
+<div class = "para_form_container col-xs-12">
       <label for="paragraphText">Paragraph Text</label>
       <textarea type="text" name="paragraphT" value=""></textarea><br>
+</div>
+      <div class = "cta_form_container col-xs-12">
       <label for="ctaText">CTA TEXT</label>
       <input type="text" name="cta" value=""><br>
       <label for="ctaLink">CTA LINK</label>
       <input type="text" name="ct" value=""><br>
+      <label for="ctaColor">CTA Default Color</label>
+      <input type="color" name="ctaColor" value=""><br>
+      <label for="ctaHover">CTA Hover Color</label>
+      <input type="color" name="ctaHover" value=""><br>
+      </div>
     </form>
     <div class = "button_container">
     <button type="button" data-toggle="modal"  data-target="#exampleModalModule1" onClick= "exampleModule1()" class="btn btn-link">EXAMPLE</button>
-    <div class =  "saved_button_class">
-    <button class="btn btn-secondary" type="button" aria-haspopup="true" aria-expanded="false">SAVE MODULE 1</button>
-    </div>
+    <button type="button" data-toggle=""  data-target="" onClick= "" class="btn btn-link">PREVIEW</button>
+    <button class="btn btn-link" type="button" aria-haspopup="true" aria-expanded="false">SAVE MODULE 1</button>
     </div>
   </div>`;
 }
@@ -122,11 +147,7 @@ $(document).ready(function() {
         dropDownChange(thisDropDown)
         deleteThisModule(deleteButton)
       })
-    },
-    // deleteModule: function(){
-    //
-    // }
-
+    }
   };
 
   app.init();
@@ -138,9 +159,6 @@ $(document).ready(function() {
     function deleteClick(e) {
       var deleteTarget = $(e.target).parentsUntil('nav')
       deleteTarget.remove()
-
-      // var deleteTargetID = deleteTarget[1].id
-      // $(document.getElementById(deleteTargetID)).find('.accordion_container').html('')
     }
 
 
@@ -154,14 +172,6 @@ $(document).ready(function() {
     var selectedValue = e.target.value
     var moduleBarTarget = $(e.target).parentsUntil('nav')
     var moduleBarID = moduleBarTarget[2].id
-/*
-    $('.hi').upUntil('div')
-<nav data-id="3">
-    <a>
-      <select class="hi"></select>
-    </a>
-</nav>
-*/
 
     var $moduleChooser = null;
     var moduleHTML = '';

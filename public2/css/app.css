@@ -121,7 +121,7 @@ body {
 }
 
 
-.cta_container, .saved_button_class, .box-title {
+.cta_container, .saved_button_class, .box-title, .header_form_container, .image_form_container, .cta_form_container {
   display: flex;
   justify-content: space-between;
 }
@@ -245,4 +245,8 @@ input:checked + section.box .box-title:before {
 }
 #deleteButton {
   height: 60%;
+}
+.para_form_container {
+  display: flex;
+  flex-direction: column;
 }
