@@ -97,8 +97,6 @@ function getAccordianHTML(accordianID, labelID) {
 
 
 $(document).ready(function() {
-  var thisDropDown = document.getElementsByClassName("select")
-  var accordionID
   var labelID
   var thisAccordian
 
@@ -110,20 +108,23 @@ $(document).ready(function() {
     init: function() {
       app.addDropDown();
     },
-    addDropDown: function(thisDropDown) {
-      var i = 0
+    addDropDown: function() {
+      var i = 0;
       $('#addButton').on('click', function() {
         i = i + 1
         accordionID = `cb${i}`
         labelID = `label${i}`
+        // is labelID necessary?
         $(".create_container").append(getAccordianHTML(accordionID, labelID));
-        dropDownChange()
+        var thisDropDown = document.getElementsByClassName("select");
+        dropDownChange(thisDropDown)
       })
     }
   };
+
   app.init();
 
-  function dropDownChange() {
+  function dropDownChange(thisDropDown) {
     for (var i = 0; i < thisDropDown.length; i++) {
       thisDropDown[i].addEventListener("change", dropDownChangeEvent, false)
     }
@@ -131,17 +132,30 @@ $(document).ready(function() {
 
   function dropDownChangeEvent(e) {
     var selectedValue = e.target.value
-    var $moduleChooser
+    // may need correction
+    var moduleBarID = $(e.target).upUntil('nav').attr('data-id');
+/*
+    $('.hi').upUntil('div')
+<nav data-id="3">
+    <a>
+      <select class="hi"></select>
+    </a>
+</nav>
+*/
+
+    var $moduleChooser = null;
+    var moduleHTML = '';
     switch (selectedValue) {
       case "module1":
-        $moduleChooser = $(document.getElementById(accordionID)).find('.accordion_container')
-        $moduleChooser.html(getModule1());
+        $moduleChooser = $(document.getElementById(moduleBarID)).find('.accordion_container')
+        moduleHTML = getModule1();
         break;
       case "module2":
-        $moduleChooser = $(document.getElementById(accordionID)).find('.accordion_container')
-        $moduleChooser.html(getModule2());
+        $moduleChooser = $(document.getElementById(moduleBarID)).find('.accordion_container')
+        moduleHTML = getModule2();
         break;
     }
+    $moduleChooser.html(getModule1());
   }
 });
 
