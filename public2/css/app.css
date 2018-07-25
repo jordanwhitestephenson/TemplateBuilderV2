@@ -250,3 +250,6 @@ input:checked + section.box .box-title:before {
   display: flex;
   flex-direction: column;
 }
+.card-body.template {
+  padding: 0;
+}

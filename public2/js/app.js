@@ -14,11 +14,11 @@ function getModule1() {
     </div>
     <div class = "col-xs-12 header_form_container">
       <label for="headerText">Header Text</label>
-      <input type="text" name="headerText" value=""><br>
+      <input type="text" name="headerText"  onChange = "retrieveText(this)" class = "headerText" value=""><br>
       <label id="HeaderSize" for="headersize">Header Size</label>
-      <input type="number" name="headersize" value="42px"><br>
+      <input type="number" name="headersize" onChange = "retrieveText(this)"  value="42px"><br>
       <label id="HeaderColor" for="headercolor">Header Color</label>
-      <input type="color" name="headercolor" value="4"><br>
+      <input type="color" name="headercolor" onChange = "retrieveText(this)" value = ""><br>
       </div>
 <div class = "col-xs-12 image_form_container">
 <div>
@@ -40,7 +40,7 @@ function getModule1() {
 <div class = "para_form_container col-xs-12">
       <label for="paragraphText">Paragraph Text</label>
       <textarea type="text" name="paragraphT" value=""></textarea><br>
-</div>
+  </div>
       <div class = "cta_form_container col-xs-12">
       <label for="ctaText">CTA TEXT</label>
       <input type="text" name="cta" value=""><br>
@@ -54,10 +54,34 @@ function getModule1() {
     </form>
     <div class = "button_container">
     <button type="button" data-toggle="modal"  data-target="#exampleModalModule1" onClick= "exampleModule1()" class="btn btn-link">EXAMPLE</button>
-    <button type="button" data-toggle=""  data-target="" onClick= "" class="btn btn-link">PREVIEW</button>
+    <a class="btn btn-link" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    PREVIEW MODULE
+    </a>
     <button class="btn btn-link" type="button" aria-haspopup="true" aria-expanded="false">SAVE MODULE 1</button>
     </div>
-  </div>`;
+
+
+    <div class="collapse" id="collapseExample">
+    <div class="card card-body template">
+    <section class="module1_mock cs_container-fluid  module_container">
+      <div class="product_container col-sm-6">
+        <img src="images/205438_0EC_Crocband_Timeless_Clash_Clog_main.jpg" class="img-responsive" />
+      </div>
+      <div class="col-sm-6 flex_box_column">
+        <div class="text_container col-lg-10">
+          <h1 class="cx-heavy-brand-font text-center text-uppercase headerTextPreview">H1 - (42pt) extrabold</h1>
+          <p class="cx-brand-font text-center"> Body copy 18pt/20pt Proxima Nova Regular. Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut abore et dolore.</p>
+          <div class="col-xs-12 flex_box_column " style="">
+            <div class="col-xs-11 col-sm-12 col-md-12 col-lg-10 ">
+              <a href="" class=" cx-button full-width  cx-heavy-brand-font text-uppercase text-center">cta 20pt extrabold</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+      </div>
+    </div>
+  </div>`
+
 }
 
 function getModule2() {
@@ -97,7 +121,6 @@ function getModule2() {
         </div>`
 }
 
-
 function getAccordianHTML(accordianID, labelID) {
   return `<nav class="accordion arrows">
     <input type="radio" id = "${labelID}" name="accordion"/>
@@ -120,6 +143,22 @@ function getAccordianHTML(accordianID, labelID) {
   </nav>`;
 }
 
+function retrieveText(e){
+  var text = e.name
+  var textValue = e.value
+  switch(text){
+  case "headerText":
+  $('.headerTextPreview').text(textValue)
+  break;
+  case "headersize":
+  $('.headerTextPreview').css({"font-size" : textValue + 'px'})
+  break;
+  case "headercolor":
+  $('.headerTextPreview').css({"color" : textValue })
+}
+
+}
+
 
 $(document).ready(function() {
   var labelID
@@ -132,7 +171,6 @@ $(document).ready(function() {
     },
     init: function() {
       app.addModule();
-      // app.deleteModule();
     },
     addModule: function() {
       var i = 0;
@@ -142,25 +180,26 @@ $(document).ready(function() {
         labelID = `label${i}`
         // is labelID necessary?
         $(".create_container").append(getAccordianHTML(accordionID, labelID));
-        var thisDropDown = document.getElementsByClassName("box");
+        var thisDropDown = document.getElementsByClassName("box-title");
         var deleteButton = document.getElementsByClassName('delete_button')
         dropDownChange(thisDropDown)
         deleteThisModule(deleteButton)
       })
-    }
+    },
+
   };
 
   app.init();
-    function deleteThisModule(deleteButton){
-      for (var i = 0; i < deleteButton.length; i++) {
-        deleteButton[i].addEventListener("click", deleteClick, false)
-      }
-    }
-    function deleteClick(e) {
-      var deleteTarget = $(e.target).parentsUntil('nav')
-      deleteTarget.remove()
-    }
 
+  function deleteThisModule(deleteButton) {
+    for (var i = 0; i < deleteButton.length; i++) {
+      deleteButton[i].addEventListener("click", deleteClick, false)
+    }
+  }
+  function deleteClick(e) {
+    var deleteTarget = $(e.target).parentsUntil('nav')
+    deleteTarget.remove()
+  }
 
   function dropDownChange(thisDropDown) {
     for (var i = 0; i < thisDropDown.length; i++) {
@@ -172,7 +211,6 @@ $(document).ready(function() {
     var selectedValue = e.target.value
     var moduleBarTarget = $(e.target).parentsUntil('nav')
     var moduleBarID = moduleBarTarget[2].id
-
     var $moduleChooser = null;
     var moduleHTML = '';
     switch (selectedValue) {
@@ -184,13 +222,15 @@ $(document).ready(function() {
         $moduleChooser = $(document.getElementById(moduleBarID)).find('.accordion_container')
         moduleHTML = getModule2();
         break;
+      default:
+        $moduleChooser = $(document.getElementById(moduleBarID)).find('.accordion_container')
+        moduleHML = ''
     }
     $moduleChooser.html(moduleHTML);
+    // retrieveText()
   }
+
 });
-
-
-
 
 // div.addEventListener("click", function() {
 //   var editHTML = $('textarea#box:input').val();
@@ -214,9 +254,6 @@ $(document).ready(function() {
 //   arguments.one
 // }
 
-
-
-
 // function dropDownChange(selectedModule) {
 // var dropDownID = selectedModule.target.id
 // var dropdown = document.getElementById(dropDownID.toString())
@@ -229,7 +266,7 @@ $(document).ready(function() {
 //   paraText = `paraText${i}`
 //   ctaText = `ctaText${i}`
 //   ctaLink = `ctaText${i}`
-//   // dropdown.addEventListener('change', dropDownChange, false)
+//    dropdown.addEventListener('change', dropDownChange, false)
 //   $(this).off(event)
 //   var selectedValue = $("#" + dropDownID).val()
 
@@ -243,7 +280,7 @@ $(document).ready(function() {
 //
 //   case "module2":
 //     $(".module1").remove();
-//     // $(".module2").remove();
+//      $(".module2").remove();
 //
 //   default:
 // }
@@ -348,8 +385,6 @@ var resultingBody
 //   })
 // }
 // })
-
-
 
 //
 // $("[id^='ddlViewBy']").one("change", dropDownChange);
