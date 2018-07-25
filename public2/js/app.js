@@ -86,7 +86,7 @@ function getAccordianHTML(accordianID, labelID) {
             <option class="dropdown-item" value = "module3" >MODULE 3</option>
             </select>
         </div>
-        <button class="btn btn-secondary" type="button"  aria-haspopup="true" aria-expanded="false">DELETE</button>
+        <button class="btn btn-secondary delete_button" type="button"  aria-haspopup="true" aria-expanded="false">DELETE</button>
         </label>
       <label class="box-close" for="acc-close"></label>
       <div class="box-content accordion_container"></div>
@@ -106,9 +106,10 @@ $(document).ready(function() {
       allCaps: function() {}
     },
     init: function() {
-      app.addDropDown();
+      app.addModule();
+      // app.deleteModule();
     },
-    addDropDown: function() {
+    addModule: function() {
       var i = 0;
       $('#addButton').on('click', function() {
         i = i + 1
@@ -117,12 +118,31 @@ $(document).ready(function() {
         // is labelID necessary?
         $(".create_container").append(getAccordianHTML(accordionID, labelID));
         var thisDropDown = document.getElementsByClassName("box");
+        var deleteButton = document.getElementsByClassName('delete_button')
         dropDownChange(thisDropDown)
+        deleteThisModule(deleteButton)
       })
-    }
+    },
+    // deleteModule: function(){
+    //
+    // }
+
   };
 
   app.init();
+    function deleteThisModule(deleteButton){
+      for (var i = 0; i < deleteButton.length; i++) {
+        deleteButton[i].addEventListener("click", deleteClick, false)
+      }
+    }
+    function deleteClick(e) {
+      var deleteTarget = $(e.target).parentsUntil('nav')
+      deleteTarget.remove()
+
+      // var deleteTargetID = deleteTarget[1].id
+      // $(document.getElementById(deleteTargetID)).find('.accordion_container').html('')
+    }
+
 
   function dropDownChange(thisDropDown) {
     for (var i = 0; i < thisDropDown.length; i++) {
@@ -132,10 +152,8 @@ $(document).ready(function() {
 
   function dropDownChangeEvent(e) {
     var selectedValue = e.target.value
-    // may need correction
     var moduleBarTarget = $(e.target).parentsUntil('nav')
     var moduleBarID = moduleBarTarget[2].id
-    console.log(moduleBarID)
 /*
     $('.hi').upUntil('div')
 <nav data-id="3">
@@ -150,17 +168,14 @@ $(document).ready(function() {
     switch (selectedValue) {
       case "module1":
         $moduleChooser = $(document.getElementById(moduleBarID)).find('.accordion_container')
-        console.log($moduleChooser)
-        // moduleHTML = getModule1();
-        $moduleChooser.html(getModule1());
+        moduleHTML = getModule1();
         break;
       case "module2":
         $moduleChooser = $(document.getElementById(moduleBarID)).find('.accordion_container')
         moduleHTML = getModule2();
-        $moduleChooser.html(getModule2());
         break;
     }
-    // $moduleChooser.html(getModule1());
+    $moduleChooser.html(moduleHTML);
   }
 });
 
