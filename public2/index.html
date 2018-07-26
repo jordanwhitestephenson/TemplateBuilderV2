@@ -109,6 +109,27 @@
 
     </div>
   </section>
+
+  <nav style="display:none;" class="masterAcc accordion arrows">
+    <input type="radio" id = "${labelID}" name="accordion"/>
+    <section class="box"  id= "${accordionID}">
+      <label class="box-title" for="${labelID}">
+       <div class="dropdown" >
+          <select class = "select" name="dropdown" >
+            <option class="dropdown-item" value = "blank" >Choose Module</option>
+            <option class="dropdown-item" value = "module1" >MODULE 1</option>
+            <option class="dropdown-item" value = "module2" >MODULE 2</option>
+            <option class="dropdown-item" value = "module3" >MODULE 3</option>
+            </select>
+        </div>
+        <button class="btn btn-secondary delete_button" type="button"  aria-haspopup="true" aria-expanded="false">DELETE</button>
+        </label>
+      <label class="box-close" for="acc-close"></label>
+      <div class="box-content accordion_container"></div>
+    </section>
+    <input type="radio" class="radio" name="accordion" id="acc-close" />
+  </nav>
+
 </body>
 
 </html>

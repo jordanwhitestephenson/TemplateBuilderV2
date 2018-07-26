@@ -1,0 +1,82 @@
+<div class="module1">
+    <h2 class = "text-center module_headline"> MODULE 1 </h2>
+      <form action="" class="module_1_form" method="post">
+      <div class="form-group col-xs-6 col-sm-3">
+      <label for="exampleFormControlSelect1">Position On Page</label>
+      <select class="form-control template">
+      <option>Select Position</option>
+      <option selected = "selected">1st</option>
+      <option>2nd</option>
+      <option>3rd</option>
+      <option>4th</option>
+      </select>
+      </div>
+      <div class = "col-xs-12 header_form_container">
+        <label for="headerText">Header Text</label>
+        <input type="text" name="headerText" class = "headerText js-getText" value=""><br>
+        <label id="HeaderSize" for="headersize">Header Size</label>
+        <input type="number" name="headersize" class = "js-getText" value="42px"><br>
+        <label id="HeaderColor" for="headercolor">Header Color</label>
+        <input type="color" name="headercolor" class = "js-getText" value=""><br>
+        </div>
+  <div class = "col-xs-12 image_form_container">
+  <div>
+        <label id="img" for="img_SRC">Image SRC</label>
+        <input type="text" name="img_SRC" class = "js-getText"  value=""><br>
+        </div>
+        <div>
+        <input type="file" name="img" id="img" value=""><br>
+        </div>
+        <div>
+        <label id="img" for="img_alt">Img Alt Tag</label>
+        <input type="text" name="img_alt" class = "js-getText" value=""><br>
+        </div>
+        <div>
+        <label id="img" for="img_title">Image Title</label>
+        <input type="text" class = "js-getText" name="img_title" value=""><br>
+        </div>
+  </div>
+  <div class = "para_form_container col-xs-12">
+        <label for="paragraphText">Paragraph Text</label>
+        <textarea type="text" name="paragraphT" value=""></textarea><br>
+    </div>
+        <div class = "cta_form_container col-xs-12">
+        <label for="ctaText">CTA TEXT</label>
+        <input type="text" name="cta" value=""><br>
+        <label for="ctaLink">CTA LINK</label>
+        <input type="text" name="ct" value=""><br>
+        <label for="ctaColor">CTA Default Color</label>
+        <input type="color" name="ctaColor" value=""><br>
+        <label for="ctaHover">CTA Hover Color</label>
+        <input type="color" name="ctaHover" value=""><br>
+        </div>
+      </form>
+      <div class = "button_container">
+      <button type="button" data-toggle="modal"  data-target="#exampleModalModule1" onClick= "exampleModule1()" class="btn btn-link">EXAMPLE</button>
+      <a class="btn btn-link" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+      PREVIEW MODULE
+      </a>
+      <button class="btn btn-link" type="button" aria-haspopup="true" aria-expanded="false">SAVE MODULE 1</button>
+      </div>
+  
+  
+      <div class="collapse" id="collapseExample">
+      <div class="card card-body template">
+      <section class="module1_mock cs_container-fluid  module_container">
+        <div class="product_container col-sm-6">
+          <img src="images/205438_0EC_Crocband_Timeless_Clash_Clog_main.jpg" alt = "" title = "" class="mobile1IMG img-responsive" />
+        </div>
+        <div class="col-sm-6 flex_box_column">
+          <div class="text_container col-lg-10">
+            <h1 class="cx-heavy-brand-font text-center text-uppercase headerTextPreview">H1 - (42pt) extrabold</h1>
+            <p class="cx-brand-font text-center"> Body copy 18pt/20pt Proxima Nova Regular. Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut abore et dolore.</p>
+            <div class="col-xs-12 flex_box_column " style="">
+              <div class="col-xs-11 col-sm-12 col-md-12 col-lg-10 ">
+                <a href="" class=" cx-button full-width  cx-heavy-brand-font text-uppercase text-center">cta 20pt extrabold</a></div>
+            </div>
+          </div>
+        </div>
+      </section>
+        </div>
+      </div>
+    </div>

@@ -1,5 +1,23 @@
-function getModule1() {
-  return `<div class="module1">
+/*
+
+<input name="r_myClass"/>
+<input name="r_myStyle"/>
+<input name="r_myText"/>
+
+*/
+
+var modules = {
+  module1 : {
+    data:{
+      r_myClass:'red',
+      r_myStyle:'30px',
+      r_myText:'Hello World'
+    },
+    html:`<div class="title r_myClass" style="width:r_myStyle">r_myText</div>`
+  }
+};
+
+var module1 = `<div class="module1">
   <h2 class = "text-center module_headline"> MODULE 1 </h2>
     <form action="" class="module_1_form" method="post">
     <div class="form-group col-xs-6 col-sm-3">
@@ -80,9 +98,7 @@ function getModule1() {
     </section>
       </div>
     </div>
-  </div>`
-
-}
+  </div>`;
 
 function getModule2() {
   return `<div class="module2">
@@ -150,6 +166,9 @@ function getModule2() {
 }
 
 function getAccordianHTML(accordianID, labelID) {
+  // fresh copy
+  var html = $('masterAcc').clone();
+
   return `<nav class="accordion arrows">
     <input type="radio" id = "${labelID}" name="accordion"/>
     <section class="box"  id= "${accordionID}">
@@ -171,30 +190,6 @@ function getAccordianHTML(accordianID, labelID) {
   </nav>`;
 }
 
-function retrieveText(e){
-  var text = e.name
-  var inputValue = e.value
-  switch(text){
-  case "headerText":
-  $('.headerTextPreview').text(inputValue)
-  break;
-  case "headersize":
-  $('.headerTextPreview').css({"font-size" : inputValue + 'px'})
-  break;
-  case "headercolor":
-  $('.headerTextPreview').css({"color" : inputValue });
-  break;
-  case "img_SRC":
-  $('.mobile1IMG').attr("src", inputValue)
-  break;
-  case "img_alt":
-  $('.mobile1IMG').attr("alt", inputValue)
-  break;
-}
-
-}
-
-
 $(document).ready(function() {
   var labelID
   var thisAccordian
@@ -205,7 +200,43 @@ $(document).ready(function() {
       allCaps: function() {}
     },
     init: function() {
+      app.tabs();
       app.addModule();
+    },
+    tabs: function(){
+      //TAB FUNCTIONALITY
+      $(".html_container").hide()
+      $(".view_container").hide()
+      $(".create_container").show()
+      // $(".module1").hide();
+      $(".module2").hide();
+    
+      $('#create').on('click', function() {
+        $("#preview").removeClass('active')
+        $("#html").removeClass('active')
+        $("#create").addClass('active')
+        $(".html_container").hide()
+        $(".view_container").hide()
+        $(".create_container").show()
+    
+      })
+      $('#html').on('click', function() {
+        $(".create_container").hide()
+        $(".html_container").show()
+        $(".view_container").hide()
+        $("#create").removeClass('active')
+        $("#preview").removeClass('active')
+        $("#html").addClass('active')
+    
+      })
+      $('#preview').on('click', function() {
+        $(".create_container").hide()
+        $(".html_container").hide()
+        $(".view_container").show()
+        $("#create").removeClass('active')
+        $("#html").removeClass('active')
+        $("#preview").addClass('active')
+      })
     },
     addModule: function() {
       var i = 0;
@@ -221,6 +252,25 @@ $(document).ready(function() {
         deleteThisModule(deleteButton)
       })
     },
+    setModuleText: function(e){
+      var moduleNum = $(e.target).parentsUntil('.nav').find('select').val();
+      var $moduleChooser = $(e.target).parentsUntil('.accordion_container');
+      /*
+      $.ajax('js/'+moduleNum,function(html){
+        // do what's below
+      });
+      */
+      var html = modules[moduleNum].html;
+      var data = modules[moduleNum].data;
+      // check if element name in data (check if module selector)
+      if(data[e.target.name]){
+        data[e.target.name] = $(e.target).val();
+        for(k in data){
+          html = html.replace(k , data[k]);
+        }
+      }
+      $moduleChooser.html(html);
+    }
 
   };
 
@@ -243,26 +293,11 @@ $(document).ready(function() {
   }
 
   function dropDownChangeEvent(e) {
-    var selectedValue = e.target.value
-    var moduleBarTarget = $(e.target).parentsUntil('nav')
-    var moduleBarID = moduleBarTarget[2].id
-    var $moduleChooser = null;
-    var moduleHTML = '';
-    switch (selectedValue) {
-      case "module1":
-        $moduleChooser = $(document.getElementById(moduleBarID)).find('.accordion_container')
-        moduleHTML = getModule1();
-        break;
-      case "module2":
-        $moduleChooser = $(document.getElementById(moduleBarID)).find('.accordion_container')
-        moduleHTML = getModule2();
-        break;
-      default:
-        $moduleChooser = $(document.getElementById(moduleBarID)).find('.accordion_container')
-        moduleHML = ''
-    }
-    $moduleChooser.html(moduleHTML);
-    // retrieveText()
+    var selectedValue = e.target.value; // module1
+    var $moduleChooser = $(e.target).parentsUntil('.nav').find('.accordion_container');
+    $('.js-getText').off('change',app.setModuleText());
+    $('.js-getText').on('change',app.setModuleText(e)); // e.target == form input
+    app.setModuleText(e); // e.target == module selector
   }
 
 });
