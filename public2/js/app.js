@@ -23,18 +23,18 @@ function getModule1() {
 <div class = "col-xs-12 image_form_container">
 <div>
       <label id="img" for="img_SRC">Image SRC</label>
-      <input type="text" name="img_SRC" value=""><br>
+      <input type="text" name="img_SRC" onChange = "retrieveText(this)" value=""><br>
       </div>
       <div>
       <input type="file" name="img" id="img" value=""><br>
       </div>
       <div>
       <label id="img" for="img_alt">Img Alt Tag</label>
-      <input type="text" name="img_alt" value=""><br>
+      <input type="text" name="img_alt" onChange = "retrieveText(this)" value=""><br>
       </div>
       <div>
       <label id="img" for="img_title">Image Title</label>
-      <input type="text" name="img_title" value=""><br>
+      <input type="text" onChange = "retrieveText(this)" name="img_title" value=""><br>
       </div>
 </div>
 <div class = "para_form_container col-xs-12">
@@ -65,7 +65,7 @@ function getModule1() {
     <div class="card card-body template">
     <section class="module1_mock cs_container-fluid  module_container">
       <div class="product_container col-sm-6">
-        <img src="images/205438_0EC_Crocband_Timeless_Clash_Clog_main.jpg" class="img-responsive" />
+        <img src="images/205438_0EC_Crocband_Timeless_Clash_Clog_main.jpg" alt = "" title = "" class="mobile1IMG img-responsive" />
       </div>
       <div class="col-sm-6 flex_box_column">
         <div class="text_container col-lg-10">
@@ -114,8 +114,36 @@ function getModule2() {
           <input type="text" name="ctaLink" value=""><br>
           <div class = "button_container">
           <button type="button" data-toggle="modal" data-target="#exampleModalModule2" onClick= "exampleModule2()" class="btn btn-link">EXAMPLE</button>
+          <a class="btn btn-link" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+          PREVIEW MODULE
+          </a>
           <div class =  "saved_button_class">
           <button class="btn btn-secondary" type="button" aria-haspopup="true" aria-expanded="false">SAVE MODULE 2</button>
+          </div>
+        </div>
+        <div class="collapse" id="collapseExample2">
+        <div class="card card-body template">
+        <section class="module2_mock module_container cs_container-crocs">
+          <div class="header_subhead_container flex_box_column">
+            <h2 class="text-center cx-heavy-brand-font text-uppercase">H2 - (35pt) EXTRABOLD</h2>
+            <p class="text-center cx-brand-font subhead-text">
+              H6 - (18pt Regular) - Subhead
+            </p>
+          </div>
+          <div class="flex_box_row">
+            <div class="product_container col-sm-6">
+              <img src="images/diipakhosla_2018-04-10_2618590602.jpg" class="img-responsive" />
+            </div>
+            <div class="text_container module_two_text_container col-sm-6 col-md-pull-1">
+              <h4 class="cx-heavy-brand-font text-center">H4 - (20pt) Bold - Body Copy Header </h4>
+              <p class="cx-brand-font text-center"> Body copy 18pt/20pt Proxima Nova Regular. Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut abore et dolore.</p>
+              <div class="col-xs-12 flex_box_column " style="">
+                <div class="col-xs-11 col-sm-12 col-md-12 col-lg-10">
+                  <a href="" class=" cx-button full-width cx-heavy-brand-font text-uppercase text-center">cta 20pt extrabold</a></div>
+              </div>
+            </div>
+          </div>
+        </section>
           </div>
         </div>
         </div>`
@@ -145,16 +173,23 @@ function getAccordianHTML(accordianID, labelID) {
 
 function retrieveText(e){
   var text = e.name
-  var textValue = e.value
+  var inputValue = e.value
   switch(text){
   case "headerText":
-  $('.headerTextPreview').text(textValue)
+  $('.headerTextPreview').text(inputValue)
   break;
   case "headersize":
-  $('.headerTextPreview').css({"font-size" : textValue + 'px'})
+  $('.headerTextPreview').css({"font-size" : inputValue + 'px'})
   break;
   case "headercolor":
-  $('.headerTextPreview').css({"color" : textValue })
+  $('.headerTextPreview').css({"color" : inputValue });
+  break;
+  case "img_SRC":
+  $('.mobile1IMG').attr("src", inputValue)
+  break;
+  case "img_alt":
+  $('.mobile1IMG').attr("alt", inputValue)
+  break;
 }
 
 }
