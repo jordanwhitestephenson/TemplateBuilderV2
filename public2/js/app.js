@@ -57,7 +57,7 @@ function getModule1() {
     <a class="btn btn-link" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
     PREVIEW MODULE
     </a>
-    <button class="btn btn-link" type="button" aria-haspopup="true" aria-expanded="false">SAVE MODULE 1</button>
+    <button class="btn btn-link save_button" type="button" aria-haspopup="true" aria-expanded="false">SAVE MODULE 1</button>
     </div>
 
 
@@ -118,7 +118,7 @@ function getModule2() {
           PREVIEW MODULE
           </a>
           <div class =  "saved_button_class">
-          <button class="btn btn-secondary" type="button" aria-haspopup="true" aria-expanded="false">SAVE MODULE 2</button>
+          <button class="btn btn-secondary save_button" type="button" aria-haspopup="true" aria-expanded="false">SAVE MODULE 2</button>
           </div>
         </div>
         <div class="collapse" id="collapseExample2">
@@ -171,29 +171,30 @@ function getAccordianHTML(accordianID, labelID) {
   </nav>`;
 }
 
-function retrieveText(e){
+function retrieveText(e) {
   var text = e.name
   var inputValue = e.value
-  switch(text){
-  case "headerText":
-  $('.headerTextPreview').text(inputValue)
-  break;
-  case "headersize":
-  $('.headerTextPreview').css({"font-size" : inputValue + 'px'})
-  break;
-  case "headercolor":
-  $('.headerTextPreview').css({"color" : inputValue });
-  break;
-  case "img_SRC":
-  $('.mobile1IMG').attr("src", inputValue)
-  break;
-  case "img_alt":
-  $('.mobile1IMG').attr("alt", inputValue)
-  break;
-}
+  switch (text) {
+    case "headerText":
+      $('.headerTextPreview').text(inputValue)
+      break;
+    case "headersize":
+      $('.headerTextPreview').css({
+        "font-size": inputValue + 'px'
+      })
+      break;
+    case "headercolor":
+      $('.headerTextPreview').css({"color": inputValue});
+      break;
+    case "img_SRC":
+      $('.mobile1IMG').attr("src", inputValue)
+      break;
+    case "img_alt":
+      $('.mobile1IMG').attr("alt", inputValue)
+      break;
+  }
 
 }
-
 
 $(document).ready(function() {
   var labelID
@@ -217,11 +218,12 @@ $(document).ready(function() {
         $(".create_container").append(getAccordianHTML(accordionID, labelID));
         var thisDropDown = document.getElementsByClassName("box-title");
         var deleteButton = document.getElementsByClassName('delete_button')
+        var saveButton = document.getElementsByClassName('save_button')
         dropDownChange(thisDropDown)
         deleteThisModule(deleteButton)
+        saveModule(saveButton)
       })
-    },
-
+    }
   };
 
   app.init();
@@ -231,9 +233,21 @@ $(document).ready(function() {
       deleteButton[i].addEventListener("click", deleteClick, false)
     }
   }
+
   function deleteClick(e) {
     var deleteTarget = $(e.target).parentsUntil('nav')
     deleteTarget.remove()
+  }
+  function saveModule(saveButton) {
+    for (var i = 0; i < saveButton.length; i++) {
+      saveButton[i].addEventListener("click", saveClick, false)
+    }
+
+  }
+  function saveClick(e) {
+        console.log('saveButton')
+    var saveTarget = $(e.target).parentsUntil('nav').htmlButton
+    console.log(saveTarget)
   }
 
   function dropDownChange(thisDropDown) {
@@ -241,6 +255,7 @@ $(document).ready(function() {
       thisDropDown[i].addEventListener("change", dropDownChangeEvent, false)
     }
   }
+
 
   function dropDownChangeEvent(e) {
     var selectedValue = e.target.value
