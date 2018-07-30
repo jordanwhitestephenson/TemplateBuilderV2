@@ -1,17 +1,17 @@
 // data[e.target.name] = $(e.target).val();
 var modules = {
-module1 : {
-  data:{
-    r_headerColor:'red',
-    r_headerSize:'30px',
-    r_myText:'Hello World',
-    r_paragraphText: 'Paragraph Text',
-    r_CTAtext: 'CTA 20PT BOLD',
-    r_CTALink: 'www.google.com',
-    r_CTAcolor: 'black',
-    r_CTAcolorHover: 'red'
-  },
-  html:`
+  module1: {
+    data: {
+      r_headerColor: 'red',
+      r_headerSize: '30px',
+      r_myText: 'Hello World',
+      r_paragraphText: 'Paragraph Text',
+      r_CTAtext: 'CTA 20PT BOLD',
+      r_CTALink: 'www.google.com',
+      r_CTAcolor: 'black',
+      r_CTAcolorHover: 'red'
+    },
+    html: `
   <div class="module1 preview_container">
   <h2 class = "text-center module_headline"> MODULE 1 </h2>
     <form action="" class="module_1_form" method="post">
@@ -98,15 +98,14 @@ module1 : {
   </div>
 
   </div>`
-},
-module2: {
-  data:{
-    r_myClass:'red',
-    r_myStyle:'30px',
-    r_myText:'Hello World'
   },
-  html:
-    `<div class="module2">
+  module2: {
+    data: {
+      r_myClass: 'red',
+      r_myStyle: '30px',
+      r_myText: 'Hello World'
+    },
+    html: `<div class="module2">
             <h2 class="module_2_form toggle">MODULE 2</h2>
             <div class="form-group">
             <label for="exampleFormControlSelect1">Position On Page</label>
@@ -169,12 +168,11 @@ module2: {
             </div>
             </div>`
 
-}
+  }
 };
 
-
 function getAccordianHTML(accordianID, labelID) {
-return `<nav class="accordion arrows">
+  return `<nav class="accordion arrows">
   <input type="radio" id = "${labelID}" name="accordion"/>
   <section class="box"  id= "${accordionID}">
     <label class="box-title" for="${labelID}">
@@ -196,191 +194,155 @@ return `<nav class="accordion arrows">
 }
 
 $(document).ready(function() {
-var labelID
-var thisAccordian
+  var labelID
+  var thisAccordian
 
-var app = {
-  modules: [],
-  utils: {
-    allCaps: function() {}
-  },
-  init: function() {
-    app.addModule();
-    app.getTabs();
-  },
-  getTabs: function() {
-    $(".html_container").hide()
-    $(".view_container").hide()
-    $(".create_container").show()
-    $('#create').on('click', function() {
-      $("#preview").removeClass('active')
-      $("#html").removeClass('active')
-      $("#create").addClass('active')
+  var app = {
+    modules: [],
+    utils: {
+      allCaps: function() {}
+    },
+    init: function() {
+      app.addModule();
+      app.getTabs();
+    },
+    getTabs: function() {
       $(".html_container").hide()
       $(".view_container").hide()
       $(".create_container").show()
-    })
-    $('#html').on('click', function() {
-      $(".create_container").hide()
-      $(".html_container").show()
-      $(".view_container").hide()
-      $("#create").removeClass('active')
-      $("#preview").removeClass('active')
-      $("#html").addClass('active')
+      $('#create').on('click', function() {
+        $("#preview").removeClass('active')
+        $("#html").removeClass('active')
+        $("#create").addClass('active')
+        $(".html_container").hide()
+        $(".view_container").hide()
+        $(".create_container").show()
+      })
+      $('#html').on('click', function() {
+        $(".create_container").hide()
+        $(".html_container").show()
+        $(".view_container").hide()
+        $("#create").removeClass('active')
+        $("#preview").removeClass('active')
+        $("#html").addClass('active')
 
-    })
-    $('#preview').on('click', function() {
-      $(".create_container").hide()
-      $(".html_container").hide()
-      $(".view_container").show()
-      $("#create").removeClass('active')
-      $("#html").removeClass('active')
-      $("#preview").addClass('active')
-    })
-  },
-  addModule: function() {
-    var i = 0;
-    $('#addButton').on('click', function() {
-      i = i + 1
-      accordionID = `cb${i}`
-      labelID = `label${i}`
-      // is labelID necessary?
-      $(".create_container").append(getAccordianHTML(accordionID, labelID));
-      var thisDropDown = document.getElementsByClassName("box-title");
-      var deleteButton = document.getElementsByClassName('delete_button')
-      var saveButton = document.getElementsByClassName('save_button')
-      dropDownChange(thisDropDown)
-      deleteThisModule(deleteButton)
-      saveModule(saveButton)
-    })
-  },
-  setModuleForm: function(e){
-    var moduleNumParents = $(e.target).parentsUntil('nav').find('select')
-    var moduleNum= moduleNumParents[0].value
-    var $moduleChooser = $(e.target).parentsUntil('nav').find('.accordion_container')
-    var html = modules[moduleNum].html;
-    var data = modules[moduleNum].data;
-    $moduleChooser.html(html);
-  },
-  moduleFormValues: function(moduleInputValues){
-    var selectedModule = $(moduleInputValues.target).parentsUntil('nav').find('select.select').val()
-    var inputName = moduleInputValues.target.name
-    var inputType = moduleInputValues.target.type
-    var inputValue = moduleInputValues.target.value
+      })
+      $('#preview').on('click', function() {
+        $(".create_container").hide()
+        $(".html_container").hide()
+        $(".view_container").show()
+        $("#create").removeClass('active')
+        $("#html").removeClass('active')
+        $("#preview").addClass('active')
+      })
+    },
+    addModule: function() {
+      var i = 0;
+      $('#addButton').on('click', function() {
+        i = i + 1
+        accordionID = `cb${i}`
+        labelID = `label${i}`
+        // is labelID necessary?
+        $(".create_container").append(getAccordianHTML(accordionID, labelID));
+        var thisDropDown = document.getElementsByClassName("box-title");
+        var deleteButton = document.getElementsByClassName('delete_button')
+        var saveButton = document.getElementsByClassName('save_button')
+        dropDownChange(thisDropDown)
+        deleteThisModule(deleteButton)
+        saveModule(saveButton)
+      })
+    },
+    setModuleForm: function(e) {
+      var moduleNumParents = $(e.target).parentsUntil('nav').find('select')
+      var moduleNum = moduleNumParents[0].value
+      var $moduleChooser = $(e.target).parentsUntil('nav').find('.accordion_container')
+      var html = modules[moduleNum].html;
+      var data = modules[moduleNum].data;
+      $moduleChooser.html(html);
+    },
+    moduleFormValues: function(moduleInputValues) {
+      var selectedModule = $(moduleInputValues.target).parentsUntil('nav').find('select.select').val()
+      var inputName = moduleInputValues.target.name
+      var inputType = moduleInputValues.target.type
+      var inputValue = moduleInputValues.target.value
 
-    var $previewChooser = $(moduleInputValues.target).parentsUntil('nav').find('.accordion_container')
-    var data = modules[selectedModule].data;
-    var html = modules[selectedModule].html;
-    console.log(inputType)
+      var $previewChooser = $(moduleInputValues.target).parentsUntil('nav').find('.accordion_container')
+      var data = modules[selectedModule].data;
+      var html = modules[selectedModule].html;
 
+      if (data[inputName]) {
+        var className = $('.' + inputName)
 
-    if(data[inputName]){
-      var className = $('.' + inputName)
-
-      if (inputType === "number") {
-        className.css('font-size', inputValue.toString() + 'px')
-      }
-      if (inputType === "color") {
-        className.css('color', inputValue.toString())
-      }
-      if(inputType === "text" || inputType === "textarea") {
+        if (inputType === "number") {
+          className.css('font-size', inputValue.toString() + 'px')
+        }
+        if (inputType === "color") {
+          className.css('color', inputValue.toString())
+        }
+        if (inputType === "text" || inputType === "textarea") {
           className.text(inputValue.toString())
-          console.log(inputName + inputValue)
+          // console.log(html)
+        }
+        ///***Having hard time getting this to work**//
+        // data[inputName] = inputValue;
+        // for(k in data){
+        //   html = html.replace(k , data[k]);
+        // }
       }
 
-
-      // $('.' + inputName).text(inputValue.toString())
-
-
-
-      // data[inputName] = inputValue;
-      // for(k in data){
-      //   html = html.replace(k , data[k]);
-      // }
     }
-    // $previewChooser.html(html);
-    // $moduleChooser.html(html);
+  };
 
-  }
-};
+  app.init();
 
-app.init();
-
-
-function deleteThisModule(deleteButton) {
-  for (var i = 0; i < deleteButton.length; i++) {
-    deleteButton[i].addEventListener("click", deleteClick, false)
-  }
-}
-
-function deleteClick(e) {
-  var deleteTarget = $(e.target).parentsUntil('nav')
-  deleteTarget.remove()
-}
-function saveModule(saveButton) {
-  for (var i = 0; i < saveButton.length; i++) {
-    saveButton[i].addEventListener("click", saveClick, false)
+  function deleteThisModule(deleteButton) {
+    for (var i = 0; i < deleteButton.length; i++) {
+      deleteButton[i].addEventListener("click", deleteClick, false)
+    }
   }
 
-}
-function saveClick(e) {
-  console.log('saveButton')
-  var saveTarget = $(e.target).parentsUntil('nav').htmlButton
-  console.log(saveTarget)
-}
-
-function dropDownChange(thisDropDown) {
-  for (var i = 0; i < thisDropDown.length; i++) {
-    thisDropDown[i].addEventListener("change", dropDownChangeEvent, false)
+  function deleteClick(e) {
+    var deleteTarget = $(e.target).parentsUntil('nav')
+    deleteTarget.remove()
   }
-}
-
-function dropDownChangeEvent(e) {
-  // $('.js-getText').off('change',app.setModuleForm(e));
-
-  app.setModuleForm(e);
-  onTextChange(e) // e.target == module selector
-}
-
-function onTextChange(e) {
-  var $formInputs = $(e.target).parentsUntil('nav').find('input')
-  var $textInputs = $(e.target).parentsUntil('nav').find('textarea')
-  for (var i = 0; i < $formInputs.length; i++) {
-    $formInputs[i].addEventListener("change", getModuleText, false)
+  function saveModule(saveButton) {
+    for (var k = 0; k < saveButton.length; k++) {
+      saveButton[k].addEventListener("click", saveClick, false)
+    }
   }
-  for (var i = 0; i < $textInputs.length; i++) {
-    $textInputs[i].addEventListener("change", getModuleText, false)
+  function saveClick(e) {
+    console.log('clicked')
+    //*****WHY YOU NO WORK*******?!?!?!//
+    var saveTarget = $(e.target).parentsUntil('nav').find('.button_container')
+    // console.log($('.module_container').html())
+    // console.log(saveTarget)
   }
-}
-function getModuleText(e){
-  var moduleInputValues = e
-  $('.js-getText').on('change',app.moduleFormValues(moduleInputValues));
-  // app.moduleFormValues(moduleInputValues)
 
+  function dropDownChange(thisDropDown) {
+    for (var i = 0; i < thisDropDown.length; i++) {
+      thisDropDown[i].addEventListener("change", dropDownChangeEvent, false)
+    }
+  }
 
-}
+  function dropDownChangeEvent(e) {
+    // $('.js-getText').off('change',app.setModuleForm(e));
+    app.setModuleForm(e);
+    onTextChange(e) // e.target == module selector
+  }
 
-// function dropDownChangeEvent(e) {
-//   var selectedValue = e.target.value
-//   var moduleBarTarget = $(e.target).parentsUntil('nav')
-//   var moduleBarID = moduleBarTarget[2].id
-//   var $moduleChooser = null;
-//   var moduleHTML = '';
-//   switch (selectedValue) {
-//     case "module1":
-//       $moduleChooser = $(document.getElementById(moduleBarID)).find('.accordion_container')
-//       moduleHTML = getModule1();
-//       break;
-//     case "module2":
-//       $moduleChooser = $(document.getElementById(moduleBarID)).find('.accordion_container')
-//       moduleHTML = getModule2();
-//       break;
-//     default:
-//       $moduleChooser = $(document.getElementById(moduleBarID)).find('.accordion_container')
-//       moduleHML = ''
-//   }
-//   $moduleChooser.html(moduleHTML);
-//   // retrieveText()
-// }
-
+  function onTextChange(e) {
+    var $formInputs = $(e.target).parentsUntil('nav').find('input')
+    var $textInputs = $(e.target).parentsUntil('nav').find('textarea')
+    for (var i = 0; i < $formInputs.length; i++) {
+      $formInputs[i].addEventListener("change", getModuleText, false)
+    }
+    for (var i = 0; i < $textInputs.length; i++) {
+      $textInputs[i].addEventListener("change", getModuleText, false)
+    }
+  }
+  function getModuleText(e) {
+    var moduleInputValues = e
+    $('.js-getText').on('change', app.moduleFormValues(moduleInputValues));
+    // app.moduleFormValues(moduleInputValues)
+  }
 });
