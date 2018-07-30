@@ -195,31 +195,6 @@ return `<nav class="accordion arrows">
 </nav>`;
 }
 
-// function retrieveText(e) {
-//   var text = e.name
-//   var inputValue = e.value
-//   switch (text) {
-//     case "headerText":
-//       $('.headerTextPreview').text(inputValue)
-//       break;
-//     case "headersize":
-//       $('.headerTextPreview').css({
-//         "font-size": inputValue + 'px'
-//       })
-//       break;
-//     case "headercolor":
-//       $('.headerTextPreview').css({"color": inputValue});
-//       break;
-//     case "img_SRC":
-//       $('.mobile1IMG').attr("src", inputValue)
-//       break;
-//     case "img_alt":
-//       $('.mobile1IMG').attr("alt", inputValue)
-//       break;
-//   }
-//
-// }
-
 $(document).ready(function() {
 var labelID
 var thisAccordian
