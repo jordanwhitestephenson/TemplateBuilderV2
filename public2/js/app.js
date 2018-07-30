@@ -274,42 +274,20 @@ $(document).ready(function() {
       var inputType = moduleInputValues.target.type
       var inputValue = moduleInputValues.target.value
       var data = app.modules[selectedModule].data;
-      var html = app.modules[selectedModule].html;
-
-      // var $previewChooser = $(moduleInputValues.target).parentsUntil('nav').find('.collapse')
-      // $previewChooser.html(html)
-
-      /*
-      if (data[inputName]) {
-        var className = $('.' + inputName)
-
-        if (inputType === "number") {
-          className.css('font-size', inputValue.toString() + 'px')
-        }
-        if (inputType === "color") {
-          className.css('color', inputValue.toString())
-        }
-        if (inputType === "text" || inputType === "textarea") {
-        var selectedClass =   $(moduleInputValues.target).parentsUntil('.accordion_container').find('.' + inputName)
-        selectedClass.text(inputValue.toString())
-
-        }
-      }
-      */
+      var $html = $(app.modules[selectedModule].html).find('.module_container');
+      var htmlString = $html[0].outerHTML;
 
       var data = app.modules[selectedModule].data;
       data[inputName] = inputValue; // updating data
       for(k in data){
-        console.log(k);
-        console.log(data[k]);
         // creating a RegExp with inputValue
         var re = new RegExp(k,'g');
         // using it to globally replace string 'r_whatever'
-        html = html.replace(re, data[k]);
+        htmlString = htmlString.replace(re, data[k]);
       }
 
       var $module_container = $(moduleInputValues.target).parentsUntil('nav').find('.module_container')
-      $module_container.html(html)
+      $module_container.html(htmlString)
 
     }
   };
@@ -360,10 +338,9 @@ $(document).ready(function() {
       $textInputs[i].addEventListener("change", getModuleText, false)
     }
   }
-  function getModuleText(e) {
-    var moduleInputValues = e
-    $('.js-getText').off('change', app.moduleFormValues());
-    $('.js-getText').on('change', app.moduleFormValues(moduleInputValues));
+  function getModuleText(ev) {
+    $('.js-getText').off('change', app.moduleFormValues(ev));
+    $('.js-getText').on('change', app.moduleFormValues(ev));
     // $('.js-getText').off('change', app.moduleFormValues());
     // app.moduleFormValues(moduleInputValues)
   }
