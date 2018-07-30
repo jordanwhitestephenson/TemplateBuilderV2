@@ -73,7 +73,7 @@ var modules = {
     <a class="btn btn-link collapse_ahref" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
     PREVIEW MODULE
     </a>
-    <button class="btn btn-link save_button " type="button" aria-haspopup="true" aria-expanded="false">SAVE MODULE 1</button>
+    <button class="btn btn-link save_button " type="button" aria-haspopup="true" aria-expanded="false">HTML</button>
     </div>
 
     <div class = "module_preview">
@@ -263,8 +263,6 @@ $(document).ready(function() {
       var collapseContainerID = collapseContainer + Math.random().toFixed(0)
       $(e.target).parentsUntil('nav').find('.collapse_ahref').attr("href", "#" + collapseContainerID)
       $(e.target).parentsUntil('nav').find('.collapse').attr("id", collapseContainerID)
-      // $('.collapse_ahref').attr("href", "#" + collapseContainerID)
-      // $('.collapse').attr("id", collapseContainerID)
     },
     moduleFormValues: function(moduleInputValues) {
       var saveButton = document.getElementsByClassName('save_button')
@@ -276,8 +274,6 @@ $(document).ready(function() {
       var data = modules[selectedModule].data;
       var html = modules[selectedModule].html;
 
-      // var $previewChooser = $(moduleInputValues.target).parentsUntil('nav').find('.collapse')
-      // $previewChooser.html(html)
 
       if (data[inputName]) {
         var className = $('.' + inputName)
@@ -322,8 +318,10 @@ $(document).ready(function() {
   }
   function saveClick(e) {
     var saveTarget = $(e.target).parentsUntil('nav').find('.module_container').html()
-    // console.log($('.module_container').html())
-    console.log(saveTarget)
+    var savedHTML = $('.module_container').html().toString()
+    console.log(savedHTML)
+    $('.module_container').replaceWith("<div>" + savedHTML.toString() + "</div>")
+    $(e.target).html("SAVED")
   }
 
   function dropDownChange(thisDropDown) {
