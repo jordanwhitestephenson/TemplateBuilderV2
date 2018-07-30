@@ -1,4 +1,5 @@
 // data[e.target.name] = $(e.target).val();
+var collapseID
 var modules = {
   module1: {
     data: {
@@ -69,14 +70,14 @@ var modules = {
     </form>
     <div class = "button_container">
     <button type="button" data-toggle="modal"  data-target="#exampleModalModule1" onClick= "exampleModule1()" class="btn btn-link">EXAMPLE</button>
-    <a class="btn btn-link" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <a class="btn btn-link collapse_ahref" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
     PREVIEW MODULE
     </a>
     <button class="btn btn-link save_button " type="button" aria-haspopup="true" aria-expanded="false">SAVE MODULE 1</button>
     </div>
 
     <div class = "module_preview">
-    <div class="collapse" id="collapseExample">
+    <div class="collapse" id="">
     <div class="card card-body template">
     <section class="module1_mock cs_container-fluid  module_container">
       <div class="product_container col-sm-6">
@@ -134,7 +135,7 @@ var modules = {
               <input type="text" name="ctaLink" value=""><br>
               <div class = "button_container">
               <button type="button" data-toggle="modal" data-target="#exampleModalModule2" onClick= "exampleModule2()" class="btn btn-link">EXAMPLE</button>
-              <a class="btn btn-link" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <a class="btn btn-link collapse_ahref" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
               PREVIEW MODULE
               </a>
               <div class =  "saved_button_class">
@@ -195,8 +196,6 @@ function getAccordianHTML(accordianID, labelID) {
 
 $(document).ready(function() {
   var labelID
-  var thisAccordian
-
   var app = {
     modules: [],
     utils: {
@@ -246,10 +245,9 @@ $(document).ready(function() {
         $(".create_container").append(getAccordianHTML(accordionID, labelID));
         var thisDropDown = document.getElementsByClassName("box-title");
         var deleteButton = document.getElementsByClassName('delete_button')
-        var saveButton = document.getElementsByClassName('save_button')
         dropDownChange(thisDropDown)
         deleteThisModule(deleteButton)
-        saveModule(saveButton)
+
       })
     },
     setModuleForm: function(e) {
@@ -259,16 +257,25 @@ $(document).ready(function() {
       var html = modules[moduleNum].html;
       var data = modules[moduleNum].data;
       $moduleChooser.html(html);
+
+      //creating new matching id for collapse container
+      var collapseContainer = $(e.target).parentsUntil('nav')[2].id
+      var collapseContainerID = collapseContainer + Math.random().toFixed(0)
+      $('.collapse_ahref').attr("href", "#" + collapseContainerID)
+      $('.collapse').attr("id", collapseContainerID)
     },
     moduleFormValues: function(moduleInputValues) {
+      var saveButton = document.getElementsByClassName('save_button')
+      saveModule(saveButton)
       var selectedModule = $(moduleInputValues.target).parentsUntil('nav').find('select.select').val()
       var inputName = moduleInputValues.target.name
       var inputType = moduleInputValues.target.type
       var inputValue = moduleInputValues.target.value
-
-      var $previewChooser = $(moduleInputValues.target).parentsUntil('nav').find('.accordion_container')
       var data = modules[selectedModule].data;
       var html = modules[selectedModule].html;
+
+      // var $previewChooser = $(moduleInputValues.target).parentsUntil('nav').find('.collapse')
+      // $previewChooser.html(html)
 
       if (data[inputName]) {
         var className = $('.' + inputName)
@@ -280,8 +287,8 @@ $(document).ready(function() {
           className.css('color', inputValue.toString())
         }
         if (inputType === "text" || inputType === "textarea") {
-          className.text(inputValue.toString())
-          // console.log(html)
+        var selectedClass =   $(moduleInputValues.target).parentsUntil('.accordion_container').find('.' + inputName)
+        selectedClass.text(inputValue.toString())
         }
         ///***Having hard time getting this to work**//
         // data[inputName] = inputValue;
@@ -311,11 +318,9 @@ $(document).ready(function() {
     }
   }
   function saveClick(e) {
-    console.log('clicked')
-    //*****WHY YOU NO WORK*******?!?!?!//
-    var saveTarget = $(e.target).parentsUntil('nav').find('.button_container')
+    var saveTarget = $(e.target).parentsUntil('nav').find('.module_container').html()
     // console.log($('.module_container').html())
-    // console.log(saveTarget)
+    console.log(saveTarget)
   }
 
   function dropDownChange(thisDropDown) {
@@ -328,6 +333,7 @@ $(document).ready(function() {
     // $('.js-getText').off('change',app.setModuleForm(e));
     app.setModuleForm(e);
     onTextChange(e) // e.target == module selector
+
   }
 
   function onTextChange(e) {
@@ -343,6 +349,7 @@ $(document).ready(function() {
   function getModuleText(e) {
     var moduleInputValues = e
     $('.js-getText').on('change', app.moduleFormValues(moduleInputValues));
+    // $('.js-getText').off('change', app.moduleFormValues());
     // app.moduleFormValues(moduleInputValues)
   }
 });
