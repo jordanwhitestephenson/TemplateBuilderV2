@@ -261,8 +261,10 @@ $(document).ready(function() {
       //creating new matching id for collapse container
       var collapseContainer = $(e.target).parentsUntil('nav')[2].id
       var collapseContainerID = collapseContainer + Math.random().toFixed(0)
-      $('.collapse_ahref').attr("href", "#" + collapseContainerID)
-      $('.collapse').attr("id", collapseContainerID)
+      $(e.target).parentsUntil('nav').find('.collapse_ahref').attr("href", "#" + collapseContainerID)
+      $(e.target).parentsUntil('nav').find('.collapse').attr("id", collapseContainerID)
+      // $('.collapse_ahref').attr("href", "#" + collapseContainerID)
+      // $('.collapse').attr("id", collapseContainerID)
     },
     moduleFormValues: function(moduleInputValues) {
       var saveButton = document.getElementsByClassName('save_button')
@@ -289,6 +291,7 @@ $(document).ready(function() {
         if (inputType === "text" || inputType === "textarea") {
         var selectedClass =   $(moduleInputValues.target).parentsUntil('.accordion_container').find('.' + inputName)
         selectedClass.text(inputValue.toString())
+
         }
         ///***Having hard time getting this to work**//
         // data[inputName] = inputValue;
