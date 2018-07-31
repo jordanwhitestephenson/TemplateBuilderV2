@@ -3,10 +3,16 @@ var collapseID
 var modules = {
   module1: {
     data: {
-      r_headerColor: 'red',
+      r_headerColor: '#444',
       r_headerSize: '30px',
       r_myText: 'Hello World',
       r_paragraphText: 'Paragraph Text',
+      r_paragraphColor: '#444',
+      r_paragraphSize: '15',
+      r_imageSRC: 'images/205438_0EC_Crocband_Timeless_Clash_Clog_main.jpg',
+      r_imageALT: 'alt tag',
+      r_imageTitle: 'image title',
+      r_imageLink: 'www.image.com',
       r_CTAtext: 'CTA 20PT BOLD',
       r_CTALink: 'www.google.com',
       r_CTAcolor: 'black',
@@ -18,7 +24,7 @@ var modules = {
     <form action="" class="module_1_form" method="post">
     <div class="form-group col-xs-6 col-sm-3">
     <label for="exampleFormControlSelect1">Position On Page</label>
-    <select class="form-control template">
+    <select class="form-control js-getText position-dropdown template">
     <option>Select Position</option>
     <option selected = "selected">1st</option>
     <option>2nd</option>
@@ -27,45 +33,64 @@ var modules = {
     </select>
     </div>
     <div class = "col-xs-12 header_form_container">
-      <label for="headerText">Header Text</label>
+      <label for="InputH">Header Text</label>
       <input type="text" name="r_myText"  class = "js-getText" value=""><br>
 
-      <label id="HeaderSize" for="headerSize">Header Size</label>
-      <input type="number" class = "js-getText" name="headerSize" value="42px"><br>
+      <label id="HeaderSize" for="InputheaderSize">Header Size</label>
+      <input type="number" class = "js-getText" name="r_headerSize"><br>
 
-      <label id="HeaderColor" for="r_headerColor">Header Color</label>
-      <input type="color" name="r_headerColor" value = ""><br>
+      <label id="HeaderColor" for="headerColor">Header Color</label>
+      <input type="color" name="r_headerColor"  class = "js-getText" value = ""><br>
       </div>
       <div class = "col-xs-12 image_form_container">
       <div>
       <label id="img" for="img_SRC">Image SRC</label>
-      <input type="text" name="img_SRC" onChange = "retrieveText(this)" value=""><br>
-      </div>
-      <div>
-      <input type="file" name="img" id="img" value=""><br>
+      <input type="text" name="r_imageSRC" class = "js-getText" value=""><br>
       </div>
       <div>
       <label id="img" for="img_alt">Img Alt Tag</label>
-      <input type="text" name="img_alt" onChange = "retrieveText(this)" value=""><br>
+      <input type="text" name="r_imageALT" class = "js-getText" value=""><br>
       </div>
       <div>
       <label id="img" for="img_title">Image Title</label>
-      <input type="text" onChange = "retrieveText(this)" name="img_title" value=""><br>
+      <input type="text" class = "js-getText" name="r_imageTitle" value=""><br>
+      </div>
+      <div>
+      <label id="img" for="img_title">Image Link</label>
+      <input type="text" class = "js-getText" name="r_imageLink" value=""><br>
       </div>
 </div>
 <div class = "para_form_container col-xs-12">
+      <div class = " flex_box_column">
       <label for="paragraphText">Paragraph Text</label>
       <textarea type="text" name="r_paragraphText" class = "js-getText" value=""></textarea><br>
+      </div>
+      <div class = "">
+      <label for="paragraphColor">Paragraph Color</label>
+      <input type="color" class = "js-getText" name="r_paragraphColor" value=""><br>
+      </div>
+      <div class= "">
+      <label for="paragraphSize">Paragraph Size</label>
+      <input type="number" class = "js-getText" name="r_paragraphSize" value=""><br>
+      </div>
   </div>
       <div class = "cta_form_container col-xs-12">
+      <div>
       <label for="ctaText">CTA TEXT</label>
       <input type="text" class = "js-getText" name="r_CTAtext" value=""><br>
+      </div>
+      <div>
       <label for="ctaLink">CTA LINK</label>
       <input type="text" class = "js-getText" name="r_CTALink" value=""><br>
+      </div>
+      <div>
       <label for="ctaColor">CTA Default Color</label>
       <input type="color" class = "js-getText" name="r_CTAcolor" value=""><br>
+      </div>
+      <div>
       <label for="ctaHover">CTA Hover Color</label>
       <input type="color" class = "js-getText" name="r_CTAcolorHover" value=""><br>
+      </div>
       </div>
     </form>
     <div class = "button_container">
@@ -73,23 +98,23 @@ var modules = {
     <a class="btn btn-link collapse_ahref" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
     PREVIEW MODULE
     </a>
-    <button class="btn btn-link save_button " type="button" aria-haspopup="true" aria-expanded="false">HTML</button>
+    <button class="btn btn-link save_button " type="button" aria-haspopup="true" aria-expanded="false">SAVE</button>
     </div>
 
     <div class = "module_preview">
     <div class="collapse" id="">
     <div class="card card-body template">
     <section class="module1_mock cs_container-fluid  module_container">
-      <div class="product_container col-sm-6">
-        <img src="images/205438_0EC_Crocband_Timeless_Clash_Clog_main.jpg" alt = "" title = "" class="mobile1IMG img-responsive" />
-      </div>
+      <a href = "r_imageLink" class="product_container col-sm-6">
+        <img src="r_imageSRC" alt = "r_imageALT" title = "r_imageTitle" class="mobile1IMG img-responsive" />
+      </a>
       <div class="col-sm-6 flex_box_column">
-        <div class="text_container col-lg-10">
-          <h1 class="cx-heavy-brand-font text-center text-uppercase headerTextPreview title r_myText r_headerSize r_headerColor" >r_myText</h1>
-          <p class="cx-brand-font text-center r_paragraphText"> Body copy 18pt/20pt Proxima Nova Regular. Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut abore et dolore.</p>
+        <div class="text_container">
+          <h1 class="cx-heavy-brand-font text-center text-uppercase headerTextPreview" style = "text-size: r_headerSizepx; color: r_headerColor;  " >r_myText</h1>
+          <p class="cx-brand-font text-center" style = "color: r_paragraphColor; font-size: r_paragraphSizepx">r_paragraphText</p>
           <div class="col-xs-12 flex_box_column " style="">
-            <div class="col-xs-11 col-sm-12 col-md-12 col-lg-10 ">
-              <a href="" class=" cx-button full-width r_CTALink r_CTAtext r_CTAcolor r_CTAcolorHover cx-heavy-brand-font text-uppercase text-center">cta 20pt extrabold</a></div>
+            <div class="col-xs-11 col-sm-12 col-md-12 col-lg-12 ">
+              <a href="r_CTALink" class=" cx-button full-width cx-heavy-brand-font text-uppercase text-center">r_CTAtext</a></div>
           </div>
         </div>
       </div>
@@ -196,6 +221,7 @@ function getAccordianHTML(accordianID, labelID) {
 
 $(document).ready(function() {
   var labelID
+
   var app = {
     modules: modules,
     utils: {
@@ -205,6 +231,7 @@ $(document).ready(function() {
       app.addModule();
       app.getTabs();
     },
+
     getTabs: function() {
       $(".html_container").hide()
       $(".view_container").hide()
@@ -247,7 +274,6 @@ $(document).ready(function() {
         var deleteButton = document.getElementsByClassName('delete_button')
         dropDownChange(thisDropDown)
         deleteThisModule(deleteButton)
-
       })
     },
     setModuleForm: function(e) {
@@ -274,16 +300,15 @@ $(document).ready(function() {
       var data = app.modules[selectedModule].data;
       var $html = $(app.modules[selectedModule].html).find('.module_container');
       var htmlString = $html[0].outerHTML;
-
-
       var data = app.modules[selectedModule].data;
-      data[inputName] = inputValue; // updating data
+      data[inputName] = inputValue;
+       // updating data
       for(k in data){
+        //k are all keys from data
         // creating a RegExp with inputValue
         var re = new RegExp(k,'g');
         // using it to globally replace string 'r_whatever'
         htmlString = htmlString.replace(re, data[k]);
-
       }
 
       var $module_container = $(moduleInputValues.target).parentsUntil('nav').find('.module_container')
@@ -309,12 +334,31 @@ $(document).ready(function() {
       saveButton[k].addEventListener("click", saveClick, false)
     }
   }
+
+
+
+  var htmlPreviewArray = []
   function saveClick(e) {
-    var saveTarget = $(e.target).parentsUntil('nav').find('.module_container').html()
-    var savedHTML = $('.module_container').html().toString()
-    console.log(savedHTML)
-    $('.module_container').replaceWith("<div>" + savedHTML.toString() + "</div>")
-    $(e.target).html("SAVED")
+    var positionDropdown = document.getElementsByClassName('position-dropdown')
+    var selectedPosition = positionDropdown[0].value
+    var saveHTML = $(e.target).parentsUntil('nav').find('.module_container').html()
+
+    switch(selectedPosition) {
+      case "1st":
+      htmlPreviewArray.unshift(saveHTML)
+      break;
+      case "2nd":
+      htmlPreviewArray.splice(1, 0, saveHTML)
+      break;
+    }
+
+    $(e.target).html("SAVED - EDIT HTML")
+    console.log(saveHTML)
+    $('#box').val(htmlPreviewArray.reverse())
+    $('#saveHTMLButton').on("click", function(){
+      var htmlMarkUp = $('#box').val()
+      $('.replace_html_here').html(htmlMarkUp)
+    })
   }
 
   function dropDownChange(thisDropDown) {
@@ -323,11 +367,10 @@ $(document).ready(function() {
     }
   }
 
+
   function dropDownChangeEvent(e) {
-    // $('.js-getText').off('change',app.setModuleForm(e));
     app.setModuleForm(e);
     onTextChange(e) // e.target == module selector
-
   }
 
   function onTextChange(e) {
