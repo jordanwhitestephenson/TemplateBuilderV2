@@ -73,7 +73,7 @@ var modules = {
     <a class="btn btn-link collapse_ahref" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
     PREVIEW MODULE
     </a>
-    <button class="btn btn-link save_button " type="button" aria-haspopup="true" aria-expanded="false">SAVE MODULE 1</button>
+    <button class="btn btn-link save_button " type="button" aria-haspopup="true" aria-expanded="false">HTML</button>
     </div>
 
     <div class = "module_preview">
@@ -263,8 +263,6 @@ $(document).ready(function() {
       var collapseContainerID = collapseContainer + Math.random().toFixed(0)
       $(e.target).parentsUntil('nav').find('.collapse_ahref').attr("href", "#" + collapseContainerID)
       $(e.target).parentsUntil('nav').find('.collapse').attr("id", collapseContainerID)
-      // $('.collapse_ahref').attr("href", "#" + collapseContainerID)
-      // $('.collapse').attr("id", collapseContainerID)
     },
     moduleFormValues: function(moduleInputValues) {
       var saveButton = document.getElementsByClassName('save_button')
@@ -277,6 +275,7 @@ $(document).ready(function() {
       var $html = $(app.modules[selectedModule].html).find('.module_container');
       var htmlString = $html[0].outerHTML;
 
+
       var data = app.modules[selectedModule].data;
       data[inputName] = inputValue; // updating data
       for(k in data){
@@ -284,6 +283,7 @@ $(document).ready(function() {
         var re = new RegExp(k,'g');
         // using it to globally replace string 'r_whatever'
         htmlString = htmlString.replace(re, data[k]);
+
       }
 
       var $module_container = $(moduleInputValues.target).parentsUntil('nav').find('.module_container')
@@ -311,8 +311,10 @@ $(document).ready(function() {
   }
   function saveClick(e) {
     var saveTarget = $(e.target).parentsUntil('nav').find('.module_container').html()
-    // console.log($('.module_container').html())
-    console.log(saveTarget)
+    var savedHTML = $('.module_container').html().toString()
+    console.log(savedHTML)
+    $('.module_container').replaceWith("<div>" + savedHTML.toString() + "</div>")
+    $(e.target).html("SAVED")
   }
 
   function dropDownChange(thisDropDown) {
