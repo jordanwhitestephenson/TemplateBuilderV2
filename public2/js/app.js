@@ -199,7 +199,7 @@ var modules = {
 
 function getAccordianHTML(accordianID, labelID) {
 
-  return `<nav class="accordion arrows">
+  return `<nav class="accordion arrows" data-id = "${labelID}">
   <input type="radio" id = "${labelID}" name="accordion"/>
   <section class="box"  id= "${accordionID}">
     <label class="box-title" for="${labelID}">
@@ -301,48 +301,52 @@ $(document).ready(function() {
       var data = app.modules[selectedModule].data;
       var $html = $(app.modules[selectedModule].html).find('.module_container');
       var htmlString = $html[0].outerHTML;
+      // console.log(htmlString)
       var data = app.modules[selectedModule].data;
       data[inputName] = inputValue;
-      // updating data
       for (k in data) {
-        //k are all keys from data
-        // creating a RegExp with inputValue
         var re = new RegExp(k, 'g');
-        // using it to globally replace string 'r_whatever'
         htmlString = htmlString.replace(re, data[k]);
       }
-
-      var $module_container = $(moduleInputValues.target).parentsUntil('nav').find('.module_container')
+      var $module_container = $(moduleInputValues.target).parentsUntil('nav').find('.template')
       $module_container.html(htmlString)
-
+      retrieveHTML()
     }
   };
 
   Sortable.create(createContainerID, {
-  group: 'accordions',
-  store: {
-    // Sorting acquisition (called during initialization)
-    get: function (sortable) {
-      var order = localStorage.getItem(sortable.options.group);
-      return order ? order.split('|') : [];
-      console.log(localStorage)
+    group: {
+      type: String,
+      value: 'testing'
     },
+    store: {
+      // Sorting acquisition (called during initialization)
+      get: function(sortable) {
+        var order = localStorage.getItem(sortable.options.group.name);
 
-    // Saving the acquired sorting (called each time upon sorting modification)
-    set: function (sortable) {
-      var order = sortable.toArray();
-      localStorage.setItem(sortable.options.group, order.join('|'));
-      console.log(order)
-    console.log(localStorage.getItem(sortable.options.group))
-    }
-  },
-  draggable: '.accordion',
-});
+        return order
+          ? order.split('|')
+          : [];
 
+      },
+      // Saving the acquired sorting (called each time upon sorting modification)
+      set: function(sortable) {
+        var order = sortable.toArray();
+        localStorage.setItem(sortable.options.group.name, order.join('|'));
+        console.log(order)
 
-
+      }
+    },
+    draggable: '.accordion'
+  });
 
   app.init();
+
+  function retrieveHTML() {
+    var allHTML = $('.module_container')[0].outerHTML
+    console.log($('.module_container'))
+     $('#box').val(allHTML)
+  }
 
   function deleteThisModule(deleteButton) {
     for (var i = 0; i < deleteButton.length; i++) {
@@ -360,24 +364,11 @@ $(document).ready(function() {
     }
   }
 
-  var htmlPreviewArray = []
 
   function saveClick(e) {
-    var positionDropdown = document.getElementsByClassName('position-dropdown')
-    var selectedPosition = positionDropdown[0].value
     var saveHTML = $(e.target).parentsUntil('nav').find('.module_container').html()
-
-    switch (selectedPosition) {
-      case "1st":
-        htmlPreviewArray.unshift(saveHTML)
-        break;
-      case "2nd":
-        htmlPreviewArray.splice(1, 0, saveHTML)
-        break;
-    }
     $(e.target).html("SAVED - EDIT HTML")
-    console.log(saveHTML)
-    $('#box').val(htmlPreviewArray.reverse())
+
     $('#saveHTMLButton').on("click", function() {
       var htmlMarkUp = $('#box').val()
       $('.replace_html_here').html(htmlMarkUp)
@@ -392,24 +383,9 @@ $(document).ready(function() {
   }
 
   function dropDownChangeEvent(e) {
+    //deleting other options on dropdown//
     var dropDownModuleText = $(e.target).parentsUntil('nav').find('select')[0].value
     $(e.target).parentsUntil('nav').find('option').not(':selected').remove()
-    // console.log($(e.target).parentsUntil('nav').find('select'))
-
-    // switch(dropDownModuleText) {
-    //   case "module1":
-    //   $('.dropdown option[value="module2"]').remove()
-    //   $('.dropdown option[value="module3"]').remove()
-    //   $('.dropdown option[value="module3"]').remove()
-    //   break;
-    //   case "module2":
-    //   $('.dropdown option[value="module1"]').remove()
-    //   $('.dropdown option[value="module3"]').remove()
-    //   break;
-    // }
-
-    // $(".dropdown option:not[value=`${e.target.value}`]").remove()
-    // console.log(e.target.value)
     app.setModuleForm(e);
     onTextChange(e) // e.target == module selector
   }
