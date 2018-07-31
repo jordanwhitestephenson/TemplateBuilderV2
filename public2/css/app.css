@@ -262,3 +262,7 @@ input:checked + section.box .box-title:before {
   justify-content: center;
   align-content: center;
 }
+.accordion {
+  cursor: move;
+	cursor: -webkit-grabbing;
+}

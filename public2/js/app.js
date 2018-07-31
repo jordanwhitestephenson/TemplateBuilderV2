@@ -198,6 +198,7 @@ var modules = {
 };
 
 function getAccordianHTML(accordianID, labelID) {
+
   return `<nav class="accordion arrows">
   <input type="radio" id = "${labelID}" name="accordion"/>
   <section class="box"  id= "${accordionID}">
@@ -302,11 +303,11 @@ $(document).ready(function() {
       var htmlString = $html[0].outerHTML;
       var data = app.modules[selectedModule].data;
       data[inputName] = inputValue;
-       // updating data
-      for(k in data){
+      // updating data
+      for (k in data) {
         //k are all keys from data
         // creating a RegExp with inputValue
-        var re = new RegExp(k,'g');
+        var re = new RegExp(k, 'g');
         // using it to globally replace string 'r_whatever'
         htmlString = htmlString.replace(re, data[k]);
       }
@@ -316,6 +317,30 @@ $(document).ready(function() {
 
     }
   };
+
+  Sortable.create(createContainerID, {
+  group: 'accordions',
+  store: {
+    // Sorting acquisition (called during initialization)
+    get: function (sortable) {
+      var order = localStorage.getItem(sortable.options.group);
+      return order ? order.split('|') : [];
+      console.log(localStorage)
+    },
+
+    // Saving the acquired sorting (called each time upon sorting modification)
+    set: function (sortable) {
+      var order = sortable.toArray();
+      localStorage.setItem(sortable.options.group, order.join('|'));
+      console.log(order)
+    console.log(localStorage.getItem(sortable.options.group))
+    }
+  },
+  draggable: '.accordion',
+});
+
+
+
 
   app.init();
 
@@ -335,27 +360,25 @@ $(document).ready(function() {
     }
   }
 
-
-
   var htmlPreviewArray = []
+
   function saveClick(e) {
     var positionDropdown = document.getElementsByClassName('position-dropdown')
     var selectedPosition = positionDropdown[0].value
     var saveHTML = $(e.target).parentsUntil('nav').find('.module_container').html()
 
-    switch(selectedPosition) {
+    switch (selectedPosition) {
       case "1st":
-      htmlPreviewArray.unshift(saveHTML)
-      break;
+        htmlPreviewArray.unshift(saveHTML)
+        break;
       case "2nd":
-      htmlPreviewArray.splice(1, 0, saveHTML)
-      break;
+        htmlPreviewArray.splice(1, 0, saveHTML)
+        break;
     }
-
     $(e.target).html("SAVED - EDIT HTML")
     console.log(saveHTML)
     $('#box').val(htmlPreviewArray.reverse())
-    $('#saveHTMLButton').on("click", function(){
+    $('#saveHTMLButton').on("click", function() {
       var htmlMarkUp = $('#box').val()
       $('.replace_html_here').html(htmlMarkUp)
     })
@@ -365,10 +388,28 @@ $(document).ready(function() {
     for (var i = 0; i < thisDropDown.length; i++) {
       thisDropDown[i].addEventListener("change", dropDownChangeEvent, false)
     }
+
   }
 
-
   function dropDownChangeEvent(e) {
+    var dropDownModuleText = $(e.target).parentsUntil('nav').find('select')[0].value
+    $(e.target).parentsUntil('nav').find('option').not(':selected').remove()
+    // console.log($(e.target).parentsUntil('nav').find('select'))
+
+    // switch(dropDownModuleText) {
+    //   case "module1":
+    //   $('.dropdown option[value="module2"]').remove()
+    //   $('.dropdown option[value="module3"]').remove()
+    //   $('.dropdown option[value="module3"]').remove()
+    //   break;
+    //   case "module2":
+    //   $('.dropdown option[value="module1"]').remove()
+    //   $('.dropdown option[value="module3"]').remove()
+    //   break;
+    // }
+
+    // $(".dropdown option:not[value=`${e.target.value}`]").remove()
+    // console.log(e.target.value)
     app.setModuleForm(e);
     onTextChange(e) // e.target == module selector
   }
