@@ -345,7 +345,12 @@ $(document).ready(function() {
   function retrieveHTML() {
     var allHTML = $('.module_container')[0].outerHTML
     console.log($('.module_container'))
-     $('#box').val(allHTML)
+    $('#box').val(allHTML)
+    $('#saveHTMLButton').on("click", function() {
+      var htmlMarkUp = $('#box').val()
+      console.log(htmlMarkUp)
+      $('.replace_html_here').html(htmlMarkUp)
+    })
   }
 
   function deleteThisModule(deleteButton) {
@@ -364,15 +369,10 @@ $(document).ready(function() {
     }
   }
 
-
   function saveClick(e) {
     var saveHTML = $(e.target).parentsUntil('nav').find('.module_container').html()
     $(e.target).html("SAVED - EDIT HTML")
 
-    $('#saveHTMLButton').on("click", function() {
-      var htmlMarkUp = $('#box').val()
-      $('.replace_html_here').html(htmlMarkUp)
-    })
   }
 
   function dropDownChange(thisDropDown) {
