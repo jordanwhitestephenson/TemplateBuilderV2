@@ -30,8 +30,8 @@ var modules = {
       <label for="headerText">Header Text</label>
       <input type="text" name="r_myText"  class = "js-getText" value=""><br>
 
-      <label id="HeaderSize" for="r_headerSize">Header Size</label>
-      <input type="number" class = "js-getText" name="r_headerSize" value="42px"><br>
+      <label id="HeaderSize" for="headerSize">Header Size</label>
+      <input type="number" class = "js-getText" name="headerSize" value="42px"><br>
 
       <label id="HeaderColor" for="r_headerColor">Header Color</label>
       <input type="color" name="r_headerColor" value = ""><br>
@@ -197,7 +197,7 @@ function getAccordianHTML(accordianID, labelID) {
 $(document).ready(function() {
   var labelID
   var app = {
-    modules: [],
+    modules: modules,
     utils: {
       allCaps: function() {}
     },
@@ -254,8 +254,8 @@ $(document).ready(function() {
       var moduleNumParents = $(e.target).parentsUntil('nav').find('select')
       var moduleNum = moduleNumParents[0].value
       var $moduleChooser = $(e.target).parentsUntil('nav').find('.accordion_container')
-      var html = modules[moduleNum].html;
-      var data = modules[moduleNum].data;
+      var html = app.modules[moduleNum].html;
+      var data = app.modules[moduleNum].data;
       $moduleChooser.html(html);
 
       //creating new matching id for collapse container
@@ -271,30 +271,23 @@ $(document).ready(function() {
       var inputName = moduleInputValues.target.name
       var inputType = moduleInputValues.target.type
       var inputValue = moduleInputValues.target.value
-      var data = modules[selectedModule].data;
-      var html = modules[selectedModule].html;
+      var data = app.modules[selectedModule].data;
+      var $html = $(app.modules[selectedModule].html).find('.module_container');
+      var htmlString = $html[0].outerHTML;
 
 
-      if (data[inputName]) {
-        var className = $('.' + inputName)
+      var data = app.modules[selectedModule].data;
+      data[inputName] = inputValue; // updating data
+      for(k in data){
+        // creating a RegExp with inputValue
+        var re = new RegExp(k,'g');
+        // using it to globally replace string 'r_whatever'
+        htmlString = htmlString.replace(re, data[k]);
 
-        if (inputType === "number") {
-          className.css('font-size', inputValue.toString() + 'px')
-        }
-        if (inputType === "color") {
-          className.css('color', inputValue.toString())
-        }
-        if (inputType === "text" || inputType === "textarea") {
-        var selectedClass =   $(moduleInputValues.target).parentsUntil('.accordion_container').find('.' + inputName)
-        selectedClass.text(inputValue.toString())
-
-        }
-        ///***Having hard time getting this to work**//
-        // data[inputName] = inputValue;
-        // for(k in data){
-        //   html = html.replace(k , data[k]);
-        // }
       }
+
+      var $module_container = $(moduleInputValues.target).parentsUntil('nav').find('.module_container')
+      $module_container.html(htmlString)
 
     }
   };
@@ -347,9 +340,9 @@ $(document).ready(function() {
       $textInputs[i].addEventListener("change", getModuleText, false)
     }
   }
-  function getModuleText(e) {
-    var moduleInputValues = e
-    $('.js-getText').on('change', app.moduleFormValues(moduleInputValues));
+  function getModuleText(ev) {
+    $('.js-getText').off('change', app.moduleFormValues(ev));
+    $('.js-getText').on('change', app.moduleFormValues(ev));
     // $('.js-getText').off('change', app.moduleFormValues());
     // app.moduleFormValues(moduleInputValues)
   }
