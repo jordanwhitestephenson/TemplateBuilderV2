@@ -15,7 +15,9 @@ var modules = {
       r_imageLink: 'www.image.com',
       r_CTAtext: 'CTA 20PT BOLD',
       r_CTALink: 'www.google.com',
-      r_CTAcolor: 'black',
+      r_CTAcolorDefaultText: 'black',
+      r_CTAcolorDefault_Background: 'green',
+
       r_CTAcolorHover: 'red'
     },
     html: `
@@ -23,15 +25,19 @@ var modules = {
   <h2 class = "text-center module_headline"> MODULE 1 </h2>
     <form action="" class="module_1_form" method="post">
     <div class = "col-xs-12 header_form_container">
+    <div>
       <label for="InputH">Header Text</label>
       <input type="text" name="r_myText"  class = "js-getText" value=""><br>
-
+    </div>
+    <div>
       <label id="HeaderSize" for="InputheaderSize">Header Size</label>
       <input type="number" class = "js-getText" name="r_headerSize"><br>
-
+    </div>
+    <div>
       <label id="HeaderColor" for="headerColor">Header Color</label>
       <input type="color" name="r_headerColor"  class = "js-getText" value = ""><br>
-      </div>
+    </div>
+    </div>
       <div class = "col-xs-12 image_form_container">
       <div>
       <label id="img" for="img_SRC">Image SRC</label>
@@ -65,22 +71,21 @@ var modules = {
       </div>
   </div>
       <div class = "cta_form_container col-xs-12">
+
       <div>
       <label for="ctaText">CTA TEXT</label>
       <input type="text" class = "js-getText" name="r_CTAtext" value=""><br>
-      </div>
-      <div>
       <label for="ctaLink">CTA LINK</label>
       <input type="text" class = "js-getText" name="r_CTALink" value=""><br>
       </div>
+
       <div>
-      <label for="ctaColor">CTA Default Color</label>
-      <input type="color" class = "js-getText" name="r_CTAcolor" value=""><br>
+      <label for="ctaColor">CTA Default Text Color</label>
+      <input type="color" class = "js-getText" name="r_CTAcolorDefaultText" value=""><br>
+      <label for="ctaColor">CTA Default Background Color</label>
+      <input type="color" class = "js-getText" name="r_CTAcolorDefault_Background" value=""><br>
       </div>
-      <div>
-      <label for="ctaHover">CTA Hover Color</label>
-      <input type="color" class = "js-getText" name="r_CTAcolorHover" value=""><br>
-      </div>
+
       </div>
     </form>
     <div class = "button_container">
@@ -104,7 +109,7 @@ var modules = {
           <p class="cx-brand-font text-center" style = "color: r_paragraphColor; font-size: r_paragraphSizepx">r_paragraphText</p>
           <div class="col-xs-12 flex_box_column " style="">
             <div class="col-xs-11 col-sm-12 col-md-12 col-lg-12 ">
-              <a href="r_CTALink" class=" cx-button full-width cx-heavy-brand-font text-uppercase text-center">r_CTAtext</a></div>
+              <a href="r_CTALink"  onMouseOver="this.style.backgroundColor='r_CTAcolorDefaultText'; this.style.color = 'r_CTAcolorDefault_Background' " onMouseOut="this.style.backgroundColor='r_CTAcolorDefault_Background'; this.style.color= 'r_CTAcolorDefaultText ' "  class="cx-button full-width cx-heavy-brand-font text-uppercase text-center" style = "color: r_CTAcolorDefaultText; background-color: r_CTAcolorDefault_Background">r_CTAtext</a></div>
           </div>
         </div>
       </div>
@@ -119,7 +124,7 @@ var modules = {
     data: {
       r_headerColor: '#444',
       r_headerSize: '30px',
-      r_myText: 'Hello World',
+      r_headerText: 'Hello World',
       r_paragraphText: 'Paragraph Text',
       r_paragraphColor: '#444',
       r_paragraphSize: '15',
@@ -134,14 +139,27 @@ var modules = {
     },
     html: `<div class="module2 preview_container">
             <h2 class="module_2_form toggle">MODULE 2</h2>
+
+            <div class = "header_form_container">
+            <div>
               <label for="headerText">Module 2 H3 Text</label>
               <input type="text" class = "js-getText" name="r_myText" value=""><br>
+            </div>
+            <div>
               <label id="HeaderSize" for="headersize">Header Size (Default 35px)</label>
               <input type="number" class = "js-getText" name="r_headerSize"  value="42px"><br>
-
+            </div>
+            <div>
+              <label id="HeaderColor" for="headerColor">Header Color</label>
+              <input type="color" name="r_headerColor"  class = "js-getText" value = ""><br>
+            </div>
+          </div>
+          <div class = "image_form_container">
+          <div>
               <label id="img" for="img">Image Link</label>
-              <input type="text" name="imgLink" value=""><br>
-
+              <input type="text" class = "js-getText" name="imgLink" value=""><br>
+          </div>
+          </div>
               <label id="HeaderSize" for="headersize">H4 Body Copy</label>
               <input type="text" name="h4BodyCopy" id="" value="42px"><br>
               <label for="paragraphText">Paragraph Text</label>
@@ -159,11 +177,12 @@ var modules = {
               <button class="btn btn-secondary save_button" type="button" aria-haspopup="true" aria-expanded="false">SAVE MODULE 2</button>
               </div>
             </div>
+
             <div class="collapse" id="collapseExample2">
             <div class="card card-body template">
             <section class="module2_mock module_container cs_container-crocs">
               <div class="header_subhead_container flex_box_column">
-                <h2 class="text-center cx-heavy-brand-font text-uppercase">r_myText</h2>
+                <h2 class="text-center cx-heavy-brand-font text-uppercase" style = "font-size: r_headerSize; color: r_headerColor">r_myText</h2>
                 <p class="text-center cx-brand-font subhead-text">
                   H6 - (18pt Regular) - Subhead
                 </p>
