@@ -22,16 +22,6 @@ var modules = {
   <div class="module1 preview_container">
   <h2 class = "text-center module_headline"> MODULE 1 </h2>
     <form action="" class="module_1_form" method="post">
-    <div class="form-group col-xs-6 col-sm-3">
-    <label for="exampleFormControlSelect1">Position On Page</label>
-    <select class="form-control js-getText position-dropdown template">
-    <option>Select Position</option>
-    <option selected = "selected">1st</option>
-    <option>2nd</option>
-    <option>3rd</option>
-    <option>4th</option>
-    </select>
-    </div>
     <div class = "col-xs-12 header_form_container">
       <label for="InputH">Header Text</label>
       <input type="text" name="r_myText"  class = "js-getText" value=""><br>
@@ -144,16 +134,6 @@ var modules = {
     },
     html: `<div class="module2 preview_container">
             <h2 class="module_2_form toggle">MODULE 2</h2>
-            <div class="form-group">
-            <label for="exampleFormControlSelect1">Position On Page</label>
-                <select  class="form-control template">
-                <option>Select Position</option>
-                <option>1st</option>
-                <option selected = "selected">2nd</option>
-                  <option>3rd</option>
-                <option>4th</option>
-                  </select>
-              </div>
               <label for="headerText">Module 2 H3 Text</label>
               <input type="text" class = "js-getText" name="r_myText" value=""><br>
               <label id="HeaderSize" for="headersize">Header Size (Default 35px)</label>
@@ -284,9 +264,8 @@ $(document).ready(function() {
         // is labelID necessary?
         $(".create_container").append(getAccordianHTML(accordionID, labelID));
         var thisDropDown = document.getElementsByClassName("box-title");
-        var deleteButton = document.getElementsByClassName('delete_button')
         dropDownChange(thisDropDown)
-        deleteThisModule(deleteButton)
+        triggerSortable()
       })
     },
     setModuleForm: function(e) {
@@ -322,57 +301,10 @@ $(document).ready(function() {
       var $module_container = $(moduleInputValues.target).parentsUntil('nav').find('.module_container')
       $module_container.html(htmlString)
 
-
-
-
-
-
     }
   };
   app.init();
 
-
-
-  Sortable.create(createContainerID, {
-    group: {
-      type: String,
-      value: 'testing'
-    },
-    store: {
-      // Sorting acquisition (called during initialization)
-      get: function(sortable) {
-        var order = localStorage.getItem(sortable.options.group.name);
-
-        return order
-          ? order.split('|')
-          : [];
-
-      },
-      // Saving the acquired sorting (called each time upon sorting modification)
-      set: function(sortable) {
-        var order = sortable.toArray();
-        localStorage.setItem(sortable.options.group.name, order.join('|'));
-        console.log(order)
-
-      }
-    },
-    draggable: '.accordion'
-  });
-
-
-
-
-
-  function deleteThisModule(deleteButton) {
-    for (var i = 0; i < deleteButton.length; i++) {
-      deleteButton[i].addEventListener("click", deleteClick, false)
-    }
-  }
-
-  function deleteClick(e) {
-    var deleteTarget = $(e.target).parentsUntil('nav')
-    deleteTarget.remove()
-  }
   function saveModule(saveButton) {
     for (var k = 0; k < saveButton.length; k++) {
       saveButton[k].addEventListener("click", saveClick, false)
@@ -414,19 +346,65 @@ $(document).ready(function() {
     $('.js-getText').off('change', app.moduleFormValues(ev));
     $('.js-getText').on('change', app.moduleFormValues(ev));
     var sendString = $('.module_container').html()
-    retrieveHTML(sendString, ev)
-  }
-    var htmlArray = []
-    function retrieveHTML(sendString, ev) {
-      var eventText = $(ev.target).parentsUntil('nav').find('.module_container').html()
-      htmlArray.push(eventText)
-      console.log(htmlArray)
+    // retrieveHTML(sendString, ev)
 
-      // console.log(allHTML)
-      $('#box').val(htmlArray)
-      $('#saveHTMLButton').on("click", function() {
-        var htmlMarkUp = $('#box').val()
-        $('.replace_html_here').html(htmlMarkUp)
-      })
-    }
+  }
+
+  var htmlArray = []
+  function retrieveHTML(sendString, ev) {
+    var eventText = $(ev.target).parentsUntil('nav').find('.module_container').html()
+    htmlArray.push(eventText)
+    $('#box').val(htmlArray)
+    $('#saveHTMLButton').on("click", function() {
+      var htmlMarkUp = $('#box').val()
+      $('.replace_html_here').html(htmlMarkUp)
+    })
+  }
+
+  function sortableFunction(sortable, order) {
+    var htmlOrderArray = []
+    order.forEach(function(k){
+      var dataVal = $(`[data-id='${k}']`).find('.module_container').html()
+      htmlOrderArray.push(dataVal)
+    })
+    //adding htmlOrderArray into markdown preview
+    $('#box').val(htmlOrderArray)
+  }
+  function triggerSortable() {
+    Sortable.create(createContainerID, {
+      group: {
+        type: String,
+        value: 'testing'
+      },
+      filter: ".delete_button",
+      onFilter: function(evt) {
+        var item = evt.item,
+          ctrl = evt.target;
+        if (Sortable.utils.is(ctrl, ".delete_button")) { // Click on remove button
+          item.parentNode.removeChild(item); // remove sortable item
+        }
+      },
+      store: {
+        // Sorting acquisition (called during initialization)
+        get: function(sortable) {
+          var order = localStorage.getItem(sortable.options.group.name);
+          var html =  localStorage.getItem(sortable.options.group.html)
+          return order
+            ? order.split('|')
+            : [];
+
+        },
+        // Saving the acquired sorting (called each time upon sorting modification)
+        set: function(sortable) {
+          var order = sortable.toArray();
+          // var html = localStorage.setItem(sortable.options.group.html, 'x')
+          localStorage.setItem(sortable.options.group.name, order.join('|'));
+          sortableFunction(sortable, order)
+
+        }
+      },
+      draggable: '.accordion'
+    });
+  }
+
 });
