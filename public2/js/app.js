@@ -265,7 +265,7 @@ $(document).ready(function() {
         $(".create_container").append(getAccordianHTML(accordionID, labelID));
         var thisDropDown = document.getElementsByClassName("box-title");
         dropDownChange(thisDropDown)
-        triggerSortable()
+
       })
     },
     setModuleForm: function(e) {
@@ -300,7 +300,7 @@ $(document).ready(function() {
       }
       var $module_container = $(moduleInputValues.target).parentsUntil('nav').find('.module_container')
       $module_container.html(htmlString)
-
+      triggerSortable()
     }
   };
   app.init();
@@ -345,21 +345,8 @@ $(document).ready(function() {
   function getModuleText(ev) {
     $('.js-getText').off('change', app.moduleFormValues(ev));
     $('.js-getText').on('change', app.moduleFormValues(ev));
-    var sendString = $('.module_container').html()
-    // retrieveHTML(sendString, ev)
-
   }
 
-  var htmlArray = []
-  function retrieveHTML(sendString, ev) {
-    var eventText = $(ev.target).parentsUntil('nav').find('.module_container').html()
-    htmlArray.push(eventText)
-    $('#box').val(htmlArray)
-    $('#saveHTMLButton').on("click", function() {
-      var htmlMarkUp = $('#box').val()
-      $('.replace_html_here').html(htmlMarkUp)
-    })
-  }
 
   function sortableFunction(sortable, order) {
     var htmlOrderArray = []
@@ -367,8 +354,11 @@ $(document).ready(function() {
       var dataVal = $(`[data-id='${k}']`).find('.module_container').html()
       htmlOrderArray.push(dataVal)
     })
-    //adding htmlOrderArray into markdown preview
     $('#box').val(htmlOrderArray)
+    $('#saveHTMLButton').on("click", function() {
+      var htmlMarkUp = $('#box').val()
+      $('.replace_html_here').html(htmlMarkUp)
+    })
   }
   function triggerSortable() {
     Sortable.create(createContainerID, {
@@ -389,6 +379,7 @@ $(document).ready(function() {
         get: function(sortable) {
           var order = localStorage.getItem(sortable.options.group.name);
           var html =  localStorage.getItem(sortable.options.group.html)
+          sortableFunction(sortable, order ? order.split('|') : order)
           return order
             ? order.split('|')
             : [];
@@ -397,7 +388,6 @@ $(document).ready(function() {
         // Saving the acquired sorting (called each time upon sorting modification)
         set: function(sortable) {
           var order = sortable.toArray();
-          // var html = localStorage.setItem(sortable.options.group.html, 'x')
           localStorage.setItem(sortable.options.group.name, order.join('|'));
           sortableFunction(sortable, order)
 
