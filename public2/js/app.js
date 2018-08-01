@@ -127,11 +127,22 @@ var modules = {
   },
   module2: {
     data: {
-      r_myClass: 'red',
-      r_myStyle: '30px',
-      r_myText: 'Hello World'
+      r_headerColor: '#444',
+      r_headerSize: '30px',
+      r_myText: 'Hello World',
+      r_paragraphText: 'Paragraph Text',
+      r_paragraphColor: '#444',
+      r_paragraphSize: '15',
+      r_imageSRC: 'images/205438_0EC_Crocband_Timeless_Clash_Clog_main.jpg',
+      r_imageALT: 'alt tag',
+      r_imageTitle: 'image title',
+      r_imageLink: 'www.image.com',
+      r_CTAtext: 'CTA 20PT BOLD',
+      r_CTALink: 'www.google.com',
+      r_CTAcolor: 'black',
+      r_CTAcolorHover: 'red'
     },
-    html: `<div class="module2">
+    html: `<div class="module2 preview_container">
             <h2 class="module_2_form toggle">MODULE 2</h2>
             <div class="form-group">
             <label for="exampleFormControlSelect1">Position On Page</label>
@@ -144,12 +155,13 @@ var modules = {
                   </select>
               </div>
               <label for="headerText">Module 2 H3 Text</label>
-              <input type="text" name="headerText" value=""><br>
+              <input type="text" class = "js-getText" name="r_myText" value=""><br>
               <label id="HeaderSize" for="headersize">Header Size (Default 35px)</label>
-              <input type="number" name="headersize"  value="42px"><br>
-              <label id="img" for="img">Upload Image</label>
+              <input type="number" class = "js-getText" name="r_headerSize"  value="42px"><br>
+
+              <label id="img" for="img">Image Link</label>
               <input type="text" name="imgLink" value=""><br>
-              <input type="file" name="img" id="img" value=""><br>
+
               <label id="HeaderSize" for="headersize">H4 Body Copy</label>
               <input type="text" name="h4BodyCopy" id="" value="42px"><br>
               <label for="paragraphText">Paragraph Text</label>
@@ -171,7 +183,7 @@ var modules = {
             <div class="card card-body template">
             <section class="module2_mock module_container cs_container-crocs">
               <div class="header_subhead_container flex_box_column">
-                <h2 class="text-center cx-heavy-brand-font text-uppercase">H2 - (35pt) EXTRABOLD</h2>
+                <h2 class="text-center cx-heavy-brand-font text-uppercase">r_myText</h2>
                 <p class="text-center cx-brand-font subhead-text">
                   H6 - (18pt Regular) - Subhead
                 </p>
@@ -301,18 +313,38 @@ $(document).ready(function() {
       var data = app.modules[selectedModule].data;
       var $html = $(app.modules[selectedModule].html).find('.module_container');
       var htmlString = $html[0].outerHTML;
-      // console.log(htmlString)
       var data = app.modules[selectedModule].data;
       data[inputName] = inputValue;
       for (k in data) {
         var re = new RegExp(k, 'g');
         htmlString = htmlString.replace(re, data[k]);
       }
-      var $module_container = $(moduleInputValues.target).parentsUntil('nav').find('.template')
+      var $module_container = $(moduleInputValues.target).parentsUntil('nav').find('.module_container')
       $module_container.html(htmlString)
-      retrieveHTML()
+
+
+
+      var sendString = $(app.modules[selectedModule].html).find('.module_container').html()
+      console.log(sendString)
+
+      retrieveHTML(sendString)
+
     }
   };
+  app.init();
+
+  var htmlArray = []
+  function retrieveHTML(sendString) {
+
+    htmlArray.push(sendString)
+
+    // console.log(allHTML)
+    $('#box').val(htmlArray)
+    $('#saveHTMLButton').on("click", function() {
+      var htmlMarkUp = $('#box').val()
+      $('.replace_html_here').html(htmlMarkUp)
+    })
+  }
 
   Sortable.create(createContainerID, {
     group: {
@@ -340,18 +372,9 @@ $(document).ready(function() {
     draggable: '.accordion'
   });
 
-  app.init();
 
-  function retrieveHTML() {
-    var allHTML = $('.module_container')[0].outerHTML
-    console.log($('.module_container'))
-    $('#box').val(allHTML)
-    $('#saveHTMLButton').on("click", function() {
-      var htmlMarkUp = $('#box').val()
-      console.log(htmlMarkUp)
-      $('.replace_html_here').html(htmlMarkUp)
-    })
-  }
+
+
 
   function deleteThisModule(deleteButton) {
     for (var i = 0; i < deleteButton.length; i++) {
