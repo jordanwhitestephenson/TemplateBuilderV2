@@ -324,27 +324,14 @@ $(document).ready(function() {
 
 
 
-      var sendString = $(app.modules[selectedModule].html).find('.module_container').html()
-      console.log(sendString)
 
-      retrieveHTML(sendString)
+
 
     }
   };
   app.init();
 
-  var htmlArray = []
-  function retrieveHTML(sendString) {
 
-    htmlArray.push(sendString)
-
-    // console.log(allHTML)
-    $('#box').val(htmlArray)
-    $('#saveHTMLButton').on("click", function() {
-      var htmlMarkUp = $('#box').val()
-      $('.replace_html_here').html(htmlMarkUp)
-    })
-  }
 
   Sortable.create(createContainerID, {
     group: {
@@ -426,7 +413,20 @@ $(document).ready(function() {
   function getModuleText(ev) {
     $('.js-getText').off('change', app.moduleFormValues(ev));
     $('.js-getText').on('change', app.moduleFormValues(ev));
-    // $('.js-getText').off('change', app.moduleFormValues());
-    // app.moduleFormValues(moduleInputValues)
+    var sendString = $('.module_container').html()
+    retrieveHTML(sendString, ev)
   }
+    var htmlArray = []
+    function retrieveHTML(sendString, ev) {
+      var eventText = $(ev.target).parentsUntil('nav').find('.module_container').html()
+      htmlArray.push(eventText)
+      console.log(htmlArray)
+
+      // console.log(allHTML)
+      $('#box').val(htmlArray)
+      $('#saveHTMLButton').on("click", function() {
+        var htmlMarkUp = $('#box').val()
+        $('.replace_html_here').html(htmlMarkUp)
+      })
+    }
 });
