@@ -105,7 +105,7 @@ var modules = {
       </a>
       <div class="col-sm-6 flex_box_column">
         <div class="text_container">
-          <h1 class="cx-heavy-brand-font text-center text-uppercase headerTextPreview" style = "text-size: r_headerSizepx; color: r_headerColor;  " >r_myText</h1>
+          <h1 class="cx-heavy-brand-font text-center text-uppercase" style = "text-size: r_headerSizepx; color: r_headerColor;  " >r_myText</h1>
           <p class="cx-brand-font text-center" style = "color: r_paragraphColor; font-size: r_paragraphSizepx">r_paragraphText</p>
           <div class="col-xs-12 flex_box_column " style="">
             <div class="col-xs-11 col-sm-12 col-md-12 col-lg-12 ">
@@ -284,6 +284,7 @@ $(document).ready(function() {
         $(".create_container").append(getAccordianHTML(accordionID, labelID));
         var thisDropDown = document.getElementsByClassName("box-title");
         dropDownChange(thisDropDown)
+        triggerSortable()
 
       })
     },
@@ -300,10 +301,9 @@ $(document).ready(function() {
       var collapseContainerID = collapseContainer + Math.random().toFixed(0)
       $(e.target).parentsUntil('nav').find('.collapse_ahref').attr("href", "#" + collapseContainerID)
       $(e.target).parentsUntil('nav').find('.collapse').attr("id", collapseContainerID)
+
     },
     moduleFormValues: function(moduleInputValues) {
-      var saveButton = document.getElementsByClassName('save_button')
-      saveModule(saveButton)
       var selectedModule = $(moduleInputValues.target).parentsUntil('nav').find('select.select').val()
       var inputName = moduleInputValues.target.name
       var inputType = moduleInputValues.target.type
@@ -319,22 +319,11 @@ $(document).ready(function() {
       }
       var $module_container = $(moduleInputValues.target).parentsUntil('nav').find('.module_container')
       $module_container.html(htmlString)
-      triggerSortable()
+
     }
   };
   app.init();
 
-  function saveModule(saveButton) {
-    for (var k = 0; k < saveButton.length; k++) {
-      saveButton[k].addEventListener("click", saveClick, false)
-    }
-  }
-
-  function saveClick(e) {
-    var saveHTML = $(e.target).parentsUntil('nav').find('.module_container').html()
-    $(e.target).html("SAVED - EDIT HTML")
-
-  }
 
   function dropDownChange(thisDropDown) {
     for (var i = 0; i < thisDropDown.length; i++) {
@@ -366,39 +355,32 @@ $(document).ready(function() {
     $('.js-getText').on('change', app.moduleFormValues(ev));
   }
 
-
-  function sortableFunction(sortable, order) {
-    var htmlOrderArray = []
-    order.forEach(function(k){
-      var dataVal = $(`[data-id='${k}']`).find('.module_container').html()
-      htmlOrderArray.push(dataVal)
-    })
-    $('#box').val(htmlOrderArray)
-    $('#saveHTMLButton').on("click", function() {
-      var htmlMarkUp = $('#box').val()
-      $('.replace_html_here').html(htmlMarkUp)
-    })
-  }
   function triggerSortable() {
+
+    var htmlOrderArray = []
+
     Sortable.create(createContainerID, {
       group: {
         type: String,
-        value: 'testing'
+        name: 'testing'
       },
       filter: ".delete_button",
       onFilter: function(evt) {
         var item = evt.item,
           ctrl = evt.target;
-        if (Sortable.utils.is(ctrl, ".delete_button")) { // Click on remove button
-          item.parentNode.removeChild(item); // remove sortable item
+        var eventHTML = evt.item.innerHTML
+        var deleteHTML = $(eventHTML).find('.module_container')[0].outerHTML
+        console.log(htmlOrderArray)
+        if (Sortable.utils.is(ctrl, ".delete_button")) {
+          item.parentNode.removeChild(item);
         }
       },
       store: {
         // Sorting acquisition (called during initialization)
         get: function(sortable) {
           var order = localStorage.getItem(sortable.options.group.name);
-          var html =  localStorage.getItem(sortable.options.group.html)
-          sortableFunction(sortable, order ? order.split('|') : order)
+          sortableFunction(order ? order.split('|') : [])
+          $('#box').val(htmlOrderArray)
           return order
             ? order.split('|')
             : [];
@@ -408,12 +390,40 @@ $(document).ready(function() {
         set: function(sortable) {
           var order = sortable.toArray();
           localStorage.setItem(sortable.options.group.name, order.join('|'));
-          sortableFunction(sortable, order)
+          sortableFunction(order)
+          $('#box').val(htmlOrderArray)
+          console.log(order, 'afterRearance')
 
         }
       },
       draggable: '.accordion'
     });
+
+    function sortableFunction(order) {
+      console.log(order)
+      if (order) {
+        order.forEach(function(k) {
+          if(k) {
+            var dataVal = $(`[data-id='${k}']`).find('.nav')
+            console.log(dataVal)
+          }
+
+
+
+          // if(dataVal) {
+          //   console.log(dataVal)
+          //   htmlOrderArray.push(dataVal)
+          // }
+
+        })
+      }
+
+      $('#saveHTMLButton').on("click", function() {
+        var htmlMarkUp = $('#box').val()
+        $('.replace_html_here').html(htmlMarkUp)
+      })
+    }
+
   }
 
 });
