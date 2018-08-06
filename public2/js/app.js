@@ -210,7 +210,7 @@ var modules = {
 
 function getAccordianHTML(accordianID, labelID) {
 
-  return `<nav class="accordion arrows" data-id = "${labelID}">
+  return `<div class = "target_here"><nav class="accordion arrows" data-id = "${labelID}">
   <input type="radio" id = "${labelID}" name="accordion"/>
   <section class="box"  id= "${accordionID}">
     <label class="box-title" for="${labelID}">
@@ -222,13 +222,14 @@ function getAccordianHTML(accordianID, labelID) {
           <option class="dropdown-item" value = "module3" >MODULE 3</option>
           </select>
       </div>
-      <button class="btn btn-secondary delete_button" type="button"  aria-haspopup="true" aria-expanded="false">DELETE</button>
+      <div class = "delete_button_container">
+      </div>
       </label>
     <label class="box-close" for="acc-close"></label>
     <div class="box-content accordion_container"></div>
   </section>
   <input type="radio" class="radio" name="accordion" id="acc-close" />
-</nav>`;
+</nav></div>`;
 }
 
 $(document).ready(function() {
@@ -284,7 +285,6 @@ $(document).ready(function() {
         $(".create_container").append(getAccordianHTML(accordionID, labelID));
         var thisDropDown = document.getElementsByClassName("box-title");
         dropDownChange(thisDropDown)
-        triggerSortable()
 
       })
     },
@@ -304,6 +304,7 @@ $(document).ready(function() {
 
     },
     moduleFormValues: function(moduleInputValues) {
+
       var selectedModule = $(moduleInputValues.target).parentsUntil('nav').find('select.select').val()
       var inputName = moduleInputValues.target.name
       var inputType = moduleInputValues.target.type
@@ -319,11 +320,9 @@ $(document).ready(function() {
       }
       var $module_container = $(moduleInputValues.target).parentsUntil('nav').find('.module_container')
       $module_container.html(htmlString)
-
     }
   };
   app.init();
-
 
   function dropDownChange(thisDropDown) {
     for (var i = 0; i < thisDropDown.length; i++) {
@@ -337,7 +336,10 @@ $(document).ready(function() {
     var dropDownModuleText = $(e.target).parentsUntil('nav').find('select')[0].value
     $(e.target).parentsUntil('nav').find('option').not(':selected').remove()
     app.setModuleForm(e);
-    onTextChange(e) // e.target == module selector
+    onTextChange(e)
+    startSortable()
+    $(e.target).parentsUntil('nav').find('.delete_button_container').append('<button class="btn btn-secondary delete_button" type="button"  aria-haspopup="true" aria-expanded="false">DELETE</button>')
+
   }
 
   function onTextChange(e) {
@@ -351,14 +353,20 @@ $(document).ready(function() {
     }
   }
   function getModuleText(ev) {
+    //MIGHT NEED TO ADD BACK!//
     $('.js-getText').off('change', app.moduleFormValues(ev));
     $('.js-getText').on('change', app.moduleFormValues(ev));
+    var moduleFormArray = []
+    var formInputHTML = $(ev.target).parentsUntil('.target_here')
+    var formInputHTMLValue = ($(formInputHTML[formInputHTML.length - 1]).attr("data-id", `${labelID}`)[0]).dataset.id
+    moduleFormArray.push(formInputHTMLValue)
+    console.log(moduleFormArray)
+    configureHTML(moduleFormArray)
+
+
   }
 
-  function triggerSortable() {
-
-    var htmlOrderArray = []
-
+  function startSortable() {
     Sortable.create(createContainerID, {
       group: {
         type: String,
@@ -368,19 +376,25 @@ $(document).ready(function() {
       onFilter: function(evt) {
         var item = evt.item,
           ctrl = evt.target;
-        var eventHTML = evt.item.innerHTML
-        var deleteHTML = $(eventHTML).find('.module_container')[0].outerHTML
-        console.log(htmlOrderArray)
+        var dataIDDelete = $(evt.item).attr("data-id")
+        var dataVal = $(`[data-id='${dataIDDelete}']`).find('.module_container').html()
+
         if (Sortable.utils.is(ctrl, ".delete_button")) {
           item.parentNode.removeChild(item);
+
+          console.log(dataVal)
+          configureHTML()
         }
       },
       store: {
         // Sorting acquisition (called during initialization)
         get: function(sortable) {
           var order = localStorage.getItem(sortable.options.group.name);
-          sortableFunction(order ? order.split('|') : [])
-          $('#box').val(htmlOrderArray)
+          // configureHTML(
+          //   order
+          //   ? order.split('|')
+          //   : [])
+
           return order
             ? order.split('|')
             : [];
@@ -390,40 +404,28 @@ $(document).ready(function() {
         set: function(sortable) {
           var order = sortable.toArray();
           localStorage.setItem(sortable.options.group.name, order.join('|'));
-          sortableFunction(order)
-          $('#box').val(htmlOrderArray)
+          configureHTML(order)
+
           console.log(order, 'afterRearance')
 
         }
       },
       draggable: '.accordion'
     });
-
-    function sortableFunction(order) {
-      console.log(order)
-      if (order) {
-        order.forEach(function(k) {
-          if(k) {
-            var dataVal = $(`[data-id='${k}']`).find('.nav')
-            console.log(dataVal)
-          }
-
-
-
-          // if(dataVal) {
-          //   console.log(dataVal)
-          //   htmlOrderArray.push(dataVal)
-          // }
-
-        })
-      }
-
-      $('#saveHTMLButton').on("click", function() {
-        var htmlMarkUp = $('#box').val()
-        $('.replace_html_here').html(htmlMarkUp)
+  }
+  function configureHTML(order) {
+    var htmlOrderArray = []
+    if (order) {
+      order.forEach(function(k) {
+        if (k) {
+          var dataVal = $(`[data-id='${k}']`).find('.module_container').html()
+          htmlOrderArray.push(dataVal)
+          $('#box').val(htmlOrderArray)
+        } else {
+          $('#box').val(htmlOrderArray)
+        }
       })
     }
-
   }
 
 });
