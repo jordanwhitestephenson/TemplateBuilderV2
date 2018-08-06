@@ -93,7 +93,6 @@ var modules = {
     <a class="btn btn-link collapse_ahref" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
     PREVIEW MODULE
     </a>
-    <button class="btn btn-link save_button " type="button" aria-haspopup="true" aria-expanded="false">SAVE</button>
     </div>
 
     <div class = "module_preview">
@@ -173,9 +172,6 @@ var modules = {
               <a class="btn btn-link collapse_ahref" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
               PREVIEW MODULE
               </a>
-              <div class =  "saved_button_class">
-              <button class="btn btn-secondary save_button" type="button" aria-haspopup="true" aria-expanded="false">SAVE MODULE 2</button>
-              </div>
             </div>
 
             <div class="collapse" id="collapseExample2">
@@ -251,6 +247,7 @@ $(document).ready(function() {
       $(".html_container").hide()
       $(".view_container").hide()
       $(".create_container").show()
+      $("#preview").hide()
       $('#create').on('click', function() {
         $("#preview").removeClass('active')
         $("#html").removeClass('active')
@@ -267,6 +264,7 @@ $(document).ready(function() {
         $("#preview").removeClass('active')
         $("#html").addClass('active')
 
+
       })
       $('#preview').on('click', function() {
         $(".create_container").hide()
@@ -275,6 +273,7 @@ $(document).ready(function() {
         $("#create").removeClass('active')
         $("#html").removeClass('active')
         $("#preview").addClass('active')
+        $("#preview").show()
       })
     },
     addModule: function() {
@@ -358,20 +357,15 @@ $(document).ready(function() {
   }
   var moduleFormArray = []
   function getModuleText(ev) {
-    //MIGHT NEED TO ADD BACK!//
-
     $('.js-getText').off('change', app.moduleFormValues(ev));
     $('.js-getText').on('change', app.moduleFormValues(ev));
     var formInputHTML = $(ev.target).parentsUntil('.create_container')
     var formInputHTMLValue = ($(formInputHTML[formInputHTML.length - 1])[0]).dataset.id
-
     moduleFormArray.push(formInputHTMLValue)
-    console.log(moduleFormArray, 'with duplicates')
     //removing duplicates after change event//
     var unqArray = moduleFormArray.filter(function(item, pos, self) {
       return self.indexOf(item) == pos
     })
-    console.log(unqArray)
 
     configureHTML(unqArray)
   }
@@ -441,5 +435,14 @@ $(document).ready(function() {
       $('#box').val(htmlOrderArray)
     }
   }
-
+  $('#saveHTMLButton').on("click", function() {
+    var editedHTML = $('#box').val()
+    $('.replace_html_here').html(editedHTML)
+    $(".html_container").hide()
+    $(".view_container").show()
+  })
+  $('#goBackToEditHTMLButton').on("click", function(){
+    $(".html_container").show()
+    $(".view_container").hide()
+  })
 });
