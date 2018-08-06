@@ -264,7 +264,6 @@ $(document).ready(function() {
         $("#preview").removeClass('active')
         $("#html").addClass('active')
 
-
       })
       $('#preview').on('click', function() {
         $(".create_container").hide()
@@ -286,7 +285,6 @@ $(document).ready(function() {
         $(".create_container").append(getAccordianHTML(accordionID, labelID));
         var thisDropDown = document.getElementsByClassName("box-title");
         dropDownChange(thisDropDown)
-
 
       })
     },
@@ -373,22 +371,21 @@ $(document).ready(function() {
   function startSortable() {
     Sortable.create(createContainerID, {
       group: {
-        type: String,
-
+        type: String
       },
       filter: ".delete_button",
       onFilter: function(evt) {
         var item = evt.item,
           ctrl = evt.target;
-          console.log(ctrl)
-        var dataIDDelete = $(evt.item).attr("data-id")
-        var dataVal = $(`[data-id='${dataIDDelete}']`).find('.module_container').html()
-
+        var allDataIDs = $('.create_container').find('[data-id]').get().map(function(x){
+          return x.dataset.id
+        })
         if (Sortable.utils.is(ctrl, ".delete_button")) {
           item.parentNode.removeChild(item);
-          console.log(dataVal)
-          configureHTML()
+          console.log(allDataIDs)
+          configureHTML(allDataIDs)
         }
+        // configureHTML('null', deleteID)
       },
       store: {
         // Sorting acquisition (called during initialization)
@@ -410,6 +407,7 @@ $(document).ready(function() {
           var order = sortable.toArray();
           localStorage.setItem(sortable.options.group.name, order.join('|'));
           configureHTML(order)
+          console.log('atdelete?')
 
           console.log(order, 'afterRearance')
         }
@@ -419,6 +417,7 @@ $(document).ready(function() {
   }
   function configureHTML(order) {
     var htmlOrderArray = []
+    console.log(order)
     if (order && order.length > 1) {
       order.forEach(function(k) {
         if (k) {
@@ -441,7 +440,7 @@ $(document).ready(function() {
     $(".html_container").hide()
     $(".view_container").show()
   })
-  $('#goBackToEditHTMLButton').on("click", function(){
+  $('#goBackToEditHTMLButton').on("click", function() {
     $(".html_container").show()
     $(".view_container").hide()
   })
