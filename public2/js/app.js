@@ -210,7 +210,9 @@ var modules = {
 
 function getAccordianHTML(accordianID, labelID) {
 
-  return `<div class = "target_here"><nav class="accordion arrows" data-id = "${labelID}">
+  return `
+
+  <nav class="accordion arrows" data-id = "${labelID}">
   <input type="radio" id = "${labelID}" name="accordion"/>
   <section class="box"  id= "${accordionID}">
     <label class="box-title" for="${labelID}">
@@ -229,7 +231,7 @@ function getAccordianHTML(accordianID, labelID) {
     <div class="box-content accordion_container"></div>
   </section>
   <input type="radio" class="radio" name="accordion" id="acc-close" />
-</nav></div>`;
+</nav>`;
 }
 
 $(document).ready(function() {
@@ -286,6 +288,7 @@ $(document).ready(function() {
         var thisDropDown = document.getElementsByClassName("box-title");
         dropDownChange(thisDropDown)
 
+
       })
     },
     setModuleForm: function(e) {
@@ -320,6 +323,7 @@ $(document).ready(function() {
       }
       var $module_container = $(moduleInputValues.target).parentsUntil('nav').find('.module_container')
       $module_container.html(htmlString)
+
     }
   };
   app.init();
@@ -337,7 +341,6 @@ $(document).ready(function() {
     $(e.target).parentsUntil('nav').find('option').not(':selected').remove()
     app.setModuleForm(e);
     onTextChange(e)
-    startSortable()
     $(e.target).parentsUntil('nav').find('.delete_button_container').append('<button class="btn btn-secondary delete_button" type="button"  aria-haspopup="true" aria-expanded="false">DELETE</button>')
 
   }
@@ -351,37 +354,44 @@ $(document).ready(function() {
     for (var i = 0; i < $textInputs.length; i++) {
       $textInputs[i].addEventListener("change", getModuleText, false)
     }
+    startSortable()
   }
+  var moduleFormArray = []
   function getModuleText(ev) {
     //MIGHT NEED TO ADD BACK!//
+
     $('.js-getText').off('change', app.moduleFormValues(ev));
     $('.js-getText').on('change', app.moduleFormValues(ev));
-    var moduleFormArray = []
-    var formInputHTML = $(ev.target).parentsUntil('.target_here')
-    var formInputHTMLValue = ($(formInputHTML[formInputHTML.length - 1]).attr("data-id", `${labelID}`)[0]).dataset.id
+    var formInputHTML = $(ev.target).parentsUntil('.create_container')
+    var formInputHTMLValue = ($(formInputHTML[formInputHTML.length - 1])[0]).dataset.id
+
     moduleFormArray.push(formInputHTMLValue)
-    console.log(moduleFormArray)
-    configureHTML(moduleFormArray)
+    console.log(moduleFormArray, 'with duplicates')
+    //removing duplicates after change event//
+    var unqArray = moduleFormArray.filter(function(item, pos, self) {
+      return self.indexOf(item) == pos
+    })
+    console.log(unqArray)
 
-
+    configureHTML(unqArray)
   }
 
   function startSortable() {
     Sortable.create(createContainerID, {
       group: {
         type: String,
-        name: 'testing'
+
       },
       filter: ".delete_button",
       onFilter: function(evt) {
         var item = evt.item,
           ctrl = evt.target;
+          console.log(ctrl)
         var dataIDDelete = $(evt.item).attr("data-id")
         var dataVal = $(`[data-id='${dataIDDelete}']`).find('.module_container').html()
 
         if (Sortable.utils.is(ctrl, ".delete_button")) {
           item.parentNode.removeChild(item);
-
           console.log(dataVal)
           configureHTML()
         }
@@ -390,10 +400,11 @@ $(document).ready(function() {
         // Sorting acquisition (called during initialization)
         get: function(sortable) {
           var order = localStorage.getItem(sortable.options.group.name);
-          // configureHTML(
-          //   order
-          //   ? order.split('|')
-          //   : [])
+          console.log(order)
+          configureHTML(
+            order
+            ? order.split('|')
+            : [])
 
           return order
             ? order.split('|')
@@ -407,7 +418,6 @@ $(document).ready(function() {
           configureHTML(order)
 
           console.log(order, 'afterRearance')
-
         }
       },
       draggable: '.accordion'
@@ -415,16 +425,20 @@ $(document).ready(function() {
   }
   function configureHTML(order) {
     var htmlOrderArray = []
-    if (order) {
+    if (order && order.length > 1) {
       order.forEach(function(k) {
         if (k) {
           var dataVal = $(`[data-id='${k}']`).find('.module_container').html()
           htmlOrderArray.push(dataVal)
           $('#box').val(htmlOrderArray)
-        } else {
-          $('#box').val(htmlOrderArray)
         }
       })
+    }
+    else {
+      var dataVal = $(`[data-id='${order}']`).find('.module_container').html()
+      console.log('this dataVal', dataVal)
+      htmlOrderArray.push(dataVal)
+      $('#box').val(htmlOrderArray)
     }
   }
 
