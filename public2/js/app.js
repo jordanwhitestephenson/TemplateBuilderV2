@@ -98,7 +98,7 @@ var modules = {
     <div class = "module_preview">
     <div class="collapse" id="">
     <div class="card card-body template">
-    <section class="module1_mock cs_container-fluid  module_container">
+    <section class="module1_mock cs_container-crocs  module_container">
       <a href = "r_imageLink" class="product_container col-sm-6">
         <img src="r_imageSRC" alt = "r_imageALT" title = "r_imageTitle" class="imageSRC_Demandware img-responsive" />
       </a>
@@ -246,7 +246,7 @@ $(document).ready(function() {
     getTabs: function() {
       $(".html_container").hide()
       $(".view_container").hide()
-      $(".create_container").show()
+      $(".module_1_container").show()
       $("#preview").hide()
       $('#create').on('click', function() {
         $("#preview").removeClass('active')
@@ -435,6 +435,10 @@ $(document).ready(function() {
   }
   function configureHTML(order) {
     var htmlOrderArray = []
+
+    if(order.length < 1) {
+      $('#box').val(htmlOrderArray)
+    }
     if (order && order.length > 1) {
       order.forEach(function(k) {
         if (k) {
@@ -466,8 +470,6 @@ $(document).ready(function() {
     var images = elem.getElementsByTagName("img")
     var previousSRC = $(images).attr("src")
     $(images).attr("src", `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${previousSRC}` )
-
-
 
     $('.replace_html_here').html(elem)
     $(".html_container").hide()
