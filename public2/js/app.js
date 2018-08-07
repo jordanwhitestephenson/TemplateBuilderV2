@@ -156,7 +156,7 @@ var modules = {
           <div class = "image_form_container">
           <div>
               <label id="img" for="img">Image Link</label>
-              <input type="text" class = "js-getText" name="imgLink" value=""><br>
+              <input type="text" class = "js-getText" name="r_imageSRC" value=""><br>
           </div>
           </div>
               <label id="HeaderSize" for="headersize">H4 Body Copy</label>
@@ -185,7 +185,7 @@ var modules = {
               </div>
               <div class="flex_box_row">
                 <div class="product_container col-sm-6">
-                  <img src="images/diipakhosla_2018-04-10_2618590602.jpg" class="img-responsive" />
+                  <img src="r_imageSRC" alt= "r_imageALT" class="imageSRC_Demandware img-responsive" />
                 </div>
                 <div class="text_container module_two_text_container col-sm-6 col-md-pull-1">
                   <h4 class="cx-heavy-brand-font text-center">H4 - (20pt) Bold - Body Copy Header </h4>
@@ -294,7 +294,7 @@ $(document).ready(function() {
       var $moduleChooser = $(e.target).parentsUntil('nav').find('.accordion_container')
       var html = app.modules[moduleNum].html;
       var data = app.modules[moduleNum].data;
-      $moduleChooser.html(html);
+      $moduleChooser.html(html)
 
       //creating new matching id for collapse container
       var collapseContainer = $(e.target).parentsUntil('nav')[2].id
@@ -319,13 +319,13 @@ $(document).ready(function() {
         htmlString = htmlString.replace(re, data[k]);
       }
       var $module_container = $(moduleInputValues.target).parentsUntil('nav').find('.module_container')
-      $module_container.html(htmlString)
+      $module_container.html().replace(htmlString)
 
-      $('.collapse_ahref').on("click", function() {
-        var imageLink = $('.imageSRC_Demandware').attr('src')
+      $('.collapse_ahref').on("click", function(e) {
+        console.log($(e.target).parentsUntil('nav').find('.module_container'))
         //Switching SRC for HTML $static$ //
         if ($('.collapse').not('.show')) {
-          if (imageLink.includes('?$staticlink$')) {
+          if (inputValue.includes('?$staticlink$')) {
             var linkWithoutStatic = $('.imageSRC_Demandware').attr('src').replace('?$staticlink$', '')
             $('.imageSRC_Demandware').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${linkWithoutStatic}`)
           }
