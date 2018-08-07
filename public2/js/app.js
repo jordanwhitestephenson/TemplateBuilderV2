@@ -345,18 +345,6 @@ $(document).ready(function() {
         }
 
       }
-
-      // if ((e.target).parentsUntil('nav').find('.collapse_ahref').not('.collapsed')) {
-
-      //   console.log('start')
-      //
-      // }
-      // if ($(e.target).parentsUntil('nav').find('.collapse_ahref').hasClass('collapsed')) {
-      //   console.log('end')
-      //   $(e.target).parentsUntil('nav').find('.imageSRC_Demandware').attr('src').replace('http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/', `${inputValue}?$staticlink$`)
-      //
-      // }
-
     }
   };
   app.init();
@@ -473,7 +461,15 @@ $(document).ready(function() {
   }
   $('#saveHTMLButton').on("click", function() {
     var editedHTML = $('#box').val()
-    $('.replace_html_here').html(editedHTML)
+    var elem= document.createElement("div");
+    elem.innerHTML = editedHTML;
+    var images = elem.getElementsByTagName("img")
+    var previousSRC = $(images).attr("src")
+    $(images).attr("src", `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${previousSRC}` )
+
+
+
+    $('.replace_html_here').html(elem)
     $(".html_container").hide()
     $(".view_container").show()
   })
