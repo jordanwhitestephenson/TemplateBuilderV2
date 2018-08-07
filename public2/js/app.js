@@ -311,7 +311,7 @@ $(document).ready(function() {
       var inputValue = moduleInputValues.target.value
       var data = app.modules[selectedModule].data;
       var $html = $(app.modules[selectedModule].html).find('.module_container');
-      var htmlString = $html[0].outerHTML;
+      var htmlString = $html[0].innerHTML;
       var data = app.modules[selectedModule].data;
       data[inputName] = inputValue;
       for (k in data) {
@@ -319,19 +319,21 @@ $(document).ready(function() {
         htmlString = htmlString.replace(re, data[k]);
       }
       var $module_container = $(moduleInputValues.target).parentsUntil('nav').find('.module_container')
-      $module_container.html().replace(htmlString)
+      $module_container.html(htmlString)
+      var originalInput = $('.imageSRC_Demandware').attr('src')
 
-      $('.collapse_ahref').on("click", function(e) {
-        console.log($(e.target).parentsUntil('nav').find('.module_container'))
+      $('.collapse_ahref').one("click", function(e) {
+
+        console.log(originalInput)
         //Switching SRC for HTML $static$ //
         if ($('.collapse').not('.show')) {
           if (inputValue.includes('?$staticlink$')) {
-            var linkWithoutStatic = $('.imageSRC_Demandware').attr('src').replace('?$staticlink$', '')
-            $('.imageSRC_Demandware').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${linkWithoutStatic}`)
+            $('.imageSRC_Demandware').attr('src').replace('?$staticlink$', '')
+            $('.imageSRC_Demandware').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${inputValue}`)
           }
 
         } else if ($('.collapse').hasClass('show')) {
-          $('.imageSRC_Demandware').attr('src', `${inputValue}`)
+          $('.imageSRC_Demandware').attr('src', `${originalInput}`)
 
         }
 
@@ -432,7 +434,7 @@ $(document).ready(function() {
     if (order && order.length > 1) {
       order.forEach(function(k) {
         if (k) {
-          var dataVal = $(`[data-id='${k}']`).find('.module_container').html()
+          var dataVal =$(`[data-id='${k}']`).find('.module_container')[0].outerHTML
           htmlOrderArray.push(dataVal)
           var joinedArray = htmlOrderArray.join(',')
           joinedArray = joinedArray.replace(/,/g, "")
@@ -440,7 +442,7 @@ $(document).ready(function() {
         }
       })
     } else {
-      var dataVal = $(`[data-id='${order}']`).find('.module_container').html()
+      var dataVal = $(`[data-id='${order}']`).find('.module_container')[0].outerHTML
       htmlOrderArray.push(dataVal)
       var joinedArray = htmlOrderArray.join(',')
       joinedArray = joinedArray.replace(/,/g, "")
