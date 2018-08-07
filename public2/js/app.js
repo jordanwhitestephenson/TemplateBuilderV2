@@ -100,7 +100,7 @@ var modules = {
     <div class="card card-body template">
     <section class="module1_mock cs_container-fluid  module_container">
       <a href = "r_imageLink" class="product_container col-sm-6">
-        <img src="r_imageSRC" alt = "r_imageALT" title = "r_imageTitle" class="mobile1IMG img-responsive" />
+        <img src="r_imageSRC" alt = "r_imageALT" title = "r_imageTitle" class="imageSRC_Demandware img-responsive" />
       </a>
       <div class="col-sm-6 flex_box_column">
         <div class="text_container">
@@ -321,6 +321,22 @@ $(document).ready(function() {
       var $module_container = $(moduleInputValues.target).parentsUntil('nav').find('.module_container')
       $module_container.html(htmlString)
 
+      $('.collapse_ahref').on("click", function() {
+        var imageLink = $('.imageSRC_Demandware').attr('src')
+        //Switching SRC for HTML $static$ //
+        if ($('.collapse').not('.show')) {
+          if (imageLink.includes('?$staticlink$')) {
+            var linkWithoutStatic = $('.imageSRC_Demandware').attr('src').replace('?$staticlink$', '')
+            $('.imageSRC_Demandware').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${linkWithoutStatic}`)
+          }
+
+        } else if ($('.collapse').hasClass('show')) {
+          $('.imageSRC_Demandware').attr('src', `${inputValue}`)
+
+        }
+
+      })
+
     }
   };
   app.init();
@@ -377,15 +393,14 @@ $(document).ready(function() {
       onFilter: function(evt) {
         var item = evt.item,
           ctrl = evt.target;
-        var allDataIDs = $('.create_container').find('[data-id]').get().map(function(x){
-          return x.dataset.id
-        })
         if (Sortable.utils.is(ctrl, ".delete_button")) {
           item.parentNode.removeChild(item);
-          console.log(allDataIDs)
+          item.remove()
+          var allDataIDs = $('.create_container').find('[data-id]').get().map(function(x) {
+            return x.dataset.id
+          })
           configureHTML(allDataIDs)
         }
-        // configureHTML('null', deleteID)
       },
       store: {
         // Sorting acquisition (called during initialization)
@@ -400,15 +415,12 @@ $(document).ready(function() {
           return order
             ? order.split('|')
             : [];
-
         },
         // Saving the acquired sorting (called each time upon sorting modification)
         set: function(sortable) {
           var order = sortable.toArray();
           localStorage.setItem(sortable.options.group.name, order.join('|'));
           configureHTML(order)
-          console.log('atdelete?')
-
           console.log(order, 'afterRearance')
         }
       },
@@ -417,21 +429,22 @@ $(document).ready(function() {
   }
   function configureHTML(order) {
     var htmlOrderArray = []
-    console.log(order)
     if (order && order.length > 1) {
       order.forEach(function(k) {
         if (k) {
           var dataVal = $(`[data-id='${k}']`).find('.module_container').html()
           htmlOrderArray.push(dataVal)
-          $('#box').val(htmlOrderArray)
+          var joinedArray = htmlOrderArray.join(',')
+          joinedArray = joinedArray.replace(/,/g, "")
+          $('#box').val(joinedArray)
         }
       })
-    }
-    else {
+    } else {
       var dataVal = $(`[data-id='${order}']`).find('.module_container').html()
-      console.log('this dataVal', dataVal)
       htmlOrderArray.push(dataVal)
-      $('#box').val(htmlOrderArray)
+      var joinedArray = htmlOrderArray.join(',')
+      joinedArray = joinedArray.replace(/,/g, "")
+      $('#box').val(joinedArray)
     }
   }
   $('#saveHTMLButton').on("click", function() {
