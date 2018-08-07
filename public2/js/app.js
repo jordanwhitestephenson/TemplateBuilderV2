@@ -320,24 +320,28 @@ $(document).ready(function() {
       }
       var $module_container = $(moduleInputValues.target).parentsUntil('nav').find('.module_container')
       $module_container.html(htmlString)
-      var originalInput = $('.imageSRC_Demandware').attr('src')
 
-      $('.collapse_ahref').one("click", function(e) {
+      var originalInput = $(moduleInputValues.target).parentsUntil('nav').find('.imageSRC_Demandware').attr('src')
+      console.log(originalInput)
 
-        console.log(originalInput)
-        //Switching SRC for HTML $static$ //
-        if ($('.collapse').not('.show')) {
+
+
+        //Switching SRC for HTML $static$
+        if ($(moduleInputValues.target).parentsUntil('nav').find('.collapse_ahref').attr('aria-expanded') === 'false') {
           if (inputValue.includes('?$staticlink$')) {
-            $('.imageSRC_Demandware').attr('src').replace('?$staticlink$', '')
-            $('.imageSRC_Demandware').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${inputValue}`)
+            $(moduleInputValues.target).parentsUntil('nav').find('.imageSRC_Demandware').attr('src').replace('?$staticlink$', '')
+            $(moduleInputValues.target).parentsUntil('nav').find('.imageSRC_Demandware').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${inputValue}`)
+            console.log('start')
           }
 
-        } else if ($('.collapse').hasClass('show')) {
-          $('.imageSRC_Demandware').attr('src', `${originalInput}`)
+        }
+        if ($(moduleInputValues.target).parentsUntil('nav').find('.collapse_ahref').attr('aria-expanded') === 'true')  {
+          console.log('end')
+          $(moduleInputValues.target).parentsUntil('nav').find('.imageSRC_Demandware').attr('src', `${inputValue}`)
 
         }
 
-      })
+
 
     }
   };
@@ -408,7 +412,6 @@ $(document).ready(function() {
         // Sorting acquisition (called during initialization)
         get: function(sortable) {
           var order = localStorage.getItem(sortable.options.group.name);
-          console.log(order)
           configureHTML(
             order
             ? order.split('|')
@@ -434,19 +437,25 @@ $(document).ready(function() {
     if (order && order.length > 1) {
       order.forEach(function(k) {
         if (k) {
-          var dataVal =$(`[data-id='${k}']`).find('.module_container')[0].outerHTML
-          htmlOrderArray.push(dataVal)
-          var joinedArray = htmlOrderArray.join(',')
-          joinedArray = joinedArray.replace(/,/g, "")
-          $('#box').val(joinedArray)
+          //checking to see if the element is there//
+          if ($(`[data-id='${k}']`).find('.module_container')[0]) {
+            var dataVal = $(`[data-id='${k}']`).find('.module_container')[0].outerHTML
+            htmlOrderArray.push(dataVal)
+            var joinedArray = htmlOrderArray.join(',')
+            joinedArray = joinedArray.replace(/,/g, "")
+            $('#box').val(joinedArray)
+          }
         }
       })
     } else {
-      var dataVal = $(`[data-id='${order}']`).find('.module_container')[0].outerHTML
-      htmlOrderArray.push(dataVal)
-      var joinedArray = htmlOrderArray.join(',')
-      joinedArray = joinedArray.replace(/,/g, "")
-      $('#box').val(joinedArray)
+      if ($(`[data-id='${order}']`).find('.module_container')[0]) {
+        var dataVal = $(`[data-id='${order}']`).find('.module_container')[0].outerHTML
+        htmlOrderArray.push(dataVal)
+        var joinedArray = htmlOrderArray.join(',')
+        joinedArray = joinedArray.replace(/,/g, "")
+        $('#box').val(joinedArray)
+      }
+
     }
   }
   $('#saveHTMLButton').on("click", function() {
