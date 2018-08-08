@@ -4,120 +4,149 @@ var modules = {
   module1: {
     data: {
       r_headerColor: '#444',
+      r_backgroundModuleColor: '#e1e2e1',
       r_headerSize: '30px',
-      r_myText: 'Hello World',
-      r_paragraphText: 'Paragraph Text',
+      r_myText: 'Hero Story Title',
+      r_paragraphText: 'Lorem ipsum dolor sit amet, tortor consectetur adipiscing elit. Donec et dui erat. Nam ut augue vitae tortor eleifend viverra. Donec vitae erat sem.',
       r_paragraphColor: '#444',
       r_paragraphSize: '15',
-      r_imageSRC: 'images/205438_0EC_Crocband_Timeless_Clash_Clog_main.jpg',
+      r_imageSRC: 'images/HeroImage_BLACK.jpg',
       r_imageALT: 'alt tag',
       r_imageTitle: 'image title',
       r_imageLink: 'www.image.com',
-      r_CTAtext: 'CTA 20PT BOLD',
+      r_CTAtext: 'Read More',
       r_CTALink: 'www.google.com',
-      r_CTAcolorDefaultText: 'black',
-      r_CTAcolorDefault_Background: 'green',
+      r_CTAcolorDefaultText: '#444',
+      r_CTATextSize: '15',
+      // r_CTAcolorDefault_Background: '#4440',
 
       r_CTAcolorHover: 'red'
     },
     html: `
-  <div class="module1 preview_container">
-  <h2 class = "text-center module_headline"> MODULE 1 </h2>
-    <form action="" class="module_1_form" method="post">
-    <div class = "col-xs-12 header_form_container">
-    <div>
-      <label for="InputH">Header Text</label>
-      <input type="text" name="r_myText"  class = "js-getText" value=""><br>
-    </div>
-    <div>
-      <label id="HeaderSize" for="InputheaderSize">Header Size</label>
-      <input type="number" class = "js-getText" name="r_headerSize"><br>
-    </div>
-    <div>
-      <label id="HeaderColor" for="headerColor">Header Color</label>
-      <input type="color" name="r_headerColor"  class = "js-getText" value = ""><br>
-    </div>
-    </div>
-      <div class = "col-xs-12 image_form_container">
-      <div>
-      <label id="img" for="img_SRC">Image SRC</label>
-      <input type="text" name="r_imageSRC" class = "js-getText" value=""><br>
-      </div>
-      <div>
-      <label id="img" for="img_alt">Img Alt Tag</label>
-      <input type="text" name="r_imageALT" class = "js-getText" value=""><br>
-      </div>
-      <div>
-      <label id="img" for="img_title">Image Title</label>
-      <input type="text" class = "js-getText" name="r_imageTitle" value=""><br>
-      </div>
-      <div>
-      <label id="img" for="img_title">Image Link</label>
-      <input type="text" class = "js-getText" name="r_imageLink" value=""><br>
-      </div>
-</div>
-<div class = "para_form_container col-xs-12">
-      <div class = " flex_box_column">
-      <label for="paragraphText">Paragraph Text</label>
-      <textarea type="text" name="r_paragraphText" class = "js-getText" value=""></textarea><br>
-      </div>
-      <div class = "">
-      <label for="paragraphColor">Paragraph Color</label>
-      <input type="color" class = "js-getText" name="r_paragraphColor" value=""><br>
-      </div>
-      <div class= "">
-      <label for="paragraphSize">Paragraph Size</label>
-      <input type="number" class = "js-getText" name="r_paragraphSize" value=""><br>
-      </div>
-  </div>
-      <div class = "cta_form_container col-xs-12">
+    <div class="module1 preview_container">
+      <h2 class="text-center module_headline"> MODULE 1 </h2>
+      <form action="" class="module_1_form" method="post">
+        <div>
+          <label for="InputH">Page Background Color</label>
+          <input type="color" name="r_backgroundModuleColor" class="js-getText" value=""><br>
+        </div>
 
-      <div>
-      <label for="ctaText">CTA TEXT</label>
-      <input type="text" class = "js-getText" name="r_CTAtext" value=""><br>
-      <label for="ctaLink">CTA LINK</label>
-      <input type="text" class = "js-getText" name="r_CTALink" value=""><br>
-      </div>
+        <div class="top_form_container flex_box_row">
+          <div class="col-xs-12 col-sm-6 header_form_container flex_box_column">
+            <h3 class="margin-right-auto cx-brand-font form_headers"> Header </h3>
+            <div class="margin-right-auto">
+              <label for="InputH">Header Text</label>
+              <input type="text" name="r_myText" class="js-getText" value=""><br>
+            </div>
+            <div class="margin-right-auto">
+              <label id="HeaderSize" for="InputheaderSize">Header Size</label>
+              <input type="number" class="js-getText" name="r_headerSize"><br>
+            </div>
+            <div class="margin-right-auto">
+              <label id="HeaderColor" for="headerColor">Header Color</label>
+              <input type="color" name="r_headerColor" class="js-getText" value=""><br>
+            </div>
+          </div>
 
-      <div>
-      <label for="ctaColor">CTA Default Text Color</label>
-      <input type="color" class = "js-getText" name="r_CTAcolorDefaultText" value=""><br>
-      <label for="ctaColor">CTA Default Background Color</label>
-      <input type="color" class = "js-getText" name="r_CTAcolorDefault_Background" value=""><br>
-      </div>
+          <div class="col-xs-12 col-sm-6 image_form_container flex_box_column">
+            <h3 class="margin-right-auto cx-brand-font form_headers"> Hero Image</h3>
+            <div class="margin-right-auto">
+              <label id="img" for="img_SRC">Large Image SRC</label>
+              <input type="text" name="r_imageSRC" class="js-getText" value=""><br>
+            </div>
+            <div class="margin-right-auto">
+              <label id="img" for="img_alt">Img Alt Tag</label>
+              <input type="text" name="r_imageALT" class="js-getText" value=""><br>
+            </div>
+            <div class="margin-right-auto">
+              <label id="img" for="img_title">Image Title</label>
+              <input type="text" class="js-getText" name="r_imageTitle" value=""><br>
+            </div>
+            <div class="margin-right-auto">
+              <label id="img" for="img_title">Image Link</label>
+              <input type="text" class="js-getText" name="r_imageLink" value=""><br>
+            </div>
+          </div>
+        </div>
+        <div class="bottom_form_container flex_box_row">
 
-      </div>
-    </form>
-    <div class = "button_container">
-    <button type="button" data-toggle="modal"  data-target="#exampleModalModule1" onClick= "exampleModule1()" class="btn btn-link">EXAMPLE</button>
-    <a class="btn btn-link collapse_ahref" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
-    PREVIEW MODULE
-    </a>
-    </div>
+          <div class="para_form_container flex_box_column col-xs-12 col-sm-6">
+            <h3 class="margin-right-auto cx-brand-font form_headers">Paragraph</h3>
+            <div class="margin-right-auto flex_box_column">
+              <label class = "margin-right-auto" for="paragraphText">Paragraph Text</label>
+              <textarea type="text" name="r_paragraphText" class="js-getText" value=""></textarea><br>
+            </div>
+            <div class="margin-right-auto">
+              <label for="paragraphColor">Paragraph Color</label>
+              <input type="color" class="js-getText" name="r_paragraphColor" value=""><br>
+            </div>
+            <div class="margin-right-auto">
+              <label for="paragraphSize">Paragraph Size</label>
+              <input type="number" class="js-getText" name="r_paragraphSize" value=""><br>
+            </div>
+          </div>
 
-    <div class = "module_preview">
-    <div class="collapse" id="">
-    <div class="card card-body template">
-    <section class="module1_mock cs_container-crocs  module_container">
-      <a href = "r_imageLink" class="product_container col-sm-6">
-        <img src="r_imageSRC" alt = "r_imageALT" title = "r_imageTitle" class="imageSRC_Demandware img-responsive" />
+          <div class="cta_form_container flex_box_column col-xs-12 col-sm-6">
+            <h3 class = "margin-right-auto cx-brand-font form_headers">CTA</h3>
+            <div class = "margin-right-auto">
+              <label for="ctaText">CTA TEXT</label>
+              <input type="text" class="js-getText" name="r_CTAtext" value=""><br>
+              <label for="ctaLink">CTA LINK</label>
+              <input type="text" class="js-getText" name="r_CTALink" value=""><br>
+            </div>
+
+            <div class ="margin-right-auto">
+              <label for="ctaColor">CTA Default Text Color</label>
+              <input type="color" class="js-getText" name="r_CTAcolorDefaultText" value=""><br>
+              <label for="ctaColor">CTA Text Size</label>
+              <input type="number" class="js-getText" name="r_CTATextSize" value=""><br>
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+      </form>
+      <div class="button_container">
+        <button type="button" data-toggle="modal" data-target="#exampleModalModule1" onClick="exampleModule1()" class="btn btn-link">EXAMPLE</button>
+        <a class="btn btn-link collapse_ahref" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
+      PREVIEW MODULE
       </a>
-      <div class="col-sm-6 flex_box_column">
-        <div class="text_container">
-          <h1 class="cx-heavy-brand-font text-center text-uppercase" style = "text-size: r_headerSizepx; color: r_headerColor;  " >r_myText</h1>
-          <p class="cx-brand-font text-center" style = "color: r_paragraphColor; font-size: r_paragraphSizepx">r_paragraphText</p>
-          <div class="col-xs-12 flex_box_column " style="">
-            <div class="col-xs-11 col-sm-12 col-md-12 col-lg-12 ">
-              <a href="r_CTALink"  onMouseOver="this.style.backgroundColor='r_CTAcolorDefaultText'; this.style.color = 'r_CTAcolorDefault_Background' " onMouseOut="this.style.backgroundColor='r_CTAcolorDefault_Background'; this.style.color= 'r_CTAcolorDefaultText ' "  class="cx-button full-width cx-heavy-brand-font text-uppercase text-center" style = "color: r_CTAcolorDefaultText; background-color: r_CTAcolorDefault_Background">r_CTAtext</a></div>
+      </div>
+
+      <div class="module_preview">
+        <div class="collapse">
+          <div class="card card-body template">
+
+            <section class="module1_mock cs_container-crocs  module_container">
+              <div class="background_color cs_container-fluid flex_box_row" style="background-color: r_backgroundModuleColor; width: 100%">
+
+
+                <a href="r_imageLink" class="product_container col-sm-7">
+                  <img src="r_imageSRC" alt = "r_imageALT" title = "r_imageTitle" class="imageSRC_Demandware img-responsive large_hero_image" />
+                </a>
+
+                <a href="r_CTALink" class="col-sm-5 flex_box_column">
+                  <div class="text_container hero_story_container text-left">
+                    <h2 class="cx-heavy-brand-font" style="font-size: r_headerSizepx; color: r_headerColor;  ">r_myText</h2>
+                    <p class="cx-brand-font " style="color: r_paragraphColor; font-size: r_paragraphSizepx">r_paragraphText</p>
+
+                    <div id="a_href_hover" href="r_CTALink" class="cx-brand-font text-left" style="color: r_CTAcolorDefaultText; font-size: r_CTATextSizepx; background-color: r_CTAcolorDefault_Background">r_CTAtext</div>
+                  </div>
+                </a>
+
+
+              </div>
+            </section>
+
           </div>
         </div>
       </div>
-    </section>
-      </div>
-    </div>
-  </div>
 
-  </div>`
+
+`
   },
   module2: {
     data: {
@@ -192,7 +221,7 @@ var modules = {
                   <p class="cx-brand-font text-center"> Body copy 18pt/20pt Proxima Nova Regular. Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut abore et dolore.</p>
                   <div class="col-xs-12 flex_box_column " style="">
                     <div class="col-xs-11 col-sm-12 col-md-12 col-lg-10">
-                      <a href="" class=" cx-button full-width cx-heavy-brand-font text-uppercase text-center">cta 20pt extrabold</a></div>
+                      <a href="" onMouseOver="this.style.backgroundColor='r_CTAcolorDefaultText'; this.style.color = 'r_CTAcolorDefault_Background' " onMouseOut="this.style.backgroundColor='r_CTAcolorDefault_Background'; this.style.color= 'r_CTAcolorDefaultText ' "class=" cx-button full-width cx-heavy-brand-font text-uppercase text-center">cta 20pt extrabold</a></div>
                   </div>
                 </div>
               </div>
@@ -323,28 +352,27 @@ $(document).ready(function() {
 
       var $collapseEvent = $(moduleInputValues.target).parentsUntil('nav').find('.collapse_ahref')[0]
 
-      $collapseEvent.addEventListener("click", toggleSRC)
-      $('.collapse_ahref').on("click", toggleSRC)
-      $('.collapse_ahref').off("click", toggleSRC)
+
 
       // $(moduleInputValues.target).parentsUntil('nav').find('.imageSRC_Demandware').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${inputValue}`)
-
-      if ($(moduleInputValues.target).parentsUntil('nav').find('.collapse').not('.show')) {
-        console.log('no show')
-        $(moduleInputValues.target).parentsUntil('nav').find('.imageSRC_Demandware').attr('src', `${inputValue}`)
+      if(inputName === 'r_imageSRC') {
+        $collapseEvent.addEventListener("click", toggleSRC)
+        $('.collapse_ahref').on("click", toggleSRC)
+        $('.collapse_ahref').off("click", toggleSRC)
+        if ($(moduleInputValues.target).parentsUntil('nav').find('.collapse').not('.show')) {
+          $(moduleInputValues.target).parentsUntil('nav').find('.imageSRC_Demandware').attr('src', `${inputValue}`)
+        }
+        function toggleSRC(e) {
+          var collapseShow = $(e.target).parentsUntil('nav').find('.collapse')
+          if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'block'){
+            $(e.target).parentsUntil('nav').find('.imageSRC_Demandware').attr('src', `${inputValue}`)
+          }
+          if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'none') {
+            $(e.target).parentsUntil('nav').find('.imageSRC_Demandware').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${inputValue}`)
+          }
+        }
       }
 
-      function toggleSRC(e) {
-        var collapseShow = $(e.target).parentsUntil('nav').find('.collapse')
-        if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'block'){
-          $(e.target).parentsUntil('nav').find('.imageSRC_Demandware').attr('src', `${inputValue}`)
-        }
-
-        if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'none') {
-          $(e.target).parentsUntil('nav').find('.imageSRC_Demandware').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${inputValue}`)
-        }
-
-      }
     }
   };
   app.init();

@@ -1,0 +1,120 @@
+<div class="module1 preview_container">
+  <h2 class="text-center module_headline"> MODULE 1 </h2>
+  <form action="" class="module_1_form" method="post">
+    <div>
+      <label for="InputH">Page Background Color</label>
+      <input type="color" name="r_backgroundModuleColor" class="js-getText" value=""><br>
+    </div>
+
+    <div class="top_form_container">
+      <div class="col-xs-12 col-sm-6 header_form_container flex_box_column">
+        <h3 class="margin-right-auto"> Header </h3>
+        <div class="margin-right-auto">
+          <label for="InputH">Header Text</label>
+          <input type="text" name="r_myText" class="js-getText" value=""><br>
+        </div>
+        <div class="margin-right-auto">
+          <label id="HeaderSize" for="InputheaderSize">Header Size</label>
+          <input type="number" class="js-getText" name="r_headerSize"><br>
+        </div>
+        <div class="margin-right-auto">
+          <label id="HeaderColor" for="headerColor">Header Color</label>
+          <input type="color" name="r_headerColor" class="js-getText" value=""><br>
+        </div>
+      </div>
+
+      <div class="col-xs-12 col-sm-6 image_form_container flex_box_column">
+        <h2 class="margin-right-auto"> HERO IMAGE</h2>
+        <div class="margin-right-auto">
+          <label id="img" for="img_SRC">Large Image SRC</label>
+          <input type="text" name="r_imageSRC" class="js-getText" value=""><br>
+        </div>
+        <div class="margin-right-auto">
+          <label id="img" for="img_alt">Img Alt Tag</label>
+          <input type="text" name="r_imageALT" class="js-getText" value=""><br>
+        </div>
+        <div class="margin-right-auto">
+          <label id="img" for="img_title">Image Title</label>
+          <input type="text" class="js-getText" name="r_imageTitle" value=""><br>
+        </div>
+        <div class="margin-right-auto">
+          <label id="img" for="img_title">Image Link</label>
+          <input type="text" class="js-getText" name="r_imageLink" value=""><br>
+        </div>
+      </div>
+    </div>
+    <div class="bottom_form_container">
+
+      <div class="para_form_container flex_box_column col-xs-12 col-sm-6">
+        <h2 class="margin-right-auto">Paragraph</h2>
+        <div class="margin-right-auto flex_box_column">
+          <label for="paragraphText">Paragraph Text</label>
+          <textarea type="text" name="r_paragraphText" class="js-getText" value=""></textarea><br>
+        </div>
+        <div class="margin-right-auto">
+          <label for="paragraphColor">Paragraph Color</label>
+          <input type="color" class="js-getText" name="r_paragraphColor" value=""><br>
+        </div>
+        <div class="margin-right-auto">
+          <label for="paragraphSize">Paragraph Size</label>
+          <input type="number" class="js-getText" name="r_paragraphSize" value=""><br>
+        </div>
+      </div>
+
+      <div class="cta_form_container col-xs-12 col-sm-6">
+        <h2 class = "margin-right-auto">CTA</h2>
+        <div class = "margin-right-auto">
+          <label for="ctaText">CTA TEXT</label>
+          <input type="text" class="js-getText" name="r_CTAtext" value=""><br>
+          <label for="ctaLink">CTA LINK</label>
+          <input type="text" class="js-getText" name="r_CTALink" value=""><br>
+        </div>
+
+        <div class ="margin-right-auto">
+          <label for="ctaColor">CTA Default Text Color</label>
+          <input type="color" class="js-getText" name="r_CTAcolorDefaultText" value=""><br>
+          <label for="ctaColor">CTA Default Hover Background Color</label>
+        </div>
+
+      </div>
+    </div>
+
+
+
+
+  </form>
+  <div class="button_container">
+    <button type="button" data-toggle="modal" data-target="#exampleModalModule1" onClick="exampleModule1()" class="btn btn-link">EXAMPLE</button>
+    <a class="btn btn-link collapse_ahref" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
+  PREVIEW MODULE
+  </a>
+  </div>
+
+  <div class="module_preview">
+    <div class="collapse">
+      <div class="card card-body template">
+
+        <section class="module1_mock cs_container-crocs  module_container">
+          <div class="background_color cs_container-fluid flex_box_row" style="background-color: r_backgroundModuleColor; width: 100%">
+
+
+            <a href="r_imageLink" class="product_container col-sm-7">
+              <img src="r_imageSRC" alt = "r_imageALT" title = "r_imageTitle" class="imageSRC_Demandware img-responsive large_hero_image" />
+            </a>
+
+            <a href="r_CTALink" class="col-sm-5 flex_box_column">
+              <div class="text_container text-left">
+                <h1 class="cx-heavy-brand-font  text-uppercase" style="font-size: r_headerSizepx; color: r_headerColor;  ">r_myText</h1>
+                <p class="cx-brand-font " style="color: r_paragraphColor; font-size: r_paragraphSizepx">r_paragraphText</p>
+
+                <div id="a_href_hover" href="r_CTALink" class="cx-brand-font text-left" style="color: r_CTAcolorDefaultText; background-color: r_CTAcolorDefault_Background">r_CTAtext</div>
+              </div>
+            </a>
+
+
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>

@@ -272,3 +272,12 @@ input:checked + section.box .box-title:before {
 background: #564a4a30;
 border: 1px solid #444;
 }
+.accordion_container, .top_form_container, .bottom_form_container {
+  width: 100%;
+}
+.module_container {
+  max-width: 100%;
+}
+.margin-right-auto {
+  margin-right: auto;
+}
