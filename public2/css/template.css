@@ -7,20 +7,24 @@
   flex-wrap: wrap;
   width: 100%
 }
+
 .preview_container .flex_box_column {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	align-content: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  align-content: center;
 }
+
 .preview_container .flex_box_row {
-	display: flex;
-	justify-content: center;
-	flex-direction: row;
-	align-items: center;
-	align-content: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
 }
+
 .preview_container .module_two_text_container {
   background: #fff;
   padding-left: 15px;
@@ -28,20 +32,54 @@
   padding-top: 7%;
   padding-bottom: 7%;
 }
+
 .preview_container .large_hero_image {
   width: 495px;
   height: 270px;
+  margin: auto;
 }
+.preview_container .secondary_hero_image {
+  width: 429px;
+  height: 236px;
+  margin: auto;
+}
+
 .preview_container a:hover, .preview_container a:active, .preview_container a:focus {
   text-decoration: none;
 }
+
 .preview_container #a_href_hover:hover {
   text-decoration: underline;
 }
+.preview_container .story_text {
+  padding: 25px;
+}
+
 .preview_container .text_container {
   width: 100%;
 }
+
 .preview_container .hero_story_container {
-  padding: 20px;
-  background-color: #fff
+  padding: 25px 15px 25px 15px;
+  background-color: #fff;
+  margin: 20px;
+}
+
+.preview_container .background_colored_div {
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+  .preview_container .cs_container-fluid, .preview_container .background_colored_div.cs_container-crocs,   .preview_container #mobile_image_full_screen {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+}
+
+@media(min-width: 481px) {
+  .preview_container .background_colored_div {
+    padding: 35px;
+  }
 }

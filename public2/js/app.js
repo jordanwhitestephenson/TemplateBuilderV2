@@ -18,217 +18,289 @@ var modules = {
       r_CTALink: 'www.google.com',
       r_CTAcolorDefaultText: '#444',
       r_CTATextSize: '15',
-      // r_CTAcolorDefault_Background: '#4440',
+      r_backgroundModuleColor: '#e1e1e1',
 
       r_CTAcolorHover: 'red'
     },
     html: `
     <div class="module1 preview_container">
-      <h2 class="text-center module_headline"> MODULE 1 </h2>
-      <form action="" class="module_1_form" method="post">
-        <div>
-          <label for="InputH">Page Background Color</label>
-          <input type="color" name="r_backgroundModuleColor" class="js-getText" value=""><br>
-        </div>
+      <section class="form_container">
 
-        <div class="top_form_container flex_box_row">
-          <div class="col-xs-12 col-sm-6 header_form_container flex_box_column">
-            <h3 class="margin-right-auto cx-brand-font form_headers"> Header </h3>
-            <div class="margin-right-auto">
-              <label for="InputH">Header Text</label>
-              <input type="text" name="r_myText" class="js-getText" value=""><br>
+        <h2 class="text-center module_headline"> MODULE 1 </h2>
+        <form action="" class="module_1_form" method="post">
+          <div>
+            <label for="InputH">Page Background Color</label>
+            <input type="color" name="r_backgroundModuleColor" class="js-getText" value=""><br>
+          </div>
+
+          <div class="top_form_container flex_box_row">
+            <div class="col-xs-12 col-sm-6 header_form_container flex_box_column">
+              <h3 class="margin-right-auto cx-brand-font form_headers"> Header </h3>
+              <div class="margin-right-auto">
+                <label for="InputH">Header Text</label>
+                <input type="text" name="r_myText" class="js-getText" value=""><br>
+              </div>
+              <div class="margin-right-auto">
+                <label id="HeaderSize" for="InputheaderSize">Header Size</label>
+                <input type="number" class="js-getText" name="r_headerSize"><br>
+              </div>
+              <div class="margin-right-auto">
+                <label id="HeaderColor" for="headerColor">Header Color</label>
+                <input type="color" name="r_headerColor" class="js-getText" value=""><br>
+              </div>
             </div>
-            <div class="margin-right-auto">
-              <label id="HeaderSize" for="InputheaderSize">Header Size</label>
-              <input type="number" class="js-getText" name="r_headerSize"><br>
+
+            <div class="col-xs-12 col-sm-6 image_form_container flex_box_column">
+              <h3 class="margin-right-auto cx-brand-font form_headers"> Hero Image</h3>
+              <div class="margin-right-auto">
+                <label id="img" for="img_SRC">Large Image SRC</label>
+                <input type="text" name="r_imageSRC" class="js-getText" value=""><br>
+              </div>
+              <div class="margin-right-auto">
+                <label id="img" for="img_alt">Img Alt Tag</label>
+                <input type="text" name="r_imageALT" class="js-getText" value=""><br>
+              </div>
+              <div class="margin-right-auto">
+                <label id="img" for="img_title">Image Title</label>
+                <input type="text" class="js-getText" name="r_imageTitle" value=""><br>
+              </div>
+              <div class="margin-right-auto">
+                <label id="img" for="img_title">Image Link</label>
+                <input type="text" class="js-getText" name="r_imageLink" value=""><br>
+              </div>
             </div>
-            <div class="margin-right-auto">
-              <label id="HeaderColor" for="headerColor">Header Color</label>
-              <input type="color" name="r_headerColor" class="js-getText" value=""><br>
+          </div>
+          <div class="bottom_form_container flex_box_row">
+
+            <div class="para_form_container flex_box_column col-xs-12 col-sm-6">
+              <h3 class="margin-right-auto cx-brand-font form_headers">Paragraph</h3>
+              <div class="margin-right-auto flex_box_column">
+                <label class="margin-right-auto" for="paragraphText">Paragraph Text</label>
+                <textarea type="text" name="r_paragraphText" class="js-getText" value=""></textarea><br>
+              </div>
+              <div class="margin-right-auto">
+                <label for="paragraphColor">Paragraph Color</label>
+                <input type="color" class="js-getText" name="r_paragraphColor" value=""><br>
+              </div>
+              <div class="margin-right-auto">
+                <label for="paragraphSize">Paragraph Size</label>
+                <input type="number" class="js-getText" name="r_paragraphSize" value=""><br>
+              </div>
+            </div>
+
+            <div class="cta_form_container flex_box_column col-xs-12 col-sm-6">
+              <h3 class="margin-right-auto cx-brand-font form_headers">CTA</h3>
+              <div class="margin-right-auto">
+                <label for="ctaText">CTA TEXT</label>
+                <input type="text" class="js-getText" name="r_CTAtext" value=""><br>
+                <label for="ctaLink">CTA LINK</label>
+                <input type="text" class="js-getText" name="r_CTALink" value=""><br>
+              </div>
+
+              <div class="margin-right-auto">
+                <label for="ctaColor">CTA Default Text Color</label>
+                <input type="color" class="js-getText" name="r_CTAcolorDefaultText" value=""><br>
+                <label for="ctaColor">CTA Text Size</label>
+                <input type="number" class="js-getText" name="r_CTATextSize" value=""><br>
+              </div>
+
             </div>
           </div>
 
-          <div class="col-xs-12 col-sm-6 image_form_container flex_box_column">
-            <h3 class="margin-right-auto cx-brand-font form_headers"> Hero Image</h3>
-            <div class="margin-right-auto">
-              <label id="img" for="img_SRC">Large Image SRC</label>
-              <input type="text" name="r_imageSRC" class="js-getText" value=""><br>
-            </div>
-            <div class="margin-right-auto">
-              <label id="img" for="img_alt">Img Alt Tag</label>
-              <input type="text" name="r_imageALT" class="js-getText" value=""><br>
-            </div>
-            <div class="margin-right-auto">
-              <label id="img" for="img_title">Image Title</label>
-              <input type="text" class="js-getText" name="r_imageTitle" value=""><br>
-            </div>
-            <div class="margin-right-auto">
-              <label id="img" for="img_title">Image Link</label>
-              <input type="text" class="js-getText" name="r_imageLink" value=""><br>
-            </div>
-          </div>
-        </div>
-        <div class="bottom_form_container flex_box_row">
-
-          <div class="para_form_container flex_box_column col-xs-12 col-sm-6">
-            <h3 class="margin-right-auto cx-brand-font form_headers">Paragraph</h3>
-            <div class="margin-right-auto flex_box_column">
-              <label class = "margin-right-auto" for="paragraphText">Paragraph Text</label>
-              <textarea type="text" name="r_paragraphText" class="js-getText" value=""></textarea><br>
-            </div>
-            <div class="margin-right-auto">
-              <label for="paragraphColor">Paragraph Color</label>
-              <input type="color" class="js-getText" name="r_paragraphColor" value=""><br>
-            </div>
-            <div class="margin-right-auto">
-              <label for="paragraphSize">Paragraph Size</label>
-              <input type="number" class="js-getText" name="r_paragraphSize" value=""><br>
-            </div>
-          </div>
-
-          <div class="cta_form_container flex_box_column col-xs-12 col-sm-6">
-            <h3 class = "margin-right-auto cx-brand-font form_headers">CTA</h3>
-            <div class = "margin-right-auto">
-              <label for="ctaText">CTA TEXT</label>
-              <input type="text" class="js-getText" name="r_CTAtext" value=""><br>
-              <label for="ctaLink">CTA LINK</label>
-              <input type="text" class="js-getText" name="r_CTALink" value=""><br>
-            </div>
-
-            <div class ="margin-right-auto">
-              <label for="ctaColor">CTA Default Text Color</label>
-              <input type="color" class="js-getText" name="r_CTAcolorDefaultText" value=""><br>
-              <label for="ctaColor">CTA Text Size</label>
-              <input type="number" class="js-getText" name="r_CTATextSize" value=""><br>
-            </div>
-
-          </div>
-        </div>
 
 
 
-
-      </form>
-      <div class="button_container">
-        <button type="button" data-toggle="modal" data-target="#exampleModalModule1" onClick="exampleModule1()" class="btn btn-link">EXAMPLE</button>
-        <a class="btn btn-link collapse_ahref" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
+        </form>
+        <div class="button_container">
+          <button type="button" data-toggle="modal" data-target="#exampleModalModule1" onClick="exampleModule1()" class="btn btn-link">EXAMPLE</button>
+          <a class="btn btn-link collapse_ahref" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
       PREVIEW MODULE
       </a>
-      </div>
+        </div>
+
+      </section>
 
       <div class="module_preview">
         <div class="collapse">
           <div class="card card-body template">
 
-            <section class="module1_mock cs_container-crocs  module_container">
-              <div class="background_color cs_container-fluid flex_box_row" style="background-color: r_backgroundModuleColor; width: 100%">
-
-
-                <a href="r_imageLink" class="product_container col-sm-7">
+            <section class="module1_mock   module_container">
+              <div class = "cs_container-fluid"  style="background-color: r_backgroundModuleColor; width: 100%">
+                <div class="background_colored_div cs_container-crocs flex_box_row" >
+                  <a href="r_imageLink" id="mobile_image_full_screen" class="product_container col-xs-12 col-md-7">
                   <img src="r_imageSRC" alt = "r_imageALT" title = "r_imageTitle" class="imageSRC_Demandware img-responsive large_hero_image" />
                 </a>
 
-                <a href="r_CTALink" class="col-sm-5 flex_box_column">
-                  <div class="text_container hero_story_container text-left">
-                    <h2 class="cx-heavy-brand-font" style="font-size: r_headerSizepx; color: r_headerColor;  ">r_myText</h2>
-                    <p class="cx-brand-font " style="color: r_paragraphColor; font-size: r_paragraphSizepx">r_paragraphText</p>
+                  <a href="r_CTALink" class="col-xs-12 col-md-5 flex_box_column">
+                    <div class="text_container hero_story_container text-left">
+                      <h2 class="cx-heavy-brand-font" style="font-size: r_headerSizepx; color: r_headerColor;  ">r_myText</h2>
+                      <p class="cx-brand-font " style="color: r_paragraphColor; font-size: r_paragraphSizepx">r_paragraphText</p>
 
-                    <div id="a_href_hover" href="r_CTALink" class="cx-brand-font text-left" style="color: r_CTAcolorDefaultText; font-size: r_CTATextSizepx; background-color: r_CTAcolorDefault_Background">r_CTAtext</div>
-                  </div>
-                </a>
-
-
+                      <div id="a_href_hover" href="r_CTALink" class="cx-brand-font text-left" style="color: r_CTAcolorDefaultText; font-size: r_CTATextSizepx; background-color: r_CTAcolorDefault_Background">r_CTAtext</div>
+                    </div>
+                  </a>
+                </div>
               </div>
             </section>
 
           </div>
         </div>
       </div>
-
+    </div>
 
 `
   },
   module2: {
     data: {
-      r_headerColor: '#444',
-      r_headerSize: '30px',
-      r_headerText: 'Hello World',
-      r_paragraphText: 'Paragraph Text',
-      r_paragraphColor: '#444',
-      r_paragraphSize: '15',
-      r_imageSRC: 'images/205438_0EC_Crocband_Timeless_Clash_Clog_main.jpg',
-      r_imageALT: 'alt tag',
-      r_imageTitle: 'image title',
-      r_imageLink: 'www.image.com',
-      r_CTAtext: 'CTA 20PT BOLD',
-      r_CTALink: 'www.google.com',
-      r_CTAcolor: 'black',
-      r_CTAcolorHover: 'red'
+      r_storyHeadlineSize: "20px",
+      r_storyHeadlineColor: "#444",
+      r_storyTitle1: "Secondary Story Title 1",
+      r_storyTitle2: "Secondary Story Title 2",
+      r_storyParaText1: "1st Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab",
+      r_storyParaText2: "2nd Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab",
+      r_storyCTAText1: "Read More",
+      r_storyCTAText2: "Read More",
+      r_stroyCTALink1: 'www.first.com',
+      r_stroyCTALink2: 'www.second.com',
+      r_storyPhotoSRC1: 'images/ExampleStoryImage_Secondary.jpg',
+      r_storyPhotoSRC2: 'images/ExampleStoryImage_Secondary.jpg',
+      r_storyPhotoLink1: "www.crocs.com",
+      r_storyPhotoLink2: "www.crocs.com",
+      r_storiesImageBorderColor: "#e1e1e1"
     },
     html: `<div class="module2 preview_container">
-            <h2 class="module_2_form toggle">MODULE 2</h2>
+      <section class="form_container">
+        <h2 class="module_2_form toggle">MODULE 2</h2>
 
-            <div class = "header_form_container">
-            <div>
-              <label for="headerText">Module 2 H3 Text</label>
-              <input type="text" class = "js-getText" name="r_myText" value=""><br>
+        <div class="header_form_container flex_box_column">
+          <h3 class="cx-brand-font margin-right-auto">Secondary Story 1</h3>
+
+          <div class="secondary_story_overall margin-right-auto">
+            <div class="margin-right-auto">
+              <label for="headerText">Story Headline Size</label>
+              <input type="number" class="js-getText" name="r_storyHeadlineSize" value=""><br>
             </div>
-            <div>
-              <label id="HeaderSize" for="headersize">Header Size (Default 35px)</label>
-              <input type="number" class = "js-getText" name="r_headerSize"  value="42px"><br>
+            <div class="margin-right-auto">
+              <label for="headerText">Story Headline Color</label>
+              <input type="number" class="js-getText" name="r_storyHeadlineColor" value=""><br>
             </div>
-            <div>
-              <label id="HeaderColor" for="headerColor">Header Color</label>
-              <input type="color" name="r_headerColor"  class = "js-getText" value = ""><br>
+            <div class="margin-right-auto">
+              <label for="headerText">Story Image Border</label>
+              <input type="color" class="js-getText" name="r_storiesImageBorderColor" value=""><br>
             </div>
           </div>
-          <div class = "image_form_container">
-          <div>
-              <label id="img" for="img">Image Link</label>
-              <input type="text" class = "js-getText" name="r_imageSRC" value=""><br>
+
+
+          <div class="stories">
+            <div class="story1">
+              <h4>Story 1</h4>
+              <section class="story_text_form">
+                <div class="margin-right-auto">
+                  <label for="headerText">Story1 Title Text</label>
+                  <input type="text" class="js-getText" name="r_storyTitle1" value=""><br>
+                </div>
+                <div class="margin-right-auto">
+                  <label for="headerText">Story1 Paragraph Text</label>
+                  <input type="text" class="js-getText" name="r_storyParaText1" value=""><br>
+                </div>
+                <div class="margin-right-auto">
+                  <label for="headerText">Story1 CTA Text</label>
+                  <input type="text" class="js-getText" name="r_storyCTAText1" value=""><br>
+                </div>
+                <div class="margin-right-auto">
+                  <label for="headerText">Story1 CTA Link</label>
+                  <input type="text" class="js-getText" name="r_stroyCTALink1" value=""><br>
+                </div>
+              </section>
+              <section class="story_image_form">
+                <div class="margin-right-auto">
+                  <label for="headerText">Story1 Image SRC</label>
+                  <input type="text" class="js-getText" name="r_imageSRC" value=""><br>
+                </div>
+                <div class="margin-right-auto">
+                  <label for="headerText">Story1 Image Link</label>
+                  <input type="text" class="js-getText" name="r_storyPhotoLink1" value=""><br>
+                </div>
+              </section>
+            </div>
+
+            <div class = "story2">
+              <h4>Story 2</h4>
+              <section class="story_text_form">
+                <div class="margin-right-auto">
+                  <label for="headerText">Story2 Title Text</label>
+                  <input type="text" class="js-getText" name="r_storyTitle2" value=""><br>
+                </div>
+                <div class="margin-right-auto">
+                  <label for="headerText">Story2 Paragraph Text</label>
+                  <input type="text" class="js-getText" name="r_storyParaText2" value=""><br>
+                </div>
+                <div class="margin-right-auto">
+                  <label for="headerText">Story2 CTA Text</label>
+                  <input type="text" class="js-getText" name="r_storyCTAText2" value=""><br>
+                </div>
+                <div class="margin-right-auto">
+                  <label for="headerText">Story2 CTA Link</label>
+                  <input type="text" class="js-getText" name="r_stroyCTALink2" value=""><br>
+                </div>
+              </section>
+              <section class="story_image_form">
+                <div class="margin-right-auto">
+                  <label for="headerText">Story2 Image SRC</label>
+                  <input type="text" class="js-getText" name="r_storyPhotoSRC2" value=""><br>
+                </div>
+                <div class="margin-right-auto">
+                  <label for="headerText">Story2 Image Link</label>
+                  <input type="text" class="js-getText" name="r_storyPhotoLink2" value=""><br>
+                </div>
+              </section>
+            </div>
           </div>
-          </div>
-              <label id="HeaderSize" for="headersize">H4 Body Copy</label>
-              <input type="text" name="h4BodyCopy" id="" value="42px"><br>
-              <label for="paragraphText">Paragraph Text</label>
-              <textarea type="text" name="paragraphText"value=""></textarea><br>
-              <label for="ctaText">CTA TEXT</label>
-              <input type="text" name="ctaText"  value=""><br>
-              <label for="ctaLink">CTA LINK</label>
-              <input type="text" name="ctaLink" value=""><br>
-              <div class = "button_container">
-              <button type="button" data-toggle="modal" data-target="#exampleModalModule2" onClick= "exampleModule2()" class="btn btn-link">EXAMPLE</button>
-              <a class="btn btn-link collapse_ahref" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+        </div>
+        <div class="button_container">
+          <button type="button" data-toggle="modal" data-target="#exampleModalModule2" onClick="exampleModule2()" class="btn btn-link">EXAMPLE</button>
+          <a class="btn btn-link collapse_ahref" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
               PREVIEW MODULE
               </a>
-            </div>
+        </div>
+      </section>
 
-            <div class="collapse" id="collapseExample2">
-            <div class="card card-body template">
-            <section class="module2_mock module_container cs_container-crocs">
-              <div class="header_subhead_container flex_box_column">
-                <h2 class="text-center cx-heavy-brand-font text-uppercase" style = "font-size: r_headerSize; color: r_headerColor">r_myText</h2>
-                <p class="text-center cx-brand-font subhead-text">
-                  H6 - (18pt Regular) - Subhead
-                </p>
-              </div>
-              <div class="flex_box_row">
-                <div class="product_container col-sm-6">
-                  <img src="r_imageSRC" alt= "r_imageALT" class="imageSRC_Demandware img-responsive" />
-                </div>
-                <div class="text_container module_two_text_container col-sm-6 col-md-pull-1">
-                  <h4 class="cx-heavy-brand-font text-center">H4 - (20pt) Bold - Body Copy Header </h4>
-                  <p class="cx-brand-font text-center"> Body copy 18pt/20pt Proxima Nova Regular. Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut abore et dolore.</p>
-                  <div class="col-xs-12 flex_box_column " style="">
-                    <div class="col-xs-11 col-sm-12 col-md-12 col-lg-10">
-                      <a href="" onMouseOver="this.style.backgroundColor='r_CTAcolorDefaultText'; this.style.color = 'r_CTAcolorDefault_Background' " onMouseOut="this.style.backgroundColor='r_CTAcolorDefault_Background'; this.style.color= 'r_CTAcolorDefaultText ' "class=" cx-button full-width cx-heavy-brand-font text-uppercase text-center">cta 20pt extrabold</a></div>
+      <div class="collapse" id="collapseExample2">
+        <div class="card card-body template">
+          <section class="module2_mock   module_container">
+            <div class="cs_container-fluid" style="background-color: r_backgroundModuleColor; width: 100%">
+              <div class="cs_container-crocs flex_box_row">
+
+                <section class="story1 col-xs-12 col-md-6 padding-0 flex_box_column">
+                  <a href="r_storyPhotoLink1">
+                    <img class = "img-responsive imageSRC_Demandware secondary_hero_image" style = "border: 5px solid r_storiesImageBorderColor" src = "r_imageSRC" />
+                  </a>
+                  <div class="story_text">
+                    <h3 class="cx-heavy-brand-font text-left mar" style="font-size: r_storyHeadlineSize; color: r_storyHeadlineColor ">r_storyTitle1</h3>
+                    <p class="cx-brand-font text-left" style="font-size: ">r_storyParaText1</p>
+                    <div id="story1_hover" href="r_stroyCTALink1" class="cx-brand-font text-left" style="color: r_CTAcolorDefaultText; font-size: r_CTATextSizepx; background-color: r_CTAcolorDefault_Background">r_storyCTAText1</div>
                   </div>
-                </div>
-              </div>
-            </section>
+                </section>
+
+                <section class="story2 col-xs-12 col-md-6 padding-0 flex_box_column">
+                  <a href="r_storyPhotoLink2">
+                      <img class = "img-responsive imageSRC_Demandware2 secondary_hero_image" style = "border: 5px solid r_storiesImageBorderColor" src = "r_storyPhotoSRC2" />
+                    </a>
+                  <div class="story_text">
+                    <h3 class="cx-heavy-brand-font text-left mar" style="font-size: r_storyHeadlineSize; color: r_storyHeadlineColor ">r_storyTitle2</h3>
+                    <p class="cx-brand-font text-left" style="font-size: ">r_storyParaText2</p>
+                    <div id="story2_hover" href="r_stroyCTALink2" class="cx-brand-font text-left" style="color: r_CTAcolorDefaultText; font-size: r_CTATextSizepx; background-color: r_CTAcolorDefault_Background">r_storyCTAText2</div>
+                  </div>
+                </section>
+
               </div>
             </div>
-            </div>`
+          </section>
+        </div>
+      </div>
+    </div>
+
+`
 
   }
 };
@@ -349,29 +421,35 @@ $(document).ready(function() {
       }
       var $module_container = $(moduleInputValues.target).parentsUntil('nav').find('.module_container')
       $module_container.html(htmlString)
-
       var $collapseEvent = $(moduleInputValues.target).parentsUntil('nav').find('.collapse_ahref')[0]
 
+      $collapseEvent.addEventListener("click", toggleSRC)
+      $('.collapse_ahref').on("click", toggleSRC)
+      $('.collapse_ahref').off("click", toggleSRC)
 
+      function toggleSRC(e) {
+        if (inputName === 'r_imageSRC') {
 
-      // $(moduleInputValues.target).parentsUntil('nav').find('.imageSRC_Demandware').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${inputValue}`)
-      if(inputName === 'r_imageSRC') {
-        $collapseEvent.addEventListener("click", toggleSRC)
-        $('.collapse_ahref').on("click", toggleSRC)
-        $('.collapse_ahref').off("click", toggleSRC)
-        if ($(moduleInputValues.target).parentsUntil('nav').find('.collapse').not('.show')) {
-          $(moduleInputValues.target).parentsUntil('nav').find('.imageSRC_Demandware').attr('src', `${inputValue}`)
-        }
-        function toggleSRC(e) {
           var collapseShow = $(e.target).parentsUntil('nav').find('.collapse')
-          if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'block'){
+          if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'block') {
             $(e.target).parentsUntil('nav').find('.imageSRC_Demandware').attr('src', `${inputValue}`)
           }
           if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'none') {
             $(e.target).parentsUntil('nav').find('.imageSRC_Demandware').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${inputValue}`)
           }
         }
+        if (inputName === 'r_storyPhotoSRC2') {
+
+          var collapseShow = $(e.target).parentsUntil('nav').find('.collapse')
+          if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'block') {
+            $(e.target).parentsUntil('nav').find('.imageSRC_Demandware2').attr('src', `${inputValue}`)
+          }
+          if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'none') {
+            $(e.target).parentsUntil('nav').find('.imageSRC_Demandware2').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${inputValue}`)
+          }
+        }
       }
+      // }
 
     }
   };
@@ -464,7 +542,7 @@ $(document).ready(function() {
   function configureHTML(order) {
     var htmlOrderArray = []
 
-    if(order.length < 1) {
+    if (order.length < 1) {
       $('#box').val(htmlOrderArray)
     }
     if (order && order.length > 1) {
@@ -492,14 +570,11 @@ $(document).ready(function() {
     }
   }
   $('#saveHTMLButton').on("click", function() {
-    var editedHTML = $('#box').val()
-    var elem= document.createElement("div");
-    elem.innerHTML = editedHTML;
-    var images = elem.getElementsByTagName("img")
-    var previousSRC = $(images).attr("src")
-    $(images).attr("src", `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${previousSRC}` )
-
-    $('.replace_html_here').html(elem)
+    var $preview = $('.replace_html_here');
+    $preview.html($('#box').val());
+    $preview.find("img").each(function(){
+      $(this).attr("src", "http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/" + $(this).attr("src").replace("?$staticlink$", ""));
+    });
     $(".html_container").hide()
     $(".view_container").show()
   })
