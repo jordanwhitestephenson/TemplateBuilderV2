@@ -1,11 +1,161 @@
 // data[e.target.name] = $(e.target).val();
+
+
+
+
 var collapseID
+
 var modules = {
+  css: `
+  <style>
+  .preview_container .module_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%
+  }
+  .module_container .padding-crocs-stories {
+    padding:20px 10px 5px 10px;
+  }
+
+  .preview_container .flex_box_column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
+  }
+
+  .preview_container .flex_box_row {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+  }
+
+  .preview_container .module_two_text_container {
+    background: #fff;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 7%;
+    padding-bottom: 7%;
+  }
+
+  .preview_container a:hover, .preview_container a:active, .preview_container a:focus {
+    text-decoration: none;
+  }
+
+  .preview_container #a_href_hover:hover {
+    text-decoration: underline;
+  }
+  .preview_container .story_text {
+    padding: 25px;
+  }
+
+  .preview_container .text_container {
+    width: 100%;
+  }
+
+  .preview_container .hero_story_container {
+    padding: 25px 15px 25px 15px;
+    background-color: #fff;
+    margin: 20px;
+  }
+
+  .preview_container .background_colored_div {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 480px) {
+    .preview_container .cs_container-fluid, .preview_container .background_colored_div.cs_container-crocs,   .preview_container #mobile_image_full_screen {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+    .preview_container #story2_hover, .preview_container #a_href_hover, .preview_container #story1_hover {
+      text-decoration: underline;
+    }
+    .preview_container .story1, .preview_container .story2 {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+    .preview_container .story_text {
+    padding: 20px 10px 20px 10px;
+    }
+
+  }
+
+  @media(min-width: 481px) {
+    .preview_container .background_colored_div {
+      padding: 35px;
+    }
+  }
+  </style>`,
+  USG_Module: {
+    data: {},
+    html: `<div class="usgModule preview_container">
+      <section class="form_container">
+        <h2 class="text-center module_headline"> USG Module </h2>
+
+        <form class="module_USG_form needs-validation" novalidate>
+
+          <div class="bottom_form_container flex_box_row">
+            <div class="cta_form_container flex_box_column col-xs-12 col-sm-6">
+              <h3 class="margin-right-auto cx-brand-font form_headers">CTA</h3>
+              <div class="margin-right-auto">
+                <label for="ctaText">CTA TEXT</label>
+                <input type="text" class="js-getText" name="r_CTAtext" value=""><br>
+                <label for="ctaLink">CTA LINK</label>
+                <input type="text" class="js-getText" name="r_CTALink" value=""><br>
+              </div>
+              <div class="margin-right-auto">
+                <label for="ctaColor">CTA Default Text Color</label>
+                <input type="color" class="js-getText" name="r_CTAcolorDefaultText" value=""><br>
+                <label for="ctaColor">CTA Text Size</label>
+                <input type="number" class="js-getText" name="r_CTATextSize" value=""><br>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="button_container">
+          <button type="button" data-toggle="modal" data-target="#exampleModalModule1" onClick="exampleModule1()" class="btn btn-link">EXAMPLE</button>
+          <a class="btn btn-link collapse_ahref" data-toggle="collapse" type="submit" role="button" aria-expanded="false" aria-controls="collapseExample">
+      PREVIEW MODULE
+      </a>
+        </div>
+
+      </section>
+
+      <div class="module_preview">
+        <div class="collapse">
+          <div class="card card-body template">
+            <section class="moduleUSG_mock   module_container">
+              <div class="text-center fancy-headline">#ComeAsYouAre</div>
+              <div class="cs_container-crocs widget_container">
+                <div class="olapic-header">
+                  <div class="olapic-carousel-subtitle">Unique starts with you. Share your photos and #ComeAsYouAre.</div>
+                  <button aria-disabled="false" type="button" class="olapic-upload-link cx-button cx-button-cta">Upload a Photo</button>
+                </div>
+                <div class="js-olapic olapic-carousel" data-source="signal" data-location="pdp-top" data-useproduct="true" data-useproductcategory="true" data-widgets="Homepage"></div>
+              </div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+    </div>`
+},
   module1: {
     data: {
       r_headerColor: '#444',
       r_backgroundModuleColor: '#e1e2e1',
-      r_headerSize: '30px',
+      r_headerSize: '30',
       r_myText: 'Hero Story Title',
       r_paragraphText: 'Lorem ipsum dolor sit amet, tortor consectetur adipiscing elit. Donec et dui erat. Nam ut augue vitae tortor eleifend viverra. Donec vitae erat sem.',
       r_paragraphColor: '#444',
@@ -25,9 +175,9 @@ var modules = {
     html: `
     <div class="module1 preview_container">
       <section class="form_container">
+      <h2 class="text-center module_headline"> MODULE 1 </h2>
 
-        <h2 class="text-center module_headline"> MODULE 1 </h2>
-        <form action="" class="module_1_form" method="post">
+        <form class = "module_1_form needs-validation" novalidate >
           <div>
             <label for="InputH">Page Background Color</label>
             <input type="color" name="r_backgroundModuleColor" class="js-getText" value=""><br>
@@ -36,9 +186,10 @@ var modules = {
           <div class="top_form_container flex_box_row">
             <div class="col-xs-12 col-sm-6 header_form_container flex_box_column">
               <h3 class="margin-right-auto cx-brand-font form_headers"> Header </h3>
-              <div class="margin-right-auto">
+
+              <div class="margin-right-auto form-group">
                 <label for="InputH">Header Text</label>
-                <input type="text" name="r_myText" class="js-getText" value=""><br>
+                <input type="text" name="r_myText" required class="form-control js-getText"required value=""><br>
               </div>
               <div class="margin-right-auto">
                 <label id="HeaderSize" for="InputheaderSize">Header Size</label>
@@ -106,14 +257,11 @@ var modules = {
 
             </div>
           </div>
-
-
-
-
         </form>
+
         <div class="button_container">
           <button type="button" data-toggle="modal" data-target="#exampleModalModule1" onClick="exampleModule1()" class="btn btn-link">EXAMPLE</button>
-          <a class="btn btn-link collapse_ahref" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <a class="btn btn-link collapse_ahref" data-toggle="collapse" type="submit" role="button" aria-expanded="false" aria-controls="collapseExample">
       PREVIEW MODULE
       </a>
         </div>
@@ -125,6 +273,14 @@ var modules = {
           <div class="card card-body template">
 
             <section class="module1_mock   module_container">
+            <div class="cs_container-fluid">
+              <div class="padding-crocs-stories">
+                <h2 class="cx-heavy-brand-font text-center text-uppercase">Crocs Stories</h2>
+                <p class="cx-brand-font text-center">
+                  The place for recent news, events and what we’re doing to<br class ="hidden-xs"/> help everyone be comfortable in their own shoes.
+                </p>
+              </div>
+            </div>
               <div class = "cs_container-fluid"  style="background-color: r_backgroundModuleColor; width: 100%">
                 <div class="background_colored_div cs_container-crocs flex_box_row" >
                   <a href="r_imageLink" id="mobile_image_full_screen" class="product_container col-xs-12 col-md-7">
@@ -178,11 +334,11 @@ var modules = {
           <div class="secondary_story_overall margin-right-auto">
             <div class="margin-right-auto">
               <label for="headerText">Story Headline Size</label>
-              <input type="number" class="js-getText" name="r_storyHeadlineSize" value=""><br>
+              <input type="number" class="js-getText" name="r_storyHeadlineSize" placeholder="30px" value=""><br>
             </div>
             <div class="margin-right-auto">
               <label for="headerText">Story Headline Color</label>
-              <input type="number" class="js-getText" name="r_storyHeadlineColor" value=""><br>
+              <input type="color" class="js-getText" name="r_storyHeadlineColor" value=""><br>
             </div>
             <div class="margin-right-auto">
               <label for="headerText">Story Image Border</label>
@@ -268,9 +424,8 @@ var modules = {
       <div class="collapse" id="collapseExample2">
         <div class="card card-body template">
           <section class="module2_mock   module_container">
-            <div class="cs_container-fluid" style="background-color: r_backgroundModuleColor; width: 100%">
-              <div class="cs_container-crocs flex_box_row">
-
+            <div class="cs_container-crocs" style="background-color: r_backgroundModuleColor; width: 100%">
+              <div class="">
                 <section class="story1 col-xs-12 col-md-6 padding-0 flex_box_column">
                   <a href="r_storyPhotoLink1">
                     <img class = "img-responsive imageSRC_Demandware1 secondary_hero_image" style = "border: 5px solid r_storiesImageBorderColor" src = "r_storyPhotoSRC1" />
@@ -311,14 +466,14 @@ function getAccordianHTML(accordianID, labelID) {
 
   <nav class="accordion arrows" data-id = "${labelID}">
   <input type="radio" id = "${labelID}" name="accordion"/>
-  <section class="box"  id= "${accordionID}">
+  <section class="box"  id= "${accordionID}" data-toggle="popover"  title="Select Module and Drag!" data-content="Drag up or down to reorder!">
     <label class="box-title" for="${labelID}">
      <div class="dropdown" >
         <select class = "select" name="dropdown" >
           <option class="dropdown-item" value = "blank" >Choose Module</option>
           <option class="dropdown-item" value = "module1" >MODULE 1</option>
           <option class="dropdown-item" value = "module2" >MODULE 2</option>
-          <option class="dropdown-item" value = "module3" >MODULE 3</option>
+          <option class="dropdown-item" value = "USG_Module" >USG_Module</option>
           </select>
       </div>
       <div class = "delete_button_container">
@@ -386,6 +541,14 @@ $(document).ready(function() {
         $(".create_container").append(getAccordianHTML(accordionID, labelID));
         var thisDropDown = document.getElementsByClassName("box-title");
         dropDownChange(thisDropDown)
+        $('.box').mouseover().popover({
+          trigger: 'hover',
+          delay: {
+            "show": 100,
+            "hide": 100
+          },
+          placement: 'bottom'
+        })
 
       })
     },
@@ -429,6 +592,7 @@ $(document).ready(function() {
 
       function toggleSRC(e) {
 
+        //CHANGING IMAGE'S SRC - CLEAN UP TO DO//
         if (inputName === 'r_imageSRC' && inputValue.includes('?$staticlink$') === true) {
           console.log('this is the input name on SRC1', inputName)
           var collapseShow = $(e.target).parentsUntil('nav').find('.collapse')
@@ -460,7 +624,6 @@ $(document).ready(function() {
             $(e.target).parentsUntil('nav').find('.imageSRC_Demandware2').attr('src', `${inputValue}`)
           }
           if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'none') {
-
             $(e.target).parentsUntil('nav').find('.imageSRC_Demandware2').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${inputValue}`)
           }
         } else {
@@ -489,6 +652,9 @@ $(document).ready(function() {
     app.setModuleForm(e);
     onTextChange(e)
     $(e.target).parentsUntil('nav').find('.delete_button_container').append('<button class="btn btn-secondary delete_button" type="button"  aria-haspopup="true" aria-expanded="false">DELETE</button>')
+    $('.box').mouseover(function() {
+      $('.box').popover('disable')
+    })
 
   }
 
@@ -518,6 +684,7 @@ $(document).ready(function() {
   }
 
   function startSortable() {
+
     Sortable.create(createContainerID, {
       group: {
         type: String
@@ -584,7 +751,8 @@ $(document).ready(function() {
         htmlOrderArray.push(dataVal)
         var joinedArray = htmlOrderArray.join(',')
         joinedArray = joinedArray.replace(/,/g, "")
-        $('#box').val(joinedArray)
+        var CSS = modules.css
+        $('#box').val(CSS + '<div class = "preview_container">' + joinedArray + '</div>')
       }
 
     }

@@ -15,6 +15,9 @@
   flex-direction: column;
   align-content: center;
 }
+.preview_container .padding-crocs-stories {
+  padding: 25px;
+}
 
 .preview_container .flex_box_row {
   display: flex;

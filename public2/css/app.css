@@ -5,6 +5,12 @@ div {
   -webkit-transition: all ease-in-out .5s;
 }
 
+@media (max-width: 480px) {
+  .view_container_HTML {
+    display: none !important;
+  }
+}
+
 .icetab {
   border: 2px solid #ff9900;
   display: inline-block;
@@ -287,6 +293,7 @@ input:checked+section.box .box-title:before {
   justify-content: center;
   align-content: center;
 }
+
 .flex_box_row {
   display: flex;
   flex-direction: row;
@@ -323,4 +330,5 @@ input:checked+section.box .box-title:before {
   display: flex;
   width: 100%;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
