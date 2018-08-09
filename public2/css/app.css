@@ -145,9 +145,9 @@ body {
 
 .newAccordian {
   height: calc(100% - 20px);
-  width: calc(100% - 20px);
+  width: 100%;
   margin: 0;
-  padding: 10px;
+  /* padding: 10px; */
   display: flex;
   color: rgba(0, 0, 0, .87);
   font-family: 'Roboto', sans-serif;
@@ -182,7 +182,7 @@ body {
 }
 
 header.box {
-  background: #00BCD4;
+  background: #444;
   z-index: 100;
   cursor: initial;
   box-shadow: 0 -1px 0 #e5e5e5, 0 0 2px -2px rgba(0, 0, 0, .12), 0 2px 4px -4px rgba(0, 0, 0, .24);
@@ -283,6 +283,13 @@ input:checked+section.box .box-title:before {
 .flex_box_column {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+.flex_box_row {
+  display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   align-content: center;

@@ -75,6 +75,9 @@
     padding-left: 0px;
     padding-right: 0px;
   }
+  .preview_container #story2_hover, .preview_container #a_href_hover, .preview_container #story1_hover {
+    text-decoration: underline;
+  }
 
 }
 

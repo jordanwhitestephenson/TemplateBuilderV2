@@ -128,7 +128,7 @@ var modules = {
               <div class = "cs_container-fluid"  style="background-color: r_backgroundModuleColor; width: 100%">
                 <div class="background_colored_div cs_container-crocs flex_box_row" >
                   <a href="r_imageLink" id="mobile_image_full_screen" class="product_container col-xs-12 col-md-7">
-                  <img src="r_imageSRC" alt = "r_imageALT" title = "r_imageTitle" class="imageSRC_Demandware img-responsive large_hero_image" />
+                  <img src="r_imageSRC" alt = "r_imageALT" title = "r_imageTitle" class="imageSRC_DemandwareOG img-responsive large_hero_image" />
                 </a>
 
                   <a href="r_CTALink" class="col-xs-12 col-md-5 flex_box_column">
@@ -192,7 +192,7 @@ var modules = {
 
 
           <div class="stories">
-            <div class="story1">
+            <div class="story1 col-xs-12 col-md-6">
               <h4>Story 1</h4>
               <section class="story_text_form">
                 <div class="margin-right-auto">
@@ -215,7 +215,7 @@ var modules = {
               <section class="story_image_form">
                 <div class="margin-right-auto">
                   <label for="headerText">Story1 Image SRC</label>
-                  <input type="text" class="js-getText" name="r_imageSRC" value=""><br>
+                  <input type="text" class="js-getText" name="r_storyPhotoSRC1" value=""><br>
                 </div>
                 <div class="margin-right-auto">
                   <label for="headerText">Story1 Image Link</label>
@@ -224,7 +224,7 @@ var modules = {
               </section>
             </div>
 
-            <div class = "story2">
+            <div class = "story2 col-xs-12 col-md-6">
               <h4>Story 2</h4>
               <section class="story_text_form">
                 <div class="margin-right-auto">
@@ -273,7 +273,7 @@ var modules = {
 
                 <section class="story1 col-xs-12 col-md-6 padding-0 flex_box_column">
                   <a href="r_storyPhotoLink1">
-                    <img class = "img-responsive imageSRC_Demandware secondary_hero_image" style = "border: 5px solid r_storiesImageBorderColor" src = "r_imageSRC" />
+                    <img class = "img-responsive imageSRC_Demandware1 secondary_hero_image" style = "border: 5px solid r_storiesImageBorderColor" src = "r_storyPhotoSRC1" />
                   </a>
                   <div class="story_text">
                     <h3 class="cx-heavy-brand-font text-left mar" style="font-size: r_storyHeadlineSize; color: r_storyHeadlineColor ">r_storyTitle1</h3>
@@ -425,28 +425,48 @@ $(document).ready(function() {
 
       $collapseEvent.addEventListener("click", toggleSRC)
       $('.collapse_ahref').on("click", toggleSRC)
-      $('.collapse_ahref').off("click", toggleSRC)
+      // $('.collapse_ahref').off("click", toggleSRC)
 
       function toggleSRC(e) {
-        if (inputName === 'r_imageSRC') {
 
+        if (inputName === 'r_imageSRC' && inputValue.includes('?$staticlink$') === true) {
+          console.log('this is the input name on SRC1', inputName)
           var collapseShow = $(e.target).parentsUntil('nav').find('.collapse')
+
           if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'block') {
-            $(e.target).parentsUntil('nav').find('.imageSRC_Demandware').attr('src', `${inputValue}`)
+            $(e.target).parentsUntil('nav').find('.imageSRC_DemandwareOG').attr('src', `${inputValue}`)
           }
           if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'none') {
-            $(e.target).parentsUntil('nav').find('.imageSRC_Demandware').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${inputValue}`)
+            $(e.target).parentsUntil('nav').find('.imageSRC_DemandwareOG').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${inputValue}`)
           }
         }
-        if (inputName === 'r_storyPhotoSRC2') {
 
+        if (inputName === 'r_storyPhotoSRC1' && inputValue.includes('?$staticlink$') === true) {
+          console.log('this is the input name on SRC1', inputName)
+          var collapseShow = $(e.target).parentsUntil('nav').find('.collapse')
+          if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'block') {
+            var look = $(e.target).parentsUntil('nav').find('.imageSRC_Demandware1').attr('src', `${inputValue}`)
+            console.log(look, 'this is block changing input to original')
+            $(e.target).parentsUntil('nav').find('.imageSRC_Demandware1').attr('src', `${inputValue}`)
+          }
+          if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'none') {
+            $(e.target).parentsUntil('nav').find('.imageSRC_Demandware1').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${inputValue}`)
+          }
+        }
+
+        if (inputName === 'r_storyPhotoSRC2' && inputValue.includes('?$staticlink$') === true) {
           var collapseShow = $(e.target).parentsUntil('nav').find('.collapse')
           if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'block') {
             $(e.target).parentsUntil('nav').find('.imageSRC_Demandware2').attr('src', `${inputValue}`)
           }
           if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'none') {
+
             $(e.target).parentsUntil('nav').find('.imageSRC_Demandware2').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${inputValue}`)
           }
+        } else {
+          // $(e.target).parentsUntil('nav').find('.imageSRC_DemandwareOG').attr('src', `${inputValue}`)
+          // $(e.target).parentsUntil('nav').find('.imageSRC_Demandware1').attr('src', `${inputValue}`)
+          // $(e.target).parentsUntil('nav').find('.imageSRC_Demandware2').attr('src', `${inputValue}`)
         }
       }
       // }
@@ -572,8 +592,10 @@ $(document).ready(function() {
   $('#saveHTMLButton').on("click", function() {
     var $preview = $('.replace_html_here');
     $preview.html($('#box').val());
-    $preview.find("img").each(function(){
-      $(this).attr("src", "http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/" + $(this).attr("src").replace("?$staticlink$", ""));
+    $preview.find("img").each(function() {
+      if ($(this).is('img[src*="?$staticlink$"]')) {
+        $(this).attr("src", "http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/" + $(this).attr("src").replace("?$staticlink$", ""));
+      }
     });
     $(".html_container").hide()
     $(".view_container").show()
@@ -581,5 +603,11 @@ $(document).ready(function() {
   $('#goBackToEditHTMLButton').on("click", function() {
     $(".html_container").show()
     $(".view_container").hide()
+  })
+  $('#goBackToCreateButton').on("click", function() {
+    console.log('click')
+    $(".html_container").hide()
+    $(".view_container").hide()
+    $('.create_container').show()
   })
 });
