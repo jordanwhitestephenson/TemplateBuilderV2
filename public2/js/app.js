@@ -46,7 +46,7 @@ var modules = {
   .preview_container .fancy-headline:before,
   .preview_container .fancy-headline:after {
     background-color: #444;
-    content: '\a0';
+    content: '';
     flex-grow: 1;
     height: 1px;
     position: relative;
@@ -77,6 +77,7 @@ var modules = {
     align-content: center;
     flex-wrap: wrap;
   }
+
 
   .preview_container .module_two_text_container {
     background: #fff;
@@ -596,12 +597,22 @@ $(document).ready(function() {
       var html = app.modules[moduleNum].html;
       var data = app.modules[moduleNum].data;
       $moduleChooser.html(html)
-
       //creating new matching id for collapse container
       var collapseContainer = $(e.target).parentsUntil('nav')[2].id
       var collapseContainerID = collapseContainer + Math.random().toFixed(0)
       $(e.target).parentsUntil('nav').find('.collapse_ahref').attr("href", "#" + collapseContainerID)
       $(e.target).parentsUntil('nav').find('.collapse').attr("id", collapseContainerID)
+
+      var $html = $(app.modules[moduleNum].html).find('.module_container');
+      var htmlString = $html[0].innerHTML;
+      var data = app.modules[moduleNum].data;
+      data[moduleNum] = moduleNum;
+      for (k in data) {
+        var re = new RegExp(k, 'g');
+        htmlString = htmlString.replace(re, data[k]);
+      }
+      var $module_container = $(e.target).parentsUntil('nav').find('.module_container')
+      $module_container.html(htmlString)
 
     },
     moduleFormValues: function(moduleInputValues) {

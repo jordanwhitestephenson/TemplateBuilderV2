@@ -12,7 +12,7 @@
   margin-top: 10px;
   margin-bottom: 1.5em;
 }
-/* .preview_container .fancy-headline {
+.preview_container .fancy-headline {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -26,7 +26,7 @@
 .preview_container .fancy-headline:before,
 .preview_container .fancy-headline:after {
   background-color: #444;
-  content: '\a0';
+  content: '';
   flex-grow: 1;
   height: 1px;
   position: relative;
@@ -39,7 +39,7 @@
 
 .preview_container .fancy-headline:after {
   margin-left: 10px;
-} */
+}
 .preview_container .module2_mock {
   margin-top: 2em;
 }
