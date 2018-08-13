@@ -1,3 +1,9 @@
+data: {
+  r_USGTextHealine: 'Tag @Crocs and #ComeAsYouAre',
+  r_USGTextParagraph: 'Help others find comfort by sharing your selfie<br />shoefie or favorite Crocs photo!',
+}
+
+
 <div class="usgModule preview_container">
   <section class="form_container">
     <h2 class="text-center module_headline"> USG Module </h2>
@@ -6,12 +12,12 @@
 
       <div class="bottom_form_container flex_box_row">
         <div class="cta_form_container flex_box_column col-xs-12 col-sm-6">
-          <h3 class="margin-right-auto cx-brand-font form_headers">CTA</h3>
+          <h3 class="margin-right-auto cx-brand-font form_headers">USG</h3>
           <div class="margin-right-auto">
-            <label for="ctaText">CTA TEXT</label>
-            <input type="text" class="js-getText" name="r_CTAtext" value=""><br>
-            <label for="ctaLink">CTA LINK</label>
-            <input type="text" class="js-getText" name="r_CTALink" value=""><br>
+            <label for="ctaText">Fancy USG Headline</label>
+            <input type="text" class="js-getText" name="r_USGTextHealine" value=""><br>
+            <label for="ctaLink">USG Copy</label>
+            <input type="text" class="js-getText" name="r_USGTextParagraph" value=""><br>
           </div>
           <div class="margin-right-auto">
             <label for="ctaColor">CTA Default Text Color</label>
@@ -35,11 +41,11 @@
   <div class="module_preview">
     <div class="collapse">
       <div class="card card-body template">
-        <section class="moduleUSG_mock   module_container">
-          <div class="text-center fancy-headline">#ComeAsYouAre</div>
+        <section class="moduleUSG_mock   module_container flex_box_column">
+          <div class="text-center fancy-headline">r_USGTextHealine</div>
           <div class="cs_container-crocs widget_container">
             <div class="olapic-header">
-              <div class="olapic-carousel-subtitle">Unique starts with you. Share your photos and #ComeAsYouAre.</div>
+              <div class="olapic-carousel-subtitle">r_USGTextParagraph</div>
               <button aria-disabled="false" type="button" class="olapic-upload-link cx-button cx-button-cta">Upload a Photo</button>
             </div>
             <div class="js-olapic olapic-carousel" data-source="signal" data-location="pdp-top" data-useproduct="true" data-useproductcategory="true" data-widgets="Homepage"></div>

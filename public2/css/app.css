@@ -137,8 +137,7 @@ body {
 
 .module_headline {
   font-size: 2em;
-  font-style: italic;
-  letter-spacing: 1px;
+  text-decoration: underline;
 }
 
 .modal-dialog.template {
@@ -220,7 +219,7 @@ header .box-title {
 .box-content {
   width: calc(100% - 40px);
   font-size: 11pt;
-  color: rgba(0, 0, 0, .54);
+  color: #444;
   display: none;
 }
 

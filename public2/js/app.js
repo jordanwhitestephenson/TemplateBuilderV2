@@ -20,6 +20,34 @@ var modules = {
   .module_container .padding-crocs-stories {
     padding:20px 10px 5px 10px;
   }
+  .preview_container .fancy-headline {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 2em;
+    line-height: 1.0;
+    width: 100%;
+  }
+
+  .preview_container .fancy-headline:before,
+  .preview_container .fancy-headline:after {
+    background-color: #444;
+    content: '\a0';
+    flex-grow: 1;
+    height: 1px;
+    position: relative;
+    top: 0.5em;
+  }
+
+  .preview_container .fancy-headline:before {
+    margin-right: 10px;
+  }
+
+  .preview_container .fancy-headline:after {
+    margin-left: 10px;
+  }
 
   .preview_container .flex_box_column {
     display: flex;
@@ -95,29 +123,24 @@ var modules = {
       padding: 35px;
     }
   }
+
   </style>`,
   USG_Module: {
-    data: {},
+    data: {
+      r_USGTextHealine: 'Tag @Crocs and #ComeAsYouAre',
+      r_USGTextParagraph: 'Help others find comfort by sharing your selfie<br />shoefie or favorite Crocs photo!'
+    },
     html: `<div class="usgModule preview_container">
       <section class="form_container">
         <h2 class="text-center module_headline"> USG Module </h2>
-
         <form class="module_USG_form needs-validation" novalidate>
-
           <div class="bottom_form_container flex_box_row">
             <div class="cta_form_container flex_box_column col-xs-12 col-sm-6">
-              <h3 class="margin-right-auto cx-brand-font form_headers">CTA</h3>
               <div class="margin-right-auto">
-                <label for="ctaText">CTA TEXT</label>
-                <input type="text" class="js-getText" name="r_CTAtext" value=""><br>
-                <label for="ctaLink">CTA LINK</label>
-                <input type="text" class="js-getText" name="r_CTALink" value=""><br>
-              </div>
-              <div class="margin-right-auto">
-                <label for="ctaColor">CTA Default Text Color</label>
-                <input type="color" class="js-getText" name="r_CTAcolorDefaultText" value=""><br>
-                <label for="ctaColor">CTA Text Size</label>
-                <input type="number" class="js-getText" name="r_CTATextSize" value=""><br>
+                <label for="ctaText">Fancy USG Headline</label>
+                <input type="text" class="js-getText" name="r_USGTextHealine" value=""><br>
+                <label for="ctaLink">USG Copy</label>
+                <input type="text" class="js-getText" name="r_USGTextParagraph" value=""><br>
               </div>
             </div>
           </div>
@@ -135,11 +158,12 @@ var modules = {
       <div class="module_preview">
         <div class="collapse">
           <div class="card card-body template">
-            <section class="moduleUSG_mock   module_container">
-              <div class="text-center fancy-headline">#ComeAsYouAre</div>
-              <div class="cs_container-crocs widget_container">
+            <section class="moduleUSG_mock cs_container-crocs  module_container flex_box_column">
+              <div class="text-center fancy-headline">
+              <p>r_USGTextHealine</p></div>
+              <div class=" widget_container">
                 <div class="olapic-header">
-                  <div class="olapic-carousel-subtitle">Unique starts with you. Share your photos and #ComeAsYouAre.</div>
+                  <div class="olapic-carousel-subtitle">r_USGTextParagraph</div>
                   <button aria-disabled="false" type="button" class="olapic-upload-link cx-button cx-button-cta">Upload a Photo</button>
                 </div>
                 <div class="js-olapic olapic-carousel" data-source="signal" data-location="pdp-top" data-useproduct="true" data-useproductcategory="true" data-widgets="Homepage"></div>
@@ -235,7 +259,7 @@ var modules = {
               </div>
               <div class="margin-right-auto">
                 <label for="paragraphSize">Paragraph Size</label>
-                <input type="number" class="js-getText" name="r_paragraphSize" value=""><br>
+                <input type="number" class="js-getText" name="r_paragraphSize" value="Default"><br>
               </div>
             </div>
 
@@ -741,7 +765,7 @@ $(document).ready(function() {
             htmlOrderArray.push(dataVal)
             var joinedArray = htmlOrderArray.join(',')
             joinedArray = joinedArray.replace(/,/g, "")
-            $('#box').val(joinedArray)
+            $('#box').val(CSS + '<div class = "preview_container">' + joinedArray + '</div>')
           }
         }
       })
