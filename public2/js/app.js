@@ -42,6 +42,10 @@ var modules = {
     line-height: 1.0;
     width: 100%;
   }
+  .preview_container .social_media_container {
+    min-height: 150px;
+    margin: 10px 5px 10px 5px;
+  }
 
   .preview_container .fancy-headline:before,
   .preview_container .fancy-headline:after {
@@ -91,11 +95,14 @@ var modules = {
     text-decoration: none;
   }
 
-  .preview_container #a_href_hover:hover {
+  .preview_container #a_href_hover:hover, .preview_container #story2_hover:hover,  .preview_container #story1_hover:hover{
     text-decoration: underline;
   }
   .preview_container .story_text {
     padding: 25px;
+  }
+  .preview_container .icon {
+    margin: 10px;
   }
 
 
@@ -119,10 +126,10 @@ var modules = {
       padding-left: 0px;
       padding-right: 0px;
     }
-    .preview_container #story2_hover, .preview_container #a_href_hover, .preview_container #story1_hover {
+    .preview_container #story2_hover, .preview_container #a_href_hover, .preview_container #story1_hover, .preview_container #story2_hover {
       text-decoration: underline;
     }
-    .preview_container .story1, .preview_container .story2 {
+    .preview_container .story1, .preview_container .story2, .preview_container .moduleSocial_mock {
       padding-left: 0px;
       padding-right: 0px;
     }
@@ -139,6 +146,91 @@ var modules = {
   }
 
   </style>`,
+  Social_Module: {
+    data: {
+      r_SocialMediaHeadline : 'Stay Connected',
+      r_NewsletterHeadline: 'So many Stories!',
+      r_NewsletterPara: 'Sign up for more original stories and the hottest content from Crocs.',
+      r_SocialBackgroundColor: '#e1e1e1',
+      r_SocialTwitterAHREF: 'https://twitter.com/Crocs',
+      r_SocialFacebookAHREF: 'https://www.facebook.com/Crocs/',
+      r_SocialInstagramAHREF: 'https://www.instagram.com/crocs/?hl=en'
+    },
+    html: `<div class="socialModule preview_container">
+      <section class="form_container">
+        <h2 class="text-center module_headline"> Social Module </h2>
+        <form class="module_social_form needs-validation" novalidate>
+          <div class="bottom_form_container flex_box_row">
+            <div class="cta_form_container flex_box_column col-xs-12 col-sm-6">
+              <div class="margin-right-auto">
+                <section class = "social_media_input">
+                  <label for="ctaText">Social Media Section Healine</label>
+                  <input type="text" class="js-getText" name="r_SocialMediaHeadline" value="Stay Connected"><br>
+                  <label for="ctaText">Facebook Link</label>
+                  <input type="text" class="js-getText" name="r_SocialFacebookAHREF" value="https://www.facebook.com/Crocs/"><br>
+                  <label for="ctaText">Instagram Link</label>
+                  <input type="text" class="js-getText" name="r_SocialInstagramAHREF" value="https://www.instagram.com/crocs/?hl=en"><br>
+                  <label for="ctaText">Twitter Link</label>
+                  <input type="text" class="js-getText" name="r_SocialTwitterAHREF" value="https://twitter.com/Crocs"><br>
+
+                </section>
+
+                <label for="ctaLink">Newsletter Headline</label>
+                <input type="text" class="js-getText" name="r_NewsletterHeadline" value="So many Stories!"><br>
+                <label for="ctaLink">Newsletter Text-Copy</label>
+                <input type="text" class="js-getText" name="r_NewsletterPara" value="Sign up for more original stories and the hottest content from Crocs."><br>
+                <label for="ctaLink">Text Box Background Color</label>
+                <input type="color" class="js-getText" name="r_SocialBackgroundColor" value="#e1e1e1"><br>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <div class="button_container">
+          <button type="button" data-toggle="modal" data-target="#exampleModalModule1" onClick="exampleModule1()" class="btn btn-link">EXAMPLE</button>
+          <a class="btn btn-link collapse_ahref" data-toggle="collapse" type="submit" role="button" aria-expanded="false" aria-controls="collapseExample">
+      PREVIEW MODULE
+      </a>
+        </div>
+
+      </section>
+
+      <div class="module_preview">
+        <div class="collapse">
+          <div class="card card-body template">
+            <section class="moduleSocial_mock cs_container-crocs  module_container flex_box_row" >
+              <div class = "social_media_container flex_box_column col-xs-12 col-md-5 padding-0" style="background-color: r_SocialBackgroundColor">
+                <h4 class = "text-center text-uppercase cx-heavy-brand-font">r_SocialMediaHeadline</h4>
+                <div class = "icons flex_box_row">
+                <a href = "r_SocialFacebookAHREF" class = "icon">
+                  <img src = "http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/Facebook_Crocs.png" class = "img-responsive" alt= "Crocs Facebook"  />
+                </a>
+                <a href = "r_SocialInstagramAHREF" class = "icon">
+                  <img src = "http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/Instagram_Crocs.png" class = "img-responsive " alt= "Crocs Instagram"  />
+                </a>
+                <a href = "r_SocialTwitterAHREF" class ="icon">
+                  <img src = "http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/Twitter_Crocs.png" class = "img-responsive" alt= "Crocs Twitter"  />
+                </a>
+                </div>
+              </div>
+              <div class = "social_media_container flex_box_row col-xs-12 col-md-5 padding-0" style="background-color: r_SocialBackgroundColor">
+                <h4 class = "text-center text-uppercase cx-heavy-brand-font">r_NewsletterHeadline</h4>
+                <p class = "text-center cx-brand-font">r_NewsletterPara</p>
+                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-12 col-md-offset-0">
+                <div class="footer-email-signup-template">
+                		<div id="newsletterFooter" class="">
+                			<input class="email" type="text" value="Enter your email address" title="Enter your email address" autocomplete="off">
+                			<button class="submitBtn cx-brand-font bold" type="submit">Submit</button>
+                		</div>
+                </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>`
+  },
   USG_Module: {
     data: {
       r_USGTextHealine: 'Tag @Crocs and #ComeAsYouAre',
@@ -152,9 +244,9 @@ var modules = {
             <div class="cta_form_container flex_box_column col-xs-12 col-sm-6">
               <div class="margin-right-auto">
                 <label for="ctaText">Fancy USG Headline</label>
-                <input type="text" class="js-getText" name="r_USGTextHealine" value=""><br>
+                <input type="text" class="js-getText" name="r_USGTextHealine" value="Tag @Crocs and #ComeAsYouAre"><br>
                 <label for="ctaLink">USG Copy</label>
-                <input type="text" class="js-getText" name="r_USGTextParagraph" value=""><br>
+                <input type="text" class="js-getText" name="r_USGTextParagraph" value="Help others find comfort by sharing your selfie shoefie or favorite Crocs photo!"><br>
               </div>
             </div>
           </div>
@@ -218,7 +310,7 @@ var modules = {
         <form class = "module_1_form needs-validation" novalidate >
           <div>
             <label for="InputH">Page Background Color</label>
-            <input type="color" name="r_backgroundModuleColor" class="js-getText" value=""><br>
+            <input type="color" name="r_backgroundModuleColor" class="js-getText" value="#e1e2e1"><br>
           </div>
 
           <div class="top_form_container flex_box_row">
@@ -231,11 +323,11 @@ var modules = {
               </div>
               <div class="margin-right-auto">
                 <label id="HeaderSize" for="InputheaderSize">Header Size</label>
-                <input type="number" class="js-getText" name="r_headerSize"><br>
+                <input type="number" class="js-getText" name="r_headerSize" value = "30"><br>
               </div>
               <div class="margin-right-auto">
                 <label id="HeaderColor" for="headerColor">Header Color</label>
-                <input type="color" name="r_headerColor" class="js-getText" value=""><br>
+                <input type="color" name="r_headerColor" class="js-getText" value="#444"><br>
               </div>
             </div>
 
@@ -269,11 +361,11 @@ var modules = {
               </div>
               <div class="margin-right-auto">
                 <label for="paragraphColor">Paragraph Color</label>
-                <input type="color" class="js-getText" name="r_paragraphColor" value=""><br>
+                <input type="color" class="js-getText" name="r_paragraphColor" value="#444"><br>
               </div>
               <div class="margin-right-auto">
                 <label for="paragraphSize">Paragraph Size</label>
-                <input type="number" class="js-getText" name="r_paragraphSize" value="Default"><br>
+                <input type="number" class="js-getText" name="r_paragraphSize" value="15"><br>
               </div>
             </div>
 
@@ -290,7 +382,7 @@ var modules = {
                 <label for="ctaColor">CTA Default Text Color</label>
                 <input type="color" class="js-getText" name="r_CTAcolorDefaultText" value=""><br>
                 <label for="ctaColor">CTA Text Size</label>
-                <input type="number" class="js-getText" name="r_CTATextSize" value=""><br>
+                <input type="number" class="js-getText" name="r_CTATextSize" value="15"><br>
               </div>
 
             </div>
@@ -512,6 +604,8 @@ function getAccordianHTML(accordianID, labelID) {
           <option class="dropdown-item" value = "module1" >MODULE 1</option>
           <option class="dropdown-item" value = "module2" >MODULE 2</option>
           <option class="dropdown-item" value = "USG_Module" >USG_Module</option>
+          <option class="dropdown-item" value = "Social_Module" >Social_Module</option>
+
           </select>
       </div>
       <div class = "delete_button_container">

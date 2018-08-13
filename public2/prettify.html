@@ -1,29 +1,31 @@
-data: {
-  r_USGTextHealine: 'Tag @Crocs and #ComeAsYouAre',
-  r_USGTextParagraph: 'Help others find comfort by sharing your selfie<br />shoefie or favorite Crocs photo!',
-}
 
 
-<div class="usgModule preview_container">
+
+<div class="socialModule preview_container">
   <section class="form_container">
-    <h2 class="text-center module_headline"> USG Module </h2>
-
-    <form class="module_USG_form needs-validation" novalidate>
-
+    <h2 class="text-center module_headline"> Social Module </h2>
+    <form class="module_social_form needs-validation" novalidate>
       <div class="bottom_form_container flex_box_row">
         <div class="cta_form_container flex_box_column col-xs-12 col-sm-6">
-          <h3 class="margin-right-auto cx-brand-font form_headers">USG</h3>
           <div class="margin-right-auto">
-            <label for="ctaText">Fancy USG Headline</label>
-            <input type="text" class="js-getText" name="r_USGTextHealine" value=""><br>
-            <label for="ctaLink">USG Copy</label>
-            <input type="text" class="js-getText" name="r_USGTextParagraph" value=""><br>
-          </div>
-          <div class="margin-right-auto">
-            <label for="ctaColor">CTA Default Text Color</label>
-            <input type="color" class="js-getText" name="r_CTAcolorDefaultText" value=""><br>
-            <label for="ctaColor">CTA Text Size</label>
-            <input type="number" class="js-getText" name="r_CTATextSize" value=""><br>
+            <section class = "social_media_input">
+              <label for="ctaText">Social Media Section Healine</label>
+              <input type="text" class="js-getText" name="r_SocialMediaHeadline" value="Stay Connected"><br>
+              <label for="ctaText">Facebook Link</label>
+              <input type="text" class="js-getText" name="r_SocialFacebookAHREF" value="https://www.facebook.com/Crocs/"><br>
+              <label for="ctaText">Instagram Link</label>
+              <input type="text" class="js-getText" name="r_SocialInstagramAHREF" value="https://www.instagram.com/crocs/?hl=en"><br>
+              <label for="ctaText">Twitter Link</label>
+              <input type="text" class="js-getText" name="r_SocialTwitterAHREF" value="https://twitter.com/Crocs"><br>
+
+            </section>
+
+            <label for="ctaLink">Newsletter Headline</label>
+            <input type="text" class="js-getText" name="r_NewsletterHeadline" value="So many Stories!"><br>
+            <label for="ctaLink">Newsletter Text-Copy</label>
+            <input type="text" class="js-getText" name="r_NewsletterPara" value="Sign up for more original stories and the hottest content from Crocs."><br>
+            <label for="ctaLink">Text Box Background Color</label>
+            <input type="color" class="js-getText" name="r_SocialBackgroundColor" value="#e1e1e1"><br>
           </div>
         </div>
       </div>
@@ -41,17 +43,35 @@ data: {
   <div class="module_preview">
     <div class="collapse">
       <div class="card card-body template">
-        <section class="moduleUSG_mock   module_container flex_box_column">
-          <div class="text-center fancy-headline">r_USGTextHealine</div>
-          <div class="cs_container-crocs widget_container">
-            <div class="olapic-header">
-              <div class="olapic-carousel-subtitle">r_USGTextParagraph</div>
-              <button aria-disabled="false" type="button" class="olapic-upload-link cx-button cx-button-cta">Upload a Photo</button>
+        <section class="moduleSocial_mock cs_container-crocs  module_container flex_box_row" >
+          <div class = "social_media_image_container col-xs-12 col-md-6 padding-0" style="background-color: r_SocialBackgroundColor">
+            <h4 class = "text-center text-uppercase cx-heavy-brand-font">r_SocialMediaHeadline</h4>
+            <div class = "icons flex_box_row">
+            <a href = "r_SocialFacebookAHREF" class = "icon">
+              <img src = "http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/Facebook_Crocs.png" class = "img-responsive" alt= "Crocs Facebook"  />
+            </a>
+            <a href = "r_SocialInstagramAHREF" class = "icon">
+              <img src = "http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/Instagram_Crocs.png" class = "img-responsive " alt= "Crocs Instagram"  />
+            </a>
+            <a href = "r_SocialTwitterAHREF" class ="icon">
+              <img src = "http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/Twitter_Crocs.png" class = "img-responsive" alt= "Crocs Twitter"  />
+            </a>
             </div>
-            <div class="js-olapic olapic-carousel" data-source="signal" data-location="pdp-top" data-useproduct="true" data-useproductcategory="true" data-widgets="Homepage"></div>
+          </div>
+          <div class = "social_media_image_container col-xs-12 col-md-6" style="backgroundColor: r_SocialBackgroundColor">
+            <h4 class = "text-center text-uppercase cx-heavy-brand-font">r_NewsletterHeadline</h4>
+            <p class = "text-center cx-brand-font">r_NewsletterPara</p>
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-12 col-md-offset-0">
+            <h4 class="topText bold" id="newsletterFooterEmailLabel">Sign up to receive email promotions</h4>
+            <div class="footer-email-signup">
+            		<div id="newsletterFooter" class="">
+            			<input class="email" type="text" value="Enter your email address" title="Enter your email address" autocomplete="off">
+            			<button class="submitBtn cx-brand-font bold text-white" type="submit">Submit</button>
+            		</div>
+            </div>
+            </div>
           </div>
         </section>
-
       </div>
     </div>
   </div>
