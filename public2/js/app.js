@@ -17,8 +17,20 @@ var modules = {
     flex-wrap: wrap;
     width: 100%
   }
+  .preview_container .module2_mock {
+    margin-top: 2em;
+  }
+  .preview_container h2,   .preview_container .cta_text {
+    margin-bottom: 5px;
+  }
+  .preview_container .crocs_story_headline {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
   .module_container .padding-crocs-stories {
     padding:20px 10px 5px 10px;
+    margin-top: 10px;
+    margin-bottom: 1.5em;
   }
   .preview_container .fancy-headline {
     display: flex;
@@ -84,6 +96,7 @@ var modules = {
   .preview_container .story_text {
     padding: 25px;
   }
+
 
   .preview_container .text_container {
     width: 100%;
@@ -299,7 +312,7 @@ var modules = {
             <section class="module1_mock   module_container">
             <div class="cs_container-fluid">
               <div class="padding-crocs-stories">
-                <h2 class="cx-heavy-brand-font text-center text-uppercase">Crocs Stories</h2>
+                <h2 class="cx-heavy-brand-font text-center text-uppercase crocs_story_headline">Crocs Stories</h2>
                 <p class="cx-brand-font text-center">
                   The place for recent news, events and what we’re doing to<br class ="hidden-xs"/> help everyone be comfortable in their own shoes.
                 </p>
@@ -316,7 +329,7 @@ var modules = {
                       <h2 class="cx-heavy-brand-font" style="font-size: r_headerSizepx; color: r_headerColor;  ">r_myText</h2>
                       <p class="cx-brand-font " style="color: r_paragraphColor; font-size: r_paragraphSizepx">r_paragraphText</p>
 
-                      <div id="a_href_hover" href="r_CTALink" class="cx-brand-font text-left" style="color: r_CTAcolorDefaultText; font-size: r_CTATextSizepx; background-color: r_CTAcolorDefault_Background">r_CTAtext</div>
+                      <div id="a_href_hover" href="r_CTALink" class="cx-brand-font text-left cta_text" style="color: r_CTAcolorDefaultText; font-size: r_CTATextSizepx; background-color: r_CTAcolorDefault_Background">r_CTAtext</div>
                     </div>
                   </a>
                 </div>
@@ -447,7 +460,7 @@ var modules = {
 
       <div class="collapse" id="collapseExample2">
         <div class="card card-body template">
-          <section class="module2_mock   module_container">
+          <section class="module2_mock module_container">
             <div class="cs_container-crocs" style="background-color: r_backgroundModuleColor; width: 100%">
               <div class="">
                 <section class="story1 col-xs-12 col-md-6 padding-0 flex_box_column">
@@ -468,7 +481,7 @@ var modules = {
                   <div class="story_text">
                     <h3 class="cx-heavy-brand-font text-left mar" style="font-size: r_storyHeadlineSize; color: r_storyHeadlineColor ">r_storyTitle2</h3>
                     <p class="cx-brand-font text-left" style="font-size: ">r_storyParaText2</p>
-                    <div id="story2_hover" href="r_stroyCTALink2" class="cx-brand-font text-left" style="color: r_CTAcolorDefaultText; font-size: r_CTATextSizepx; background-color: r_CTAcolorDefault_Background">r_storyCTAText2</div>
+                    <div id="story2_hover" href="r_stroyCTALink2" class="cta_text cx-brand-font text-left" style="color: r_CTAcolorDefaultText; font-size: r_CTATextSizepx; background-color: r_CTAcolorDefault_Background">r_storyCTAText2</div>
                   </div>
                 </section>
 
@@ -618,9 +631,7 @@ $(document).ready(function() {
 
         //CHANGING IMAGE'S SRC - CLEAN UP TO DO//
         if (inputName === 'r_imageSRC' && inputValue.includes('?$staticlink$') === true) {
-          console.log('this is the input name on SRC1', inputName)
           var collapseShow = $(e.target).parentsUntil('nav').find('.collapse')
-
           if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'block') {
             $(e.target).parentsUntil('nav').find('.imageSRC_DemandwareOG').attr('src', `${inputValue}`)
           }
@@ -630,11 +641,9 @@ $(document).ready(function() {
         }
 
         if (inputName === 'r_storyPhotoSRC1' && inputValue.includes('?$staticlink$') === true) {
-          console.log('this is the input name on SRC1', inputName)
           var collapseShow = $(e.target).parentsUntil('nav').find('.collapse')
           if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'block') {
             var look = $(e.target).parentsUntil('nav').find('.imageSRC_Demandware1').attr('src', `${inputValue}`)
-            console.log(look, 'this is block changing input to original')
             $(e.target).parentsUntil('nav').find('.imageSRC_Demandware1').attr('src', `${inputValue}`)
           }
           if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'none') {
@@ -765,6 +774,7 @@ $(document).ready(function() {
             htmlOrderArray.push(dataVal)
             var joinedArray = htmlOrderArray.join(',')
             joinedArray = joinedArray.replace(/,/g, "")
+            var CSS = modules.css
             $('#box').val(CSS + '<div class = "preview_container">' + joinedArray + '</div>')
           }
         }

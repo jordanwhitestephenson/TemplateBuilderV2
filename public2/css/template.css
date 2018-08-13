@@ -9,6 +9,8 @@
 }
 .module_container .padding-crocs-stories {
   padding:20px 10px 5px 10px;
+  margin-top: 10px;
+  margin-bottom: 1.5em;
 }
 /* .preview_container .fancy-headline {
   display: flex;
@@ -38,6 +40,9 @@
 .preview_container .fancy-headline:after {
   margin-left: 10px;
 } */
+.preview_container .module2_mock {
+  margin-top: 2em;
+}
 
 .preview_container .flex_box_column {
   display: flex;
@@ -77,6 +82,9 @@
 
 .preview_container .text_container {
   width: 100%;
+}
+.preview_container h2,   .preview_container .cta_text {
+  margin-bottom: 5px;
 }
 
 .preview_container .hero_story_container {
