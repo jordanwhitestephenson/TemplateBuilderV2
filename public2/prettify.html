@@ -1,77 +1,139 @@
-
-
-
-<div class="socialModule preview_container">
+<div class="module1 preview_container">
   <section class="form_container">
-    <h2 class="text-center module_headline"> Social Module </h2>
-    <form class="module_social_form needs-validation" novalidate>
-      <div class="bottom_form_container flex_box_row">
-        <div class="cta_form_container flex_box_column col-xs-12 col-sm-6">
-          <div class="margin-right-auto">
-            <section class = "social_media_input">
-              <label for="ctaText">Social Media Section Healine</label>
-              <input type="text" class="js-getText" name="r_SocialMediaHeadline" value="Stay Connected"><br>
-              <label for="ctaText">Facebook Link</label>
-              <input type="text" class="js-getText" name="r_SocialFacebookAHREF" value="https://www.facebook.com/Crocs/"><br>
-              <label for="ctaText">Instagram Link</label>
-              <input type="text" class="js-getText" name="r_SocialInstagramAHREF" value="https://www.instagram.com/crocs/?hl=en"><br>
-              <label for="ctaText">Twitter Link</label>
-              <input type="text" class="js-getText" name="r_SocialTwitterAHREF" value="https://twitter.com/Crocs"><br>
+    <h2 class="text-center module_headline"> MODULE 1 </h2>
 
-            </section>
+    <form class="module_1_form needs-validation" novalidate id="module1validator">
+      <div class="form-row">
 
-            <label for="ctaLink">Newsletter Headline</label>
-            <input type="text" class="js-getText" name="r_NewsletterHeadline" value="So many Stories!"><br>
-            <label for="ctaLink">Newsletter Text-Copy</label>
-            <input type="text" class="js-getText" name="r_NewsletterPara" value="Sign up for more original stories and the hottest content from Crocs."><br>
-            <label for="ctaLink">Text Box Background Color</label>
-            <input type="color" class="js-getText" name="r_SocialBackgroundColor" value="#e1e1e1"><br>
+        <div class="form-group">
+          <label for="InputH">Page Background Color</label>
+          <input type="color" name="r_backgroundModuleColor" class="js-getText" value="#e1e2e1"><br>
+        </div>
+
+        <div class="top_form_container flex_box_row">
+          <div class="col-xs-12 col-sm-6 header_form_container flex_box_column">
+            <h3 class="margin-right-auto cx-brand-font form_headers"> Header </h3>
+
+            <div class="margin-right-auto form-group">
+              <label for="InputH" class="control-label">Header Text</label>
+              <input type="text" name="r_myText" required class="form-control js-getText" value=""><br>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+            </div>
+            <div class="margin-right-auto">
+              <label id="HeaderSize" for="InputheaderSize">Header Size</label>
+              <input type="number" class="js-getText" required name="r_headerSize" value="30"><br>
+            </div>
+            <div class="margin-right-auto">
+              <label id="HeaderColor" for="headerColor">Header Color</label>
+              <input type="color" name="r_headerColor" class="js-getText" value="#444"><br>
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-6 image_form_container flex_box_column">
+            <h3 class="margin-right-auto cx-brand-font form_headers"> Hero Image</h3>
+            <div class="margin-right-auto">
+              <label id="img" for="img_SRC">Large Image SRC</label>
+              <input type="text" name="r_imageSRC" class="js-getText" value=""><br>
+            </div>
+            <div class="margin-right-auto">
+              <label id="img" for="img_alt">Img Alt Tag</label>
+              <input type="text" name="r_imageALT" class="js-getText" value=""><br>
+            </div>
+            <div class="margin-right-auto">
+              <label id="img" for="img_title">Image Title</label>
+              <input type="text" class="js-getText" name="r_imageTitle" value=""><br>
+            </div>
+            <div class="margin-right-auto">
+              <label id="img" for="img_title">Image Link</label>
+              <input type="text" class="js-getText" name="r_imageLink" value=""><br>
+            </div>
+          </div>
+        </div>
+        <div class="bottom_form_container flex_box_row">
+
+          <div class="para_form_container flex_box_column col-xs-12 col-sm-6">
+            <h3 class="margin-right-auto cx-brand-font form_headers">Paragraph</h3>
+            <div class="margin-right-auto flex_box_column">
+              <label class="margin-right-auto" for="paragraphText">Paragraph Text</label>
+              <textarea type="text" name="r_paragraphText" class="js-getText" value=""></textarea><br>
+            </div>
+            <div class="margin-right-auto">
+              <label for="paragraphColor">Paragraph Color</label>
+              <input type="color" class="js-getText" name="r_paragraphColor" value="#444"><br>
+            </div>
+            <div class="margin-right-auto">
+              <label for="paragraphSize">Paragraph Size</label>
+              <input type="number" class="js-getText" name="r_paragraphSize" value="15"><br>
+            </div>
+          </div>
+
+          <div class="cta_form_container flex_box_column col-xs-12 col-sm-6">
+            <h3 class="margin-right-auto cx-brand-font form_headers">CTA</h3>
+            <div class="margin-right-auto">
+              <label for="ctaText">CTA TEXT</label>
+              <input type="text" class="js-getText" name="r_CTAtext" value=""><br>
+              <label for="ctaLink">CTA LINK</label>
+              <input type="text" class="js-getText" name="r_CTALink" value=""><br>
+            </div>
+
+            <div class="margin-right-auto">
+              <label for="ctaColor">CTA Default Text Color</label>
+              <input type="color" class="js-getText" name="r_CTAcolorDefaultText" value=""><br>
+              <label for="ctaColor">CTA Text Size</label>
+              <input type="number" class="js-getText" name="r_CTATextSize" value="15"><br>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="button_container">
+        <button type="button" data-toggle="modal" data-target="#exampleModalModule1" onClick="exampleModule1()" class="btn btn-link">EXAMPLE</button>
+        <a class="btn btn-link collapse_ahref" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
+  PREVIEW MODULE
+  </a>
+        <div class="form-group">
+          <div class="col-sm-9 col-sm-offset-3">
+            <button type="submit" class="btn btn-default">Validate</button>
           </div>
         </div>
       </div>
     </form>
-
-    <div class="button_container">
-      <button type="button" data-toggle="modal" data-target="#exampleModalModule1" onClick="exampleModule1()" class="btn btn-link">EXAMPLE</button>
-      <a class="btn btn-link collapse_ahref" data-toggle="collapse" type="submit" role="button" aria-expanded="false" aria-controls="collapseExample">
-  PREVIEW MODULE
-  </a>
-    </div>
-
   </section>
 
   <div class="module_preview">
     <div class="collapse">
       <div class="card card-body template">
-        <section class="moduleSocial_mock cs_container-crocs  module_container flex_box_row" >
-          <div class = "social_media_image_container col-xs-12 col-md-6 padding-0" style="background-color: r_SocialBackgroundColor">
-            <h4 class = "text-center text-uppercase cx-heavy-brand-font">r_SocialMediaHeadline</h4>
-            <div class = "icons flex_box_row">
-            <a href = "r_SocialFacebookAHREF" class = "icon">
-              <img src = "http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/Facebook_Crocs.png" class = "img-responsive" alt= "Crocs Facebook"  />
-            </a>
-            <a href = "r_SocialInstagramAHREF" class = "icon">
-              <img src = "http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/Instagram_Crocs.png" class = "img-responsive " alt= "Crocs Instagram"  />
-            </a>
-            <a href = "r_SocialTwitterAHREF" class ="icon">
-              <img src = "http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/Twitter_Crocs.png" class = "img-responsive" alt= "Crocs Twitter"  />
-            </a>
+
+        <section class="module1_mock   module_container">
+          <div class="cs_container-fluid">
+            <div class="padding-crocs-stories">
+              <h2 class="cx-heavy-brand-font text-center text-uppercase crocs_story_headline">Crocs Stories</h2>
+              <p class="cx-brand-font text-center">
+                The place for recent news, events and what we’re doing to<br class="hidden-xs" /> help everyone be comfortable in their own shoes.
+              </p>
             </div>
           </div>
-          <div class = "social_media_image_container col-xs-12 col-md-6" style="backgroundColor: r_SocialBackgroundColor">
-            <h4 class = "text-center text-uppercase cx-heavy-brand-font">r_NewsletterHeadline</h4>
-            <p class = "text-center cx-brand-font">r_NewsletterPara</p>
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-12 col-md-offset-0">
-            <h4 class="topText bold" id="newsletterFooterEmailLabel">Sign up to receive email promotions</h4>
-            <div class="footer-email-signup">
-            		<div id="newsletterFooter" class="">
-            			<input class="email" type="text" value="Enter your email address" title="Enter your email address" autocomplete="off">
-            			<button class="submitBtn cx-brand-font bold text-white" type="submit">Submit</button>
-            		</div>
-            </div>
+          <div class="cs_container-fluid" style="background-color: r_backgroundModuleColor; width: 100%">
+            <div class="background_colored_div cs_container-crocs flex_box_row">
+              <a href="r_imageLink" id="mobile_image_full_screen" class="product_container col-xs-12 col-md-7">
+              <img src="r_imageSRC" alt = "r_imageALT" title = "r_imageTitle" class="imageSRC_DemandwareOG img-responsive large_hero_image" />
+            </a>
+
+              <a href="r_CTALink" class="col-xs-12 col-md-5 flex_box_column">
+                <div class="text_container hero_story_container text-left">
+                  <h2 class="cx-heavy-brand-font" style="font-size: r_headerSizepx; color: r_headerColor;  ">r_myText</h2>
+                  <p class="cx-brand-font " style="color: r_paragraphColor; font-size: r_paragraphSizepx">r_paragraphText</p>
+
+                  <div id="a_href_hover" href="r_CTALink" class="cx-brand-font text-left cta_text" style="color: r_CTAcolorDefaultText; font-size: r_CTATextSizepx; background-color: r_CTAcolorDefault_Background">r_CTAtext</div>
+                </div>
+              </a>
             </div>
           </div>
         </section>
+
       </div>
     </div>
   </div>
