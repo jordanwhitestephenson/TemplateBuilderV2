@@ -104,6 +104,9 @@ var modules = {
   .preview_container .icon {
     margin: 10px;
   }
+  .preview_container .margin-headline{
+    margin-bottom: 10px;
+  }
 
 
   .preview_container .text_container {
@@ -254,7 +257,7 @@ var modules = {
 
         <div class="button_container">
           <button type="button" data-toggle="modal" data-target="#exampleModalModule1" onClick="exampleModule1()" class="btn btn-link">EXAMPLE</button>
-          <a class="btn btn-link collapse_ahref" data-toggle="collapse" type="submit" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <a class="btn btn-link collapse_ahref" data-toggle="collapse"  role="button" aria-expanded="false" aria-controls="collapseExample">
       PREVIEW MODULE
       </a>
         </div>
@@ -267,7 +270,7 @@ var modules = {
             <section class="moduleUSG_mock cs_container-crocs  module_container flex_box_column">
               <div class="text-center fancy-headline">
               <p>r_USGTextHealine</p></div>
-              <div class=" widget_container">
+              <div class=" widget_container col-xs-12 cs_container-crocs">
                 <div class="olapic-header">
                   <div class="olapic-carousel-subtitle">r_USGTextParagraph</div>
                   <button aria-disabled="false" type="button" class="olapic-upload-link cx-button cx-button-cta">Upload a Photo</button>
@@ -305,97 +308,103 @@ var modules = {
     html: `
     <div class="module1 preview_container">
       <section class="form_container">
-      <h2 class="text-center module_headline"> MODULE 1 </h2>
+        <h2 class="text-center module_headline"> MODULE 1 </h2>
 
-        <form class = "module_1_form needs-validation" novalidate >
-          <div>
-            <label for="InputH">Page Background Color</label>
-            <input type="color" name="r_backgroundModuleColor" class="js-getText" value="#e1e2e1"><br>
+        <form class="module_1_form needs-validation" novalidate id="module1validator">
+          <div class="form-row">
+
+            <div class="form-group">
+              <label for="InputH">Page Background Color</label>
+              <input type="color" name="r_backgroundModuleColor" class="js-getText" value="#e1e2e1"><br>
+            </div>
+
+            <div class="top_form_container flex_box_row">
+              <div class="col-xs-12 col-sm-6 header_form_container flex_box_column">
+                <h3 class="margin-right-auto cx-brand-font form_headers"> Header </h3>
+
+                <div class="margin-right-auto form-group">
+                  <label for="InputH" class="control-label">Header Text</label>
+                  <input type="text" name="r_myText" required class="form-control js-getText" value=""><br>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                </div>
+                <div class="margin-right-auto">
+                  <label id="HeaderSize" for="InputheaderSize">Header Size</label>
+                  <input type="number" class="js-getText" required name="r_headerSize" value="30"><br>
+                </div>
+                <div class="margin-right-auto">
+                  <label id="HeaderColor" for="headerColor">Header Color</label>
+                  <input type="color" name="r_headerColor" class="js-getText" value="#444"><br>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-sm-6 image_form_container flex_box_column">
+                <h3 class="margin-right-auto cx-brand-font form_headers"> Hero Image</h3>
+                <div class="margin-right-auto">
+                  <label id="img" for="img_SRC">Large Image SRC</label>
+                  <input type="text" name="r_imageSRC" class="js-getText" value=""><br>
+                </div>
+                <div class="margin-right-auto">
+                  <label id="img" for="img_alt">Img Alt Tag</label>
+                  <input type="text" name="r_imageALT" class="js-getText" value=""><br>
+                </div>
+                <div class="margin-right-auto">
+                  <label id="img" for="img_title">Image Title</label>
+                  <input type="text" class="js-getText" name="r_imageTitle" value=""><br>
+                </div>
+                <div class="margin-right-auto">
+                  <label id="img" for="img_title">Image Link</label>
+                  <input type="text" class="js-getText" name="r_imageLink" value=""><br>
+                </div>
+              </div>
+            </div>
+            <div class="bottom_form_container flex_box_row">
+
+              <div class="para_form_container flex_box_column col-xs-12 col-sm-6">
+                <h3 class="margin-right-auto cx-brand-font form_headers">Paragraph</h3>
+                <div class="margin-right-auto flex_box_column">
+                  <label class="margin-right-auto" for="paragraphText">Paragraph Text</label>
+                  <textarea type="text" name="r_paragraphText" class="js-getText" value=""></textarea><br>
+                </div>
+                <div class="margin-right-auto">
+                  <label for="paragraphColor">Paragraph Color</label>
+                  <input type="color" class="js-getText" name="r_paragraphColor" value="#444"><br>
+                </div>
+                <div class="margin-right-auto">
+                  <label for="paragraphSize">Paragraph Size</label>
+                  <input type="number" class="js-getText" name="r_paragraphSize" value="15"><br>
+                </div>
+              </div>
+
+              <div class="cta_form_container flex_box_column col-xs-12 col-sm-6">
+                <h3 class="margin-right-auto cx-brand-font form_headers">CTA</h3>
+                <div class="margin-right-auto">
+                  <label for="ctaText">CTA TEXT</label>
+                  <input type="text" class="js-getText" name="r_CTAtext" value=""><br>
+                  <label for="ctaLink">CTA LINK</label>
+                  <input type="text" class="js-getText" name="r_CTALink" value=""><br>
+                </div>
+
+                <div class="margin-right-auto">
+                  <label for="ctaColor">CTA Default Text Color</label>
+                  <input type="color" class="js-getText" name="r_CTAcolorDefaultText" value=""><br>
+                  <label for="ctaColor">CTA Text Size</label>
+                  <input type="number" class="js-getText" name="r_CTATextSize" value="15"><br>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="top_form_container flex_box_row">
-            <div class="col-xs-12 col-sm-6 header_form_container flex_box_column">
-              <h3 class="margin-right-auto cx-brand-font form_headers"> Header </h3>
 
-              <div class="margin-right-auto form-group">
-                <label for="InputH">Header Text</label>
-                <input type="text" name="r_myText" required class="form-control js-getText"required value=""><br>
-              </div>
-              <div class="margin-right-auto">
-                <label id="HeaderSize" for="InputheaderSize">Header Size</label>
-                <input type="number" class="js-getText" name="r_headerSize" value = "30"><br>
-              </div>
-              <div class="margin-right-auto">
-                <label id="HeaderColor" for="headerColor">Header Color</label>
-                <input type="color" name="r_headerColor" class="js-getText" value="#444"><br>
-              </div>
-            </div>
-
-            <div class="col-xs-12 col-sm-6 image_form_container flex_box_column">
-              <h3 class="margin-right-auto cx-brand-font form_headers"> Hero Image</h3>
-              <div class="margin-right-auto">
-                <label id="img" for="img_SRC">Large Image SRC</label>
-                <input type="text" name="r_imageSRC" class="js-getText" value=""><br>
-              </div>
-              <div class="margin-right-auto">
-                <label id="img" for="img_alt">Img Alt Tag</label>
-                <input type="text" name="r_imageALT" class="js-getText" value=""><br>
-              </div>
-              <div class="margin-right-auto">
-                <label id="img" for="img_title">Image Title</label>
-                <input type="text" class="js-getText" name="r_imageTitle" value=""><br>
-              </div>
-              <div class="margin-right-auto">
-                <label id="img" for="img_title">Image Link</label>
-                <input type="text" class="js-getText" name="r_imageLink" value=""><br>
-              </div>
-            </div>
-          </div>
-          <div class="bottom_form_container flex_box_row">
-
-            <div class="para_form_container flex_box_column col-xs-12 col-sm-6">
-              <h3 class="margin-right-auto cx-brand-font form_headers">Paragraph</h3>
-              <div class="margin-right-auto flex_box_column">
-                <label class="margin-right-auto" for="paragraphText">Paragraph Text</label>
-                <textarea type="text" name="r_paragraphText" class="js-getText" value=""></textarea><br>
-              </div>
-              <div class="margin-right-auto">
-                <label for="paragraphColor">Paragraph Color</label>
-                <input type="color" class="js-getText" name="r_paragraphColor" value="#444"><br>
-              </div>
-              <div class="margin-right-auto">
-                <label for="paragraphSize">Paragraph Size</label>
-                <input type="number" class="js-getText" name="r_paragraphSize" value="15"><br>
-              </div>
-            </div>
-
-            <div class="cta_form_container flex_box_column col-xs-12 col-sm-6">
-              <h3 class="margin-right-auto cx-brand-font form_headers">CTA</h3>
-              <div class="margin-right-auto">
-                <label for="ctaText">CTA TEXT</label>
-                <input type="text" class="js-getText" name="r_CTAtext" value=""><br>
-                <label for="ctaLink">CTA LINK</label>
-                <input type="text" class="js-getText" name="r_CTALink" value=""><br>
-              </div>
-
-              <div class="margin-right-auto">
-                <label for="ctaColor">CTA Default Text Color</label>
-                <input type="color" class="js-getText" name="r_CTAcolorDefaultText" value=""><br>
-                <label for="ctaColor">CTA Text Size</label>
-                <input type="number" class="js-getText" name="r_CTATextSize" value="15"><br>
-              </div>
-
-            </div>
-          </div>
-        </form>
-
-        <div class="button_container">
-          <button type="button" data-toggle="modal" data-target="#exampleModalModule1" onClick="exampleModule1()" class="btn btn-link">EXAMPLE</button>
-          <a class="btn btn-link collapse_ahref" data-toggle="collapse" type="submit" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <div class="button_container">
+            <button type="button" data-toggle="modal" data-target="#exampleModalModule1" onClick="exampleModule1()" class="btn btn-link">EXAMPLE</button>
+            <a class="btn btn-link collapse_ahref" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="collapseExample">
       PREVIEW MODULE
       </a>
-        </div>
 
+          </div>
+        </form>
       </section>
 
       <div class="module_preview">
@@ -403,16 +412,16 @@ var modules = {
           <div class="card card-body template">
 
             <section class="module1_mock   module_container">
-            <div class="cs_container-fluid">
-              <div class="padding-crocs-stories">
-                <h2 class="cx-heavy-brand-font text-center text-uppercase crocs_story_headline">Crocs Stories</h2>
-                <p class="cx-brand-font text-center">
-                  The place for recent news, events and what we’re doing to<br class ="hidden-xs"/> help everyone be comfortable in their own shoes.
-                </p>
+              <div class="cs_container-fluid">
+                <div class="padding-crocs-stories">
+                  <h2 class="cx-heavy-brand-font text-center text-uppercase crocs_story_headline">Crocs Stories</h2>
+                  <p class="cx-brand-font text-center">
+                    The place for recent news, events and what we’re doing to<br class="hidden-xs" /> help everyone be comfortable in their own shoes.
+                  </p>
+                </div>
               </div>
-            </div>
-              <div class = "cs_container-fluid"  style="background-color: r_backgroundModuleColor; width: 100%">
-                <div class="background_colored_div cs_container-crocs flex_box_row" >
+              <div class="cs_container-fluid" style="background-color: r_backgroundModuleColor; width: 100%">
+                <div class="background_colored_div cs_container-crocs flex_box_row">
                   <a href="r_imageLink" id="mobile_image_full_screen" class="product_container col-xs-12 col-md-7">
                   <img src="r_imageSRC" alt = "r_imageALT" title = "r_imageTitle" class="imageSRC_DemandwareOG img-responsive large_hero_image" />
                 </a>
@@ -433,6 +442,7 @@ var modules = {
         </div>
       </div>
     </div>
+
 
 `
   },
@@ -556,14 +566,14 @@ var modules = {
       <div class="collapse" id="collapseExample2">
         <div class="card card-body template">
           <section class="module2_mock module_container">
-            <div class="cs_container-crocs" style="background-color: r_backgroundModuleColor; width: 100%">
+            <div class="cs_container-crocs" style="background-color: r_backgroundModuleColor; ">
               <div class="">
                 <section class="story1 col-xs-12 col-md-6 padding-0 flex_box_column">
                   <a href="r_storyPhotoLink1">
                     <img class = "img-responsive imageSRC_Demandware1 secondary_hero_image" style = "border: 5px solid r_storiesImageBorderColor" src = "r_storyPhotoSRC1" />
                   </a>
                   <div class="story_text">
-                    <h3 class="cx-heavy-brand-font text-left mar" style="font-size: r_storyHeadlineSize; color: r_storyHeadlineColor ">r_storyTitle1</h3>
+                    <h3 class="cx-heavy-brand-font text-left margin-headline" style="font-size: r_storyHeadlineSize; color: r_storyHeadlineColor; margin-bottom: 10px; ">r_storyTitle1</h3>
                     <p class="cx-brand-font text-left" style="font-size: ">r_storyParaText1</p>
                     <div id="story1_hover" href="r_stroyCTALink1" class="cx-brand-font text-left" style="color: r_CTAcolorDefaultText; font-size: r_CTATextSizepx; background-color: r_CTAcolorDefault_Background">r_storyCTAText1</div>
                   </div>
@@ -574,7 +584,7 @@ var modules = {
                       <img class = "img-responsive imageSRC_Demandware2 secondary_hero_image" style = "border: 5px solid r_storiesImageBorderColor" src = "r_storyPhotoSRC2" />
                     </a>
                   <div class="story_text">
-                    <h3 class="cx-heavy-brand-font text-left mar" style="font-size: r_storyHeadlineSize; color: r_storyHeadlineColor ">r_storyTitle2</h3>
+                    <h3 class="cx-heavy-brand-font text-left margin-headline" style="font-size: r_storyHeadlineSize; color: r_storyHeadlineColor ">r_storyTitle2</h3>
                     <p class="cx-brand-font text-left" style="font-size: ">r_storyParaText2</p>
                     <div id="story2_hover" href="r_stroyCTALink2" class="cta_text cx-brand-font text-left" style="color: r_CTAcolorDefaultText; font-size: r_CTATextSizepx; background-color: r_CTAcolorDefault_Background">r_storyCTAText2</div>
                   </div>
@@ -732,10 +742,25 @@ $(document).ready(function() {
 
       $collapseEvent.addEventListener("click", toggleSRC)
       $('.collapse_ahref').on("click", toggleSRC)
-      // $('.collapse_ahref').off("click", toggleSRC)
+
+
+      //FORM VALIDATION
+      // var forms = document.getElementsByClassName('needs-validation');
+      // // Loop over them and prevent submission
+      // var validation = Array.prototype.filter.call(forms, function(form) {
+      //   form.addEventListener('submit', function(event) {
+      //     console.log('submitBtn')
+      //     if (form.checkValidity() === false) {
+      //       event.preventDefault();
+      //       event.stopPropagation();
+      //       console.log('false')
+      //     }
+      //     form.classList.add('was-validated');
+      //     event.preventDefault();
+      //   }, false);
+      // })
 
       function toggleSRC(e) {
-
         //CHANGING IMAGE'S SRC - CLEAN UP TO DO//
         if (inputName === 'r_imageSRC' && inputValue.includes('?$staticlink$') === true) {
           var collapseShow = $(e.target).parentsUntil('nav').find('.collapse')
