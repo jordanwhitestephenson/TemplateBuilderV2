@@ -502,6 +502,8 @@ var modules = {
                 <div class="margin-right-auto">
                   <label for="headerText">Story1 Image SRC</label>
                   <input type="text" class="js-getText" name="r_storyPhotoSRC1" value=""><br>
+                  <label for="headerText">Story1 Image or Story1 Video</label>
+                  <input type="checkbox" class="js-getText" name="r_image1VideoBoolean" value=""><br>
                 </div>
                 <div class="margin-right-auto">
                   <label for="headerText">Story1 Image Link</label>
