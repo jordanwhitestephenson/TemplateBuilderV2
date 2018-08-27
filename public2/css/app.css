@@ -331,3 +331,10 @@ input:checked+section.box .box-title:before {
   justify-content: space-between;
   flex-wrap: wrap;
 }
+
+#modelContainer {
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

@@ -681,6 +681,7 @@ $(document).ready(function() {
           },
           placement: 'bottom'
         })
+        $('#modelContainer').append('<button type="button" class="btn btn-secondary btn-lg btn-block">SAVE</button>')
 
       })
     },
