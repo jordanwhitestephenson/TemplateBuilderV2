@@ -733,14 +733,14 @@ $(document).ready(function() {
       // $('.collapse_ahref').off("click", toggleSRC)
 
       function toggleSRC(e) {
-
+        // $(e.target).parentsUntil('nav').find('.collapse').addClass('show')
         //CHANGING IMAGE'S SRC - CLEAN UP TO DO//
         if (inputName === 'r_imageSRC' && inputValue.includes('?$staticlink$') === true) {
           var collapseShow = $(e.target).parentsUntil('nav').find('.collapse')
           if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'block') {
             $(e.target).parentsUntil('nav').find('.imageSRC_DemandwareOG').attr('src', `${inputValue}`)
           }
-          if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'none') {
+          if ($(e.target).parentsUntil('nav').find('.collapse:not(.show)').css('display') === 'none') {
             $(e.target).parentsUntil('nav').find('.imageSRC_DemandwareOG').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${inputValue}`)
           }
         }
@@ -748,7 +748,6 @@ $(document).ready(function() {
         if (inputName === 'r_storyPhotoSRC1' && inputValue.includes('?$staticlink$') === true) {
           var collapseShow = $(e.target).parentsUntil('nav').find('.collapse')
           if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'block') {
-            var look = $(e.target).parentsUntil('nav').find('.imageSRC_Demandware1').attr('src', `${inputValue}`)
             $(e.target).parentsUntil('nav').find('.imageSRC_Demandware1').attr('src', `${inputValue}`)
           }
           if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'none') {
@@ -805,12 +804,18 @@ $(document).ready(function() {
     for (var i = 0; i < $textInputs.length; i++) {
       $textInputs[i].addEventListener("change", getModuleText, false)
     }
+
     startSortable()
+
   }
   var moduleFormArray = []
+
   function getModuleText(ev) {
     $('.js-getText').off('change', app.moduleFormValues(ev));
     $('.js-getText').on('change', app.moduleFormValues(ev));
+
+    $(ev.target).parentsUntil('nav').find('.collapse').removeClass('show')
+
     var formInputHTML = $(ev.target).parentsUntil('.create_container')
     var formInputHTMLValue = ($(formInputHTML[formInputHTML.length - 1])[0]).dataset.id
     moduleFormArray.push(formInputHTMLValue)
