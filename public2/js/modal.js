@@ -1,3 +1,4 @@
+
 function exampleModule1() {
   var model = `<div class="modal" id="exampleModalModule1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog template" role="document">
@@ -37,3 +38,21 @@ function exampleModule2() {
 `
   $('#modelContainer').append(model)
 }
+
+
+var toggleMenu = function() {
+  $('.mousetrap').toggleClass('toggle');
+  $('.main').toggleClass('push');
+  $('.overlay').toggleClass('block');
+  $('#social, .logo').toggleClass('reveal');
+};
+
+//Nav
+$('#navSidebutton').click(function() {
+  toggleMenu();
+  console.log('mousetrap_overlay')
+});
+
+Mousetrap.bind('esc', function() {
+  toggleMenu();
+});
