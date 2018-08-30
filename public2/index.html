@@ -5,120 +5,141 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TEMPLATE_BUILDER</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mousetrap/1.6.2/mousetrap.min.js"></script>
 
-
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js">
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.6.0/Sortable.js"></script>
   <script type="text/javascript" src="js/html.js"></script>
   <script type="text/javascript" src="js/modal.js"></script>
   <script type="text/javascript" src="js/nav.js"></script>
+
+
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="css/template.css">
   <link rel="stylesheet" href="css/app.css">
   <link rel="stylesheet" href="css/crocs.css">
+  <link rel="stylesheet" href="css/sidenav.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <script type="text/javascript" src="js/app.js"></script>
 </head>
 
 <body>
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active" id="create">CREATE</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="html">HTML</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" id="preview">PREVIEW</a>
-    </li>
-  </ul>
-  <section id="modelContainer">
-    <div class="container create_container cs_container-crocs" id="createContainerID">
-      <h1 class="cx-heavy-brand-font text-center">CREATE MODULES</h1>
-      <div class="cta_container">
-        <div class="newAccordian">
-          <nav class="accordion arrows">
-            <header class="box header_box">
-              <label for="acc-close" class="box-title"><button class="btn btn btn-success" type="button" id="addButton" aria-haspopup="true" aria-expanded="false">ADD MODULE</button>
-            </header>
-          </nav>
-        </div>
+  <div class="">
+    <div class = "container_sideNav">
+
+
+    <div class="overlay mousetrap_overlay"></div>
+    <header class = "mousetrap">
+      <button onClick="toggleMenu()" id = "navSidebutton" class="navBtn">+</button>
+      <div class = "side_nav_nav">
+        <a class="nav-link active" id="create">CREATE</a>
+        <a class="nav-link" id="html">HTML</a>
+        <a class="nav-link" id="preview">PREVIEW</a>
+        <a href="/saveHTML">SAVED HTML</a>
       </div>
-    </div>
-
-
-
-    <div class="html_container">
-      <h1 class="text-center cx-heavy-brand-font">HTML EDITOR</h1>
-      <div>
-        <textarea id="box" class="boxclass">you can edit me!</textarea>
+    </header>
       </div>
-      <div class="flex_box_row">
-        <button class="btn btn btn-success" type="button" id="saveHTMLButton" aria-haspopup="true" aria-expanded="false">CLICK TO PREVIEW</button>
-      </div>
-    </div>
-
-    <div class="view_container">
-
-      <div class="flex_box_column view_container_HTML ">
-          <h1 class="text-center cx-heavy-brand-font">VIEW</h1>
-          <div class = "flex_box_row">
-          <button class="btn btn-outline-dark" type="button" id="goBackToCreateButton" aria-haspopup="true" aria-expanded="false">BACK TO CREATE</button>
-        <button class="btn btn-outline-dark" type="button" id="goBackToEditHTMLButton" aria-haspopup="true" aria-expanded="false">BACK TO HTML</button>
-
-      </div>
-      </div>
-      <div class="replace_html_here preview_container">
-        <section class="module1_mock cs_container-fluid  module_container_PREVIEW">
-          <div class="product_container col-sm-6">
-            <img src="images/205438_0EC_Crocband_Timeless_Clash_Clog_main.jpg" class="img-responsive" />
-          </div>
-          <div class="col-sm-6">
-            <div class="text_container col-lg-10">
-              <h1 class="cx-heavy-brand-font text-center text-uppercase">H1 - (42pt) extrabold</h1>
-              <p class="cx-brand-font text-center"> Body copy 18pt/20pt Proxima Nova Regular. Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut abore et dolore.</p>
-              <div class="col-xs-12 flex_box_column " style="">
-                <div class="col-xs-11 col-sm-12 col-md-12 col-lg-10 ">
-                  <a href="" class=" cx-button full-width  cx-heavy-brand-font text-uppercase text-center">cta 20pt extrabold</a></div>
-              </div>
+    <div class="main">
+      <ul class="nav nav-tabs">
+        <!-- <li class="nav-item">
+          <a class="nav-link active" id="create">CREATE</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="html">HTML</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="preview">PREVIEW</a>
+        </li> -->
+      </ul>
+      <section id="modelContainer">
+        <div class="container create_container cs_container-crocs" id="createContainerID">
+          <h1 class="cx-heavy-brand-font text-center">CREATE MODULES</h1>
+          <div class="cta_container">
+            <div class="newAccordian">
+              <nav class="accordion arrows">
+                <header class="box header_box">
+                  <label for="acc-close" class="box-title"><button class="btn btn btn-success" type="button" id="addButton" aria-haspopup="true" aria-expanded="false">ADD MODULE</button></label>
+                  <button id="saveButton" type="button" class="btn btn-secondary">SAVE</button>
+                </header>
+              </nav>
             </div>
           </div>
-        </section>
-        <section class="module2_mock module_container_PREVIEW cs_container-crocs">
-          <div class="header_subhead_container flex_box_column">
-            <h2 class="text-center cx-heavy-brand-font text-uppercase">H2 - (35pt) EXTRABOLD</h2>
-            <p class="text-center cx-brand-font subhead-text">
-              H6 - (18pt Regular) - Subhead
-            </p>
+        </div>
+
+
+
+        <div class="html_container">
+          <h1 class="text-center cx-heavy-brand-font">HTML EDITOR</h1>
+          <div>
+            <textarea id="box" class="boxclass">you can edit me!</textarea>
           </div>
           <div class="flex_box_row">
-            <div class="product_container col-sm-6">
-              <img src="images/diipakhosla_2018-04-10_2618590602.jpg" class="img-responsive" />
-            </div>
-            <div class="text_container module_two_text_container col-sm-6 col-md-pull-1">
-              <h4 class="cx-heavy-brand-font text-center">H4 - (20pt) Bold - Body Copy Header </h4>
-              <p class="cx-brand-font text-center"> Body copy 18pt/20pt Proxima Nova Regular. Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut abore et dolore.</p>
-              <div class="col-xs-12 flex_box_column " style="">
-                <div class="col-xs-11 col-sm-12 col-md-12 col-lg-10">
-                  <a href="" class=" cx-button full-width cx-heavy-brand-font text-uppercase text-center">cta 20pt extrabold</a></div>
-              </div>
+            <button class="btn btn btn-success" type="button" id="saveHTMLButton" aria-haspopup="true" aria-expanded="false">CLICK TO PREVIEW</button>
+          </div>
+        </div>
+
+        <div class="view_container">
+
+          <div class="flex_box_column view_container_HTML ">
+            <h1 class="text-center cx-heavy-brand-font">VIEW</h1>
+            <div class="flex_box_row">
+              <button class="btn btn-outline-dark" type="button" id="goBackToCreateButton" aria-haspopup="true" aria-expanded="false">BACK TO CREATE</button>
+              <button class="btn btn-outline-dark" type="button" id="goBackToEditHTMLButton" aria-haspopup="true" aria-expanded="false">BACK TO HTML</button>
+
             </div>
           </div>
-        </section>
+          <div class="replace_html_here preview_container">
+            <section class="module1_mock cs_container-fluid  module_container_PREVIEW">
+              <div class="product_container col-sm-6">
+                <img src="images/205438_0EC_Crocband_Timeless_Clash_Clog_main.jpg" class="img-responsive" />
+              </div>
+              <div class="col-sm-6">
+                <div class="text_container col-lg-10">
+                  <h1 class="cx-heavy-brand-font text-center text-uppercase">H1 - (42pt) extrabold</h1>
+                  <p class="cx-brand-font text-center"> Body copy 18pt/20pt Proxima Nova Regular. Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut abore et dolore.</p>
+                  <div class="col-xs-12 flex_box_column " style="">
+                    <div class="col-xs-11 col-sm-12 col-md-12 col-lg-10 ">
+                      <a href="" class=" cx-button full-width  cx-heavy-brand-font text-uppercase text-center">cta 20pt extrabold</a></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="module2_mock module_container_PREVIEW cs_container-crocs">
+              <div class="header_subhead_container flex_box_column">
+                <h2 class="text-center cx-heavy-brand-font text-uppercase">H2 - (35pt) EXTRABOLD</h2>
+                <p class="text-center cx-brand-font subhead-text">
+                  H6 - (18pt Regular) - Subhead
+                </p>
+              </div>
+              <div class="flex_box_row">
+                <div class="product_container col-sm-6">
+                  <img src="images/diipakhosla_2018-04-10_2618590602.jpg" class="img-responsive" />
+                </div>
+                <div class="text_container module_two_text_container col-sm-6 col-md-pull-1">
+                  <h4 class="cx-heavy-brand-font text-center">H4 - (20pt) Bold - Body Copy Header </h4>
+                  <p class="cx-brand-font text-center"> Body copy 18pt/20pt Proxima Nova Regular. Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut abore et dolore.</p>
+                  <div class="col-xs-12 flex_box_column " style="">
+                    <div class="col-xs-11 col-sm-12 col-md-12 col-lg-10">
+                      <a href="" class=" cx-button full-width cx-heavy-brand-font text-uppercase text-center">cta 20pt extrabold</a></div>
+                  </div>
+                </div>
+              </div>
+            </section>
 
-      </div>
+          </div>
+        </div>
+
+
+
+
+
     </div>
-
-
-
-
-
-    </div>
-  </section>
-
-
+    </section>
+  </div>
+  </div>
 </body>
 
 </html>

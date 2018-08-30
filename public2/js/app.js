@@ -635,7 +635,7 @@ $(document).ready(function() {
       $(".html_container").hide()
       $(".view_container").hide()
       $(".module_1_container").show()
-      $("#preview").hide()
+      // $("#preview").hide()
       $('#create').on('click', function() {
         $("#preview").removeClass('active')
         $("#html").removeClass('active')
@@ -665,6 +665,7 @@ $(document).ready(function() {
     },
     addModule: function() {
       var i = 0;
+
       $('#addButton').on('click', function() {
         i = i + 1
         accordionID = `cb${i}`
@@ -681,8 +682,6 @@ $(document).ready(function() {
           },
           placement: 'bottom'
         })
-        $('#modelContainer').append('<button type="button" class="btn btn-secondary btn-lg btn-block">SAVE</button>')
-
       })
     },
     setModuleForm: function(e) {
@@ -731,8 +730,6 @@ $(document).ready(function() {
 
       $collapseEvent.addEventListener("click", toggleSRC)
       $('.collapse_ahref').on("click", toggleSRC)
-      // $('.collapse_ahref').off("click", toggleSRC)
-
       function toggleSRC(e) {
         // $(e.target).parentsUntil('nav').find('.collapse').addClass('show')
         //CHANGING IMAGE'S SRC - CLEAN UP TO DO//
@@ -872,11 +869,11 @@ $(document).ready(function() {
   }
   function configureHTML(order) {
     var htmlOrderArray = []
-
     if (order.length < 1) {
       $('#box').val(htmlOrderArray)
     }
     if (order && order.length > 1) {
+
       order.forEach(function(k) {
         if (k) {
           //checking to see if the element is there//
@@ -898,10 +895,33 @@ $(document).ready(function() {
         joinedArray = joinedArray.replace(/,/g, "")
         var CSS = modules.css
         $('#box').val(CSS + '<div class = "preview_container">' + joinedArray + '</div>')
-      }
 
+      }
     }
+    sendHTML(htmlOrderArray)
   }
+  function sendHTML(htmlOrderArray) {
+    $('#saveButton').unbind('click').bind('click', function(e) {
+      console.log(htmlOrderArray)
+      var formData = {'name': htmlOrderArray}
+      $.ajax({
+        method: "POST",
+        url: "/saveHTML",
+        dataType: "json",
+        data : JSON.stringify(formData),
+        contentType: "application/json",
+        success: function(){
+          console.log('success')
+        },
+        error: function(e) {
+          console.log(e)
+        },
+
+      })
+    })
+    console.log()
+  }
+
   $('#saveHTMLButton').on("click", function() {
     var $preview = $('.replace_html_here');
     $preview.html($('#box').val());
