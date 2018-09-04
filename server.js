@@ -2,44 +2,49 @@ var express = require('express')
 var app = express()
 var router = express.Router();
 app.use(express.static(__dirname + '/public2'));
-var sqlite3 = require('sqlite3').verbose()
-var db = new sqlite3.Database(':memory:')
+var MongoClient = require('mongodb').MongoClient
 var bodyParser = require('body-parser');
 app.use(bodyParser.json()); // support json encoded bodies
-app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
+const assert = require('assert');
+const url = 'mongodb://localhost:27017';
 
 
-var savedHTMLArray = []
 app.listen(3002, () => console.log('Example app listening on port 3000!'))
 
-app.get('/', function(req, res){
+app.get('/', function(req, res) {
   res.sendfile(__dirname + '/public2/index.html');
 });
 
-app.post('/saveHTML', function(req, res) {
+app.get('/get-HTML', function(req, res, next) {
+  var resultArray = []
+  MongoClient.connect(url, function(err, client) {
+    var db = client.db('savedHTMLArray')
+    assert.equal(null, err);
+    var cursor = db.collection('user-data').find();
+    cursor.forEach(function(doc, err) {
+      assert.equal(null, err);
+      resultArray.push(doc)
+    }, function() {
+      client.close()
+      res.send({items: resultArray})
+    });
+  })
+})
+
+app.post('/save-HTML', function(req, res) {
+
+  MongoClient.connect(url, function(err, client) {
     var postedHTML = {}
     postedHTML.name = req.body.name
-    savedHTMLArray.push(postedHTML)
-    return res.send(postedHTML)
+    assert.equal(null, err);
+    console.log("Connected successfully to server");
+    var db = client.db('savedHTMLArray')
+    db.collection('user-data').insertOne(postedHTML, function(err, result) {
+      assert.equal(null, err);
+      console.log('item inserted')
+      client.close();
+    })
+  });
 
 })
-app.get('/saveHTML', function(req, res) {
-    res.send(savedHTMLArray);
-})
-
-
-// db.serialize(function () {
-//   db.run('CREATE TABLE SavedModules (info TEXT)')
-//   var moduleDB = db.prepare('INSERT INTO SavedModules VALUES (?)')
-//
-//   for (var i = 0; i < 10; i++) {
-//     moduleDB.run('Module ' + i)
-//   }
-//
-//   moduleDB.finalize()
-//
-//   db.each('SELECT rowid AS id, info FROM SavedModules', function (err, row) {
-//     console.log(row.id + ': ' + row.info)
-//   })
-// })
-// db.close()

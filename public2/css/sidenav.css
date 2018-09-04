@@ -1,14 +1,16 @@
 body {
-  max-width: 1280px;
+
   margin: 0 auto;
   font-size: 1.25em;
   line-height: 1.75em;
   color: #384047;
-  background: #384047;
+  background: #F6F6FA !important;
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial;
   font-weight: 400;
 }
+a:not([href]):not([tabindex]) {
 
+}
 img {
   width: 100%;
 }
@@ -24,6 +26,7 @@ img {
 a {
   text-decoration: none;
   font-weight: bold;
+  color: #fff
 }
 
 .mousetrap {
@@ -71,6 +74,7 @@ a {
   text-transform: uppercase;
   font-weight: bold;
   line-height: 1.85em;
+  color: #fff !important
 }
 
 .side_nav_nav a:hover, .current, .toggle .navBtn {
@@ -114,7 +118,7 @@ a {
 .main {
   background: #f6f6f6;
   float: right;
-  width: 100%;
+  width: 95%;
   margin: 0 0 0 5%;
   padding: 0;
   transition: .6s ease-in;
@@ -195,10 +199,10 @@ article {
 
 @media only screen and (max-width: 480px) {
   .mousetrap {
-    width: 10%;
+    width: 20%;
   }
   .main {
-    width: 90%;
+    width: 80%;
   }
   .toggle .side_nav_nav {
     padding-left: 10px;

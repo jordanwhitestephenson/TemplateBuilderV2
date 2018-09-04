@@ -635,6 +635,7 @@ $(document).ready(function() {
       $(".html_container").hide()
       $(".view_container").hide()
       $(".module_1_container").show()
+      $('.savedHTML_container').hide()
       // $("#preview").hide()
       $('#create').on('click', function() {
         $("#preview").removeClass('active')
@@ -643,6 +644,34 @@ $(document).ready(function() {
         $(".html_container").hide()
         $(".view_container").hide()
         $(".create_container").show()
+      })
+      $('#savedHTML').on('click', function() {
+
+        $(".create_container").hide()
+        $(".html_container").hide()
+        $(".view_container").hide()
+        $("#create").removeClass('active')
+        $("#preview").removeClass('active')
+        $("#html").removeClass('active')
+        $('.savedHTML_container').show()
+        $.ajax({
+          method: "GET",
+          url: "/get-HTML",
+          success: function(items){
+            var resultKeys = Object.values(items)
+
+
+            for(var i = 0; i < resultKeys.length; i++){
+              for(var x = 0; x < resultKeys[i].length; x++){
+                $('.savedHTML_container').append(`<div>${resultKeys[i][x].name}  </div>`)
+                console.log(resultKeys[i][x])
+              }
+            }
+          },
+          error: function(e) {
+            console.log(e)
+          },
+        })
       })
       $('#html').on('click', function() {
         $(".create_container").hide()
@@ -901,12 +930,12 @@ $(document).ready(function() {
     sendHTML(htmlOrderArray)
   }
   function sendHTML(htmlOrderArray) {
-    $('#saveButton').unbind('click').bind('click', function(e) {
-      console.log(htmlOrderArray)
+    $('#saveButton').unbind('click').bind('click', function(e){
       var formData = {'name': htmlOrderArray}
+      console.log(formData)
       $.ajax({
         method: "POST",
-        url: "/saveHTML",
+        url: "/save-HTML",
         dataType: "json",
         data : JSON.stringify(formData),
         contentType: "application/json",
@@ -919,7 +948,7 @@ $(document).ready(function() {
 
       })
     })
-    console.log()
+
   }
 
   $('#saveHTMLButton').on("click", function() {
