@@ -28,32 +28,22 @@
 
 <body>
   <div class="">
-    <div class = "container_sideNav">
+    <div class="container_sideNav">
 
 
-    <div class="overlay mousetrap_overlay"></div>
-    <header class = "mousetrap">
-      <button onClick="toggleMenu()" id = "navSidebutton" class="navBtn">+</button>
-      <div class = "side_nav_nav">
-        <a class="nav-link active" id="create">CREATE</a>
-        <a class="nav-link" id="html">HTML</a>
-        <a class="nav-link" id="preview">PREVIEW</a>
-        <a href="/saveHTML">SAVED HTML</a>
-      </div>
-    </header>
-      </div>
-    <div class="main">
-      <ul class="nav nav-tabs">
-        <!-- <li class="nav-item">
+      <div class="overlay mousetrap_overlay"></div>
+      <header class="mousetrap">
+        <button onClick="toggleMenu()" id="navSidebutton" class="navBtn">+</button>
+        <div class="side_nav_nav">
           <a class="nav-link active" id="create">CREATE</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" id="html">HTML</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" id="preview">PREVIEW</a>
-        </li> -->
-      </ul>
+          <a class="nav-link" id="savedHTML">SAVED HTML</a>
+        </div>
+      </header>
+    </div>
+    <div class="main">
+      <ul class="nav nav-tabs"></ul>
       <section id="modelContainer">
         <div class="container create_container cs_container-crocs" id="createContainerID">
           <h1 class="cx-heavy-brand-font text-center">CREATE MODULES</h1>
@@ -81,8 +71,12 @@
           </div>
         </div>
 
-        <div class="view_container">
+        <div class="savedHTML_container">
+          <h1 class="text-center cx-heavy-brand-font">SAVED HTML</h1>
+        </div>
 
+
+        <div class="view_container">
           <div class="flex_box_column view_container_HTML ">
             <h1 class="text-center cx-heavy-brand-font">VIEW</h1>
             <div class="flex_box_row">
