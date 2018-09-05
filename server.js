@@ -33,7 +33,6 @@ app.get('/get-HTML', function(req, res, next) {
 })
 
 app.post('/save-HTML', function(req, res) {
-
   MongoClient.connect(url, function(err, client) {
     var postedHTML = {}
     postedHTML.name = req.body.name
@@ -43,6 +42,21 @@ app.post('/save-HTML', function(req, res) {
     db.collection('user-data').insertOne(postedHTML, function(err, result) {
       assert.equal(null, err);
       console.log('item inserted')
+      client.close();
+    })
+  });
+
+})
+
+app.delete('/save-HTML', function(req, res) {
+  MongoClient.connect(url, function(err, client) {
+    var postedHTML = {}
+    postedHTML.name = req.body.name
+    assert.equal(null, err);
+    var db = client.db('savedHTMLArray')
+    db.collection('user-data').findOneandDeleteOne(postedHTML, function(err, result) {
+      assert.equal(null, err);
+      console.log('item deleted')
       client.close();
     })
   });

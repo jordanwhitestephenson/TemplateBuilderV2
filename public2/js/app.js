@@ -1,8 +1,5 @@
 // data[e.target.name] = $(e.target).val();
 
-
-
-
 var collapseID
 
 var modules = {
@@ -148,7 +145,7 @@ var modules = {
   </style>`,
   Social_Module: {
     data: {
-      r_SocialMediaHeadline : 'Stay Connected',
+      r_SocialMediaHeadline: 'Stay Connected',
       r_NewsletterHeadline: 'So many Stories!',
       r_NewsletterPara: 'Sign up for more original stories and the hottest content from Crocs.',
       r_SocialBackgroundColor: '#e1e1e1',
@@ -280,7 +277,7 @@ var modules = {
         </div>
       </div>
     </div>`
-},
+  },
   module1: {
     data: {
       r_headerColor: '#444',
@@ -657,20 +654,38 @@ $(document).ready(function() {
         $.ajax({
           method: "GET",
           url: "/get-HTML",
-          success: function(items){
+          success: function(items) {
             var resultKeys = Object.values(items)
 
-
-            for(var i = 0; i < resultKeys.length; i++){
-              for(var x = 0; x < resultKeys[i].length; x++){
-                $('.savedHTML_container').append(`<div>${resultKeys[i][x].name}  </div>`)
-                console.log(resultKeys[i][x])
+            for (var i = 0; i < resultKeys.length; i++) {
+              for (var x = 0; x < resultKeys[i].length; x++) {
+                $('.savedHTML_container').append(`<div class = "buttonandSavedHTMLDiv">
+                <button type="button" class="btn btn-danger">Danger</button>
+                <div class = "savedHTMLDiv" id = "${resultKeys[i][x]._id}">${resultKeys[i][x].name}  </div></div>`)
               }
+            }
+            var savedHTMLDiv = document.getElementsByClassName('savedHTMLDiv')
+            var deleteSavedHTMLDiv = document.getElementsByClassName('btn-danger')
+            for (var i = 0; i < savedHTMLDiv.length; i++) {
+              savedHTMLDiv[i].addEventListener('click', savedHTMLDivClicked, false)
+            }
+            for (var k = 0; k < savedHTMLDiv.length; k++) {
+              deleteSavedHTMLDiv[k].addEventListener('click', deleteSavedHTMLDivFunc, false)
+            }
+
+            function deleteSavedHTMLDivFunc(e) {
+
+              var clickedDeleteDiv = $(e.target).children()
+              console.log(clickedDeleteDiv, 'this is delete')
+            }
+
+            function savedHTMLDivClicked(e) {
+              var clickedDiv = $(e.target).parent().parent().attr('id')
             }
           },
           error: function(e) {
             console.log(e)
-          },
+          }
         })
       })
       $('#html').on('click', function() {
@@ -930,25 +945,25 @@ $(document).ready(function() {
     sendHTML(htmlOrderArray)
   }
   function sendHTML(htmlOrderArray) {
-    $('#saveButton').unbind('click').bind('click', function(e){
-      var formData = {'name': htmlOrderArray}
+    $('#saveButton').unbind('click').bind('click', function(e) {
+      var formData = {
+        'name': htmlOrderArray
+      }
       console.log(formData)
       $.ajax({
         method: "POST",
         url: "/save-HTML",
         dataType: "json",
-        data : JSON.stringify(formData),
+        data: JSON.stringify(formData),
         contentType: "application/json",
-        success: function(){
+        success: function() {
           console.log('success')
         },
         error: function(e) {
           console.log(e)
-        },
-
+        }
       })
     })
-
   }
 
   $('#saveHTMLButton').on("click", function() {
