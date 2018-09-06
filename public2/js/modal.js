@@ -1,4 +1,3 @@
-
 function exampleModule1() {
   var model = `<div class="modal" id="exampleModalModule1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog template" role="document">
@@ -38,7 +37,30 @@ function exampleModule2() {
 `
   $('#modelContainer').append(model)
 }
+function saveModulePopup() {
+  var nullDivs = document.getElementsByClassName('delete_button')
+  var model = `<div class="modal fade" id="savePopupCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle"></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>`
 
+  $('#modelContainer').append(model)
+}
 
 var toggleMenu = function() {
   $('.mousetrap').toggleClass('toggle');

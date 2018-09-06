@@ -8,7 +8,7 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({extended: true})); // support encoded bodies
 const assert = require('assert');
 const url = 'mongodb://localhost:27017';
-
+var ObjectId = require('mongodb').ObjectID;
 
 app.listen(3002, () => console.log('Example app listening on port 3000!'))
 
@@ -48,16 +48,31 @@ app.post('/save-HTML', function(req, res) {
 
 })
 
-app.delete('/save-HTML', function(req, res) {
+app.delete('/delete-HTML/:id', function(req, res) {
+  let query = req.body._id
+var resultArray = []
   MongoClient.connect(url, function(err, client) {
-    var postedHTML = {}
-    postedHTML.name = req.body.name
     assert.equal(null, err);
     var db = client.db('savedHTMLArray')
-    db.collection('user-data').findOneandDeleteOne(postedHTML, function(err, result) {
+
+    db.collection('user-data').deleteOne({
+      "_id": ObjectId(query)
+    }, function(err, result) {
       assert.equal(null, err);
-      console.log('item deleted')
-      client.close();
+      if (err) {
+        console.log('failed')
+      }
+      console.log(result)
+
+
+      var cursor = db.collection('user-data').find();
+      cursor.forEach(function(doc, err) {
+        assert.equal(null, err);
+        resultArray.push(doc)
+      }, function() {
+        client.close()
+        res.send({items: resultArray})
+      });
     })
   });
 

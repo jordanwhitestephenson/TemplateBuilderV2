@@ -656,16 +656,34 @@ $(document).ready(function() {
           url: "/get-HTML",
           success: function(items) {
             var resultKeys = Object.values(items)
-
             for (var i = 0; i < resultKeys.length; i++) {
               for (var x = 0; x < resultKeys[i].length; x++) {
-                $('.savedHTML_container').append(`<div class = "buttonandSavedHTMLDiv">
-                <button type="button" class="btn btn-danger">Danger</button>
-                <div class = "savedHTMLDiv" id = "${resultKeys[i][x]._id}">${resultKeys[i][x].name}  </div></div>`)
+                $('.savedHTML_container').append(`<div class = "buttonandSavedHTMLDiv" style = "margin-bottom: 2em;">
+                <button type="button" class="btn btn-danger">DELETE ${x}</button>
+                <div  style = "border: 0.25px solid black" class = "savedHTMLDiv" id = "${resultKeys[i][x]._id}">${resultKeys[i][x].name}  </div>
+                <div id="myModal" class="modal_form">
+                <div class="modal-content_form">
+                <span class="close_form">&times;</span>
+                <form class="form_form">
+              <h3 style="text-align: center">Form - Modal</h3>
+              <label class = "label">name:</label>
+              <input class = "a_href_replacement" type="text">
+              <button class = "saveEditedForm">SAVE EDITED HTML</button>
+              </form>
+            </div>
+            </div>
+            </div>`)
               }
             }
-            var savedHTMLDiv = document.getElementsByClassName('savedHTMLDiv')
+            //MODEL EDIT//
+
             var deleteSavedHTMLDiv = document.getElementsByClassName('btn-danger')
+            var savedHTMLDiv = document.getElementsByClassName('savedHTMLDiv')
+            var editedButtonSave = document.getElementsByClassName('.saveEditedForm')
+            for (var x = 0; x < editedButtonSave.length; x++) {
+              editedButtonSave[x].addEventListener('click', updatedEditedHTML, false)
+            }
+
             for (var i = 0; i < savedHTMLDiv.length; i++) {
               savedHTMLDiv[i].addEventListener('click', savedHTMLDivClicked, false)
             }
@@ -673,20 +691,34 @@ $(document).ready(function() {
               deleteSavedHTMLDiv[k].addEventListener('click', deleteSavedHTMLDivFunc, false)
             }
 
-            function deleteSavedHTMLDivFunc(e) {
-
-              var clickedDeleteDiv = $(e.target).children()
-              console.log(clickedDeleteDiv, 'this is delete')
-            }
-
-            function savedHTMLDivClicked(e) {
-              var clickedDiv = $(e.target).parent().parent().attr('id')
-            }
           },
           error: function(e) {
             console.log(e)
           }
         })
+
+        function updatedEditedHTML(e){
+          console.log(e.target, 'yayayaya')
+        }
+        function deleteSavedHTMLDivFunc(e) {
+          var clickedDeleteDiv = $(e.target).parentsUntil('.savedHTML_container').find('.savedHTMLDiv').attr('id')
+          var clickedDeleteDivSection = $(e.target).parentsUntil('.savedHTML_container')
+          console.log(clickedDeleteDivSection)
+          $.ajax({
+            type: "DELETE",
+            url: `/delete-HTML/:${clickedDeleteDiv}`,
+            data: {
+              "_id": clickedDeleteDiv
+            },
+            success: function(data) {
+              clickedDeleteDivSection.remove()
+            },
+            error: function(e) {
+              console.log(e)
+            }
+          })
+        }
+
       })
       $('#html').on('click', function() {
         $(".create_container").hide()
@@ -805,10 +837,6 @@ $(document).ready(function() {
           if ($(e.target).parentsUntil('nav').find('.collapse').css('display') === 'none') {
             $(e.target).parentsUntil('nav').find('.imageSRC_Demandware2').attr('src', `http://staging-na-crox.demandware.net/on/demandware.static/-/Sites/default/${inputValue}`)
           }
-        } else {
-          // $(e.target).parentsUntil('nav').find('.imageSRC_DemandwareOG').attr('src', `${inputValue}`)
-          // $(e.target).parentsUntil('nav').find('.imageSRC_Demandware1').attr('src', `${inputValue}`)
-          // $(e.target).parentsUntil('nav').find('.imageSRC_Demandware2').attr('src', `${inputValue}`)
         }
       }
       // }
@@ -816,6 +844,45 @@ $(document).ready(function() {
     }
   };
   app.init();
+
+  function savedHTMLDivClicked(e) {
+    var clickedDiv = $(e.target).parentsUntil('.savedHTML_container').find('.savedHTMLDiv')[0]
+    var modal = $(e.target).parentsUntil('.savedHTML_container').find('.modal_form')[0]
+    var span = document.getElementsByClassName("close_form")[0];
+    var targetedDivModule1 = $(e.target).parentsUntil('.savedHTML_container').find('.savedHTMLDiv')[0].children[0].classList.contains('module1_mock')
+    var ahrefChange = document.getElementsByClassName('a_href_replacement')
+
+    switch (targetedDivModule1) {
+      case true:
+        var insertData = $(e.target).parentsUntil('.savedHTML_container').find('.product_container')[0].href
+        $(e.target).parentsUntil('.savedHTML_container').find('.a_href_replacement').val(insertData)
+        console.log('true')
+        // addChangeEvent()
+
+        break;
+      case false:
+      console.log('false')
+        $(e.target).parentsUntil('.savedHTML_container').find('.a_href_replacement').val('boo');
+        // addChangeEvent()
+        break;
+    }
+
+    modal.style.display = "block";
+
+
+    span.onclick = function() {
+      modal.style.display = "none";
+      console.log('span')
+      console.log($('.a_href_replacement').value)
+    }
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+        console.log('window')
+        console.log($('.a_href_replacement').value)
+      }
+    }
+  }
 
   function dropDownChange(thisDropDown) {
     for (var i = 0; i < thisDropDown.length; i++) {
@@ -946,6 +1013,7 @@ $(document).ready(function() {
   }
   function sendHTML(htmlOrderArray) {
     $('#saveButton').unbind('click').bind('click', function(e) {
+      saveModulePopup()
       var formData = {
         'name': htmlOrderArray
       }

@@ -340,3 +340,49 @@ input:checked+section.box .box-title:before {
   flex-direction: column;
   justify-content: space-between;
 }
+.modal_form {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(2, 1, 1, 0.75);
+}
+
+/* Modal Content */
+.modal-content_form {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+  min-height: 400px;
+}
+
+/* The Close Button */
+.close_form {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close_form:hover,
+.close_form:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.form_form{
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
